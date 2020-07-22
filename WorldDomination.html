@@ -1,0 +1,128 @@
+﻿<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+    <meta charset="utf-8">
+    <title>World Domination</title>
+    <link rel="stylesheet" href="bootstrap-4.3.1-dist/css/bootstrap.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body id="entire-background" onload="initialStartup()">
+    <div id="pre-game-screen"  class="hide-item-class">
+        <div id="player-setup">
+            <div id="setup-toolbar" class="toolbar">
+                <h2>Player Setup</h2>
+                <button id="complete-setup-button" class="btn btn-primary" onclick="toIniGame()">Complete Setup</button>
+                <div id="chooser-buttons">
+                    <div id="total-player-chooser">
+                        <div id="player-count-label">Choose Number of Players</div>
+                        <input type="number" id="update-player-count" min=2 max=5 value=5 onchange="changeNumberOfPlayers()" onkeyup="setupCheck()">
+                    </div>
+                    <div id="current-player-chooser">
+                        <div id="current-setup-player">Current Setup Player</div>
+                        <input type="number" id="update-setup-player" min=1 max=5 value=1 onchange="changeCurrentSetupPlayer()" onkeyup="setupCheck()"> 
+                    </div>
+                </div>
+                <div id="current-player-info">
+                    <h3 id="display-name">Player 1</h3>
+                    <button id="button-change-name" class="btn btn-primary" onclick="setupPlayerName()">Change Name</button>
+                </div>
+            </div>
+            <div id="player-information">
+                <div id="player-decklist">
+                    <h2 id="potential-decklist">Potential Decklist</h2>
+                    <div id="decklist-container" align="center"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="intro-screen" onclick="beginAttack()">
+        <div id="intro-screen-toolbar" class="toolbar">
+            <h2 id="intro-title">Game Status</h2>
+            <h3 id="intro-message"></h3>
+            <h4 id="intro-note">Click for Setup Screen</h4>
+        </div>
+        <div id="log-information">
+            <h3 id="log-information-title">Game Log</h3>
+        </div>
+        <div id="intro-information">
+            <h3 id="intro-information-title">Known Map Information</h3>
+        </div>
+    </div>
+
+    <div id="battle-screen"  class="hide-item-class">
+        <div id="battle-screen-toolbar" class="toolbar">
+                <h2 id="battle-title">Battle</h2>
+                <h3 id="battle-message">Initiation Game</h3>
+                <h4 id="battle-note">Click order of winners for turn order</h4>
+        </div>
+        <div id="battle-information">
+        </div>
+    </div>
+
+    <div id="map-screen"  class="hide-item-class">
+        <div id="map-monster2"></div>
+        <div id="map-screen-toolbar" class="toolbar">
+            <div id="toolbar-information">
+                <h2 id="map-title">World Map</h2>
+                <h3 id="map-message"></h3>
+                <h4 id="map-note"></h4>
+            </div>
+        </div>
+        <div id="world-map">
+            <div id="map-background"></div>
+            <div id="map-background-2"></div>
+            <div id="map-monster"></div>
+            <div id="map-monster3"></div>
+            <div id="map-monster4"></div>
+            <div id="map-countries"></div>
+            <p id="country-information" class="country-info"></p>
+            <div id="compass-rose"></div>
+        </div>
+    </div>
+    <div id="continent-color-prompt" class="hide-item-class">
+        <div id="continent-prompt-opacity-field"></div>
+        <div id="continent-choice-box">
+            <div id="color-choice-text">Please choose a color to add to </div>
+            <button id="choice-w" class = "white-color" onclick="continentColorChoice('W')">White</button>
+            <button id="choice-u" class = "blue-color" onclick="continentColorChoice('U')">Blue</button>
+            <button id="choice-b" class = "black-color" onclick="continentColorChoice('B')">Black</button>
+            <button id="choice-r" class = "red-color" onclick="continentColorChoice('R')">Red</button>
+            <button id="choice-g" class = "green-color" onclick="continentColorChoice('G')">Green</button>
+        </div>
+    </div>
+    <div id="defense-plane-prompt"  class="hide-item-class">
+        <div id="defense-plane-opacity-field"></div>
+        <div id="defense-choice-box">
+            <div id="defense-choice-text"></div>
+            <div id="defense-preview">Hover over a Plane to Preview</div>
+            <div id="defense-plane-buttons"></div>
+        </div>
+    </div>
+    <div id="planar-prompt" class="hide-item-class">
+        <div id="planar-prompt-opacity-field"></div>
+        <div id="planar-choice-box">
+            <div id="planar-choice-text"></div>
+            <div id="planar-choice-menu"></div>
+        </div>
+    </div>
+    <div id="archenemy-prompt" class="hide-item-class">
+        <div id="archenemy-prompt-opacity-field"></div>
+        <div id="archenemy-choice-box" onclick="closeArchenemyPrompt()">
+            <div id="archenemy-choice-text"></div>
+            <div id="archenemy-choice-menu"></div>
+        </div>
+    </div>
+
+    <script src="setupPlayers.js"></script>
+    <script src="codeMasters.js"></script>
+    <script src="gameVariables.js"></script>
+    <script src="gameBattle.js"></script>
+    <script src="gameMap.js"></script>
+    <script src="moveMap.js"></script>
+    <script src="dropMap.js"></script>
+    <script src="extraOptions.js"></script>
+</body>
+</html>
