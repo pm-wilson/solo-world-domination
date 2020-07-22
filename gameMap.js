@@ -512,14 +512,19 @@ function buildMapButtons() {
     }
 }
 
+function saveOptionsBeginGame() {
+    addClass("game-options", "hide-item-class");
+    removeClass("log-information", "hide-item-class");
+    removeClass("intro-information", "hide-item-class");
+    showPregame();
+    removeElement("intro-screen-toolbar", "begin-game-button");
+}
+
 function beginAttack() {
     var currentTurnPlayerNumber = gameVars.gameStatus.turn,
     currentTurnPlayerName = findPlayerName(currentTurnPlayerNumber);
 
-    if (gameVars.gameStatus.mode === "setup") {
-        showPregame();
-    }
-    else if (gameVars.gameStatus.mode === "attack") {
+    if (gameVars.gameStatus.mode === "attack") {
         showMap();
         //build map buttons
         buildMapButtons();
@@ -550,6 +555,8 @@ function topOfTurn() {
     showIntro();
     //update supply view button
     showSupplyViewButton();
+    //update player color on toolbar
+    updateMapToolbarColor();
 }
 
 function playerCountOnContinent(continent) {

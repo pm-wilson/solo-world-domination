@@ -1,4 +1,19 @@
 # World Domination
+## Setup
+### Game Options
+
+### Uploading A Decklist
+#### Deck Names
+No commas, double quotes will be converted to single quotes
+
+#### Deck Colors
+W for White
+U for Blue
+B for Black
+R for Red
+G for Green
+N for No Color
+
 ## Overview
 World Domination is a HTML, CSS, and JavaScript based game that loosely combines the card game of Magic the Gathering, and Risk. There are no external dependencies or anything that needs to be installed. In Risk the world map is occupied by each player and a dice roll determines the winners in a turn, in this game the dice roll is replaced by a game of Magic.
 I originally built a working version of this program using VB Script in Microsoft Excel, and have been rebuilding it in JavaScript in order to learn how to code in JavaScript. This is still a work in progress and is missing many critical parts, but the heart of the game can be interacted with.

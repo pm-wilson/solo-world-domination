@@ -1,22 +1,33 @@
 //gui issues
-//toolbar messed up on large screen
-//plane menus need to look better
+
+//game options and setup
+//bootstrap collapsable menus, containers or grid system
+//use alert class for setup complete
+
 //battle screen
+//plane menus
+//archenemy look
+
+//map screen
 //change map font size
+//preview information could look better, maybe bootstrap collapse menu
+
+//drop screen
 //hard to see which drops available
 //wild card button
 //drop note to say something about types
 
-//game start on option screen instead of information screen
+//modal fade for all opacity screens
 
+//additions
+//continent specific battle screens
 //player info screen
-
 //ability to save game state through browser restart
-//ability to upload new decklists
-//map hover rewrite & animate country
+
 
 //Admin Settings
 var adminSettings = {
+    unlockDecklistPaste: false,
     supportBonus: {
         useSupportBonusInGame: true,//true uses below suppport bonuses
         defendingLife: 3.2,
@@ -51,12 +62,12 @@ var adminSettings = {
         "continentCardPerDeckBonus": 0.34,
         "continentCardMinimum": 3,
         "continentLifeBonus": 40,
-        "bonusAfrica": "At the beggining of your upkeep put a 2/2 black zombie with defender in play.",
-        "bonusSouth America": "Your Artifacts cost 1 less to cast. If your deck has all five colors you get double rolls.",
-        "bonusNorth America": "Your starting life increases by ",
+        "bonusAfrica": "At the beggining of your upkeep put a 2/2 black zombie with defender in play. You may sacrifice 5 zombies to put a creature from your graveyard into play.",
+        "bonusSouth America": "Artifacts cost 1 less to cast. If your deck has all five colors you get double planar rolls and an extra Archenemy roll.",
+        "bonusNorth America": "Your starting life increases by",
         "bonusAsia": "All lands you control tap for an additional mana of the same color.",
-        "bonusEurope": "Your starting and max hand size increase by ",
-        "bonusAustralia": "Your Red creatures get haste."
+        "bonusEurope": "Your starting and max hand size increase by",
+        "bonusAustralia": "All red spells have flashback"
     },
     gameBonuses: [
         {"life": 13},

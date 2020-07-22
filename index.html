@@ -1,13 +1,11 @@
 ﻿<!DOCTYPE html>
 <html lang="en-US">
-
 <head>
     <meta charset="utf-8">
     <title>World Domination</title>
     <link rel="stylesheet" href="bootstrap-4.3.1-dist/css/bootstrap.css">
     <link rel="stylesheet" href="style.css">
 </head>
-
 <body id="entire-background" onload="initialStartup()">
     <div id="pre-game-screen"  class="hide-item-class">
         <div id="player-setup">
@@ -27,32 +25,162 @@
                 <div id="current-player-info">
                     <h3 id="display-name">Player 1</h3>
                     <button id="button-change-name" class="btn btn-primary" onclick="setupPlayerName()">Change Name</button>
+                    <buton class="btn btn-warning" id="upload-decklist" onclick="uploadDecklist()">Upload Decklist</buton>
                 </div>
             </div>
-            <div id="player-information">
+            <div id="player-information" class="bg-light">
                 <div id="player-decklist">
-                    <h2 id="potential-decklist">Potential Decklist</h2>
+                    <h2 id="potential-decklist" class="p-5">Potential Decklist</h2>
                     <div id="decklist-container" align="center"></div>
                 </div>
             </div>
         </div>
     </div>
-
     <div id="intro-screen" onclick="beginAttack()">
-        <div id="intro-screen-toolbar" class="toolbar">
-            <h2 id="intro-title">Game Status</h2>
+        <div id="intro-screen-toolbar" class="toolbar bg-dark text-light">
+            <h2 id="intro-title" class="p-2">Game Options</h2>
             <h3 id="intro-message"></h3>
-            <h4 id="intro-note">Click for Setup Screen</h4>
+            <h4 id="intro-note"></h4>
+            <button id="begin-game-button" class="btn btn-success" onclick="saveOptionsBeginGame()">Save Options and Begin Game</button>
         </div>
-        <div id="log-information">
+        <div id="game-options" class="py-1 bg-primary">
+            <div id="option-placement-setup" class="custom-control custom-switch px-5 py-2 m-2 border border-primary rounded-lg bg-light">
+                <h4 class="m-1">Initial Board Setup</h4>
+                <input id="checkbox-enable-placement" class="custom-control-input" type="checkbox" onchange="activatePlacementSetup()">
+                <label id="option-board-message" class="custom-control-label m-2" for="checkbox-enable-placement"></label>
+            </div>
+            <div id="option-additional-decks" class="custom-control custom-switch px-5 py-2 m-2 border border-primary rounded-lg bg-light">
+                <h4 class="m-1">Additional Decks</h4>
+                <input id="checkbox-additional-decks" class="custom-control-input" type="checkbox" onchange="activateAdditionalDecks()" checked>
+                <label id="option-additional-decks-message" class="custom-control-label m-2" for="checkbox-additional-decks"></label>
+            </div>
+            <div id="option-two-headed-giant" class="custom-control custom-switch px-5 py-2 m-2 border border-primary rounded-lg bg-light">
+                <h4 class="m-1">Two-Headed Giant</h4>
+                <input id="checkbox-two-headed-giant" class="custom-control-input" type="checkbox" onchange="activateTwoHeadedGiant()" checked>
+                <label id="option-two-headed-giant-message" class="custom-control-label m-2" for="checkbox-two-headed-giant"></label>
+            </div>
+            <div id="option-archenemy" class="custom-control custom-switch px-5 py-2 m-2 border border-primary rounded-lg bg-light">
+                <h4 class="m-1">Archenemy</h4>
+                <input id="checkbox-archenemy" class="custom-control-input" type="checkbox" onchange="activateArchenemy()" checked>
+                <label id="option-archenemy-message" class="custom-control-label m-2" for="checkbox-archenemy"></label>
+            </div>
+            <div id="option-defense-plane" class="custom-control custom-switch px-5 py-2 m-2 border border-primary rounded-lg bg-light">
+                <h4 class="m-1">Defense Planes</h4>
+                <input id="checkbox-defense-plane" class="custom-control-input" type="checkbox" onchange="activateDefensePlane()" checked>
+                <label id="option-defense-plane-message" class="custom-control-label m-2" for="checkbox-defense-plane"></label>
+            </div>
+            <div id="option-vanguard" class="custom-control custom-switch px-5 py-2 m-1 border border-primary rounded-lg bg-light">
+                <h4 class="m-1">Vanguard</h4>
+                <input id="checkbox-vanguard" class="custom-control-input" type="checkbox" onchange="activateVanguard()" checked>
+                <label id="option-vanguard-message" class="custom-control-label m-2" for="checkbox-vanguard"></label>
+            </div>
+            <div id="option-hero" class="custom-control custom-switch px-5 py-2 m-2 border border-primary rounded-lg bg-light">
+                <h4 class="m-1">Hero</h4>
+                <input type="checkbox" class="custom-control-input" id="checkbox-hero" onchange="activateHero()" checked>
+                <label id="option-hero-message" class="custom-control-label m-2" for="checkbox-hero"></label>
+            </div>
+            <div id="option-conspiracy" class="custom-control custom-switch px-5 py-2 m-2 border border-primary rounded-lg bg-light">
+                <h4 class="m-1">Conspiracy</h4>
+                <input id="checkbox-conspiracy" class="custom-control-input" type="checkbox" onchange="activateConspiracy()" checked>
+                <label id="option-conspiracy-message" class="custom-control-label m-2" for="checkbox-conspiracy"></label>
+            </div>
+            <div id="option-support-bonus" class="custom-control custom-switch px-5 py-2 m-2 border border-primary rounded-lg bg-light">
+                <h4 class="m-1">Country Support</h4>
+                <input id="checkbox-enable-support" class="custom-control-input" type="checkbox" onchange="activateCountrySupport()" checked>
+                <label id="option-support-message" class="custom-control-label m-2" for="checkbox-enable-support"></label>
+                <div id="option-support-options">
+                    <div class="row pt-4">
+                        <label class="m-2 col">Attacker Bonus Life:</label>
+                        <input class="m-2 col" type="number" id="change-attacker-life" onchange="updateSupport('attackingLife', 'change-attacker-life')"><div class="col"></div>
+                        <label class="m-2 col">Defender Bonus Life:</label>
+                        <input class="m-2 col" type="number" id="change-defender-life" onchange="updateSupport('defendingLife', 'change-defender-life')"><div class="col"></div>
+                    </div>
+                    <div class="row">
+                        <label class="m-2 col">Attacker Bonus Cards:</label>
+                        <input class="m-2 col" type="number" id="change-attacker-cards" onchange="updateSupport('attackingHand', 'change-attacker-cards')"><div class="col"></div>
+                        <label class="m-2 col">Defender Bonus Cards:</label>
+                        <input class="m-2 col" type="number" id="change-defender-cards" onchange="updateSupport('defendingHand', 'change-defender-cards')"><div class="col"></div>
+                    </div>
+                    <div class="row">
+                        <label class="m-2 col">Attacker Bonus Power:</label>
+                        <input class="m-2 col" type="number" id="change-attacker-power" onchange="updateSupport('attackingPower', 'change-attacker-power')"><div class="col"></div>
+                        <label class="m-2 col">Defender Bonus Power:</label>
+                        <input class="m-2 col" type="number" id="change-defender-power" onchange="updateSupport('defendingPower', 'change-defender-power')"><div class="col"></div>    
+                    </div>
+                    <div class="row">
+                        <label class="m-2 col">Attacker Bonus Toughness:</label>
+                        <input class="m-2 col" type="number" id="change-attacker-toughness" onchange="updateSupport('attackingToughness', 'change-attacker-toughness')"><div class="col"></div>
+                        <label class="m-2 col">Defender Bonus Toughness:</label>
+                        <input class="m-2 col" type="number" id="change-defender-toughness" onchange="updateSupport('defendingToughness', 'change-defender-toughness')"><div class="col"></div>
+                    </div>
+                </div>
+            </div>
+            <div id="option-continent-bonuses" class="custom-control custom-switch px-5 py-2 m-2 border border-primary rounded-lg bg-light">
+                <h4 class="m-1">Continent Bonuses</h4>
+                <input id="checkbox-continent-bonuses" class="custom-control-input m-2" type="checkbox" onchange="activateContinentBonuses()" checked>
+                <label id="option-continent-bonuses-message" class="custom-control-label m-2" for="checkbox-continent-bonuses"></label>
+                <div id="option-continent-bonuses-options" class="form-group m-2">
+                    <br>
+                    <label for="continent-northamerica">North America (White):</label><br>
+                    <label class="m-1">Bonus Life:</label>
+                    <input class="m-1" type="number" id="continent-northamerica-life" onchange="updateNorthAmericaLife()">
+                    <textarea id="continent-northamerica" class="form-control" rows="2" onchange="updateContinentBonus('bonusNorth America', 'continent-northamerica')"></textarea>
+                    <br>
+                    <label for="continent-europe">Europe (Blue):</label><br>
+                    <label class="m-1">Bonus Cards in Hand (per country owned by player):</label>
+                    <input class="m-1" type="number" id="continent-europe-hand" onchange="updateEuropeCards()">
+                    <label class="m-1">Minimum Bonus Cards:</label>
+                    <input class="m-1" type="number" id="continent-europe-minimum" onchange="updateMinEuropeCards()">
+                    <textarea type="text" id="continent-europe" class="form-control" rows="2" onchange="updateContinentBonus('bonusEurope', 'continent-europe')"></textarea>
+                    <br>
+                    <label for="continent-africa">Africa (Black):</label>
+                    <textarea type="text" id="continent-africa" class="form-control" rows="2" onchange="updateContinentBonus('bonusAfrica', 'continent-africa')"></textarea>
+                    <br>
+                    <label for="continent-australia">Australia (Red):</label>
+                    <textarea type="text" id="continent-australia" class="form-control" rows="2" onchange="updateContinentBonus('bonusAustralia', 'continent-australia')"></textarea>
+                    <br>
+                    <label for="continent-asia">Asia (Green):</label>
+                    <textarea type="text" id="continent-asia" class="form-control" rows="2" onchange="updateContinentBonus('bonusAsia', 'continent-asia')"></textarea>
+                    <br>
+                    <label for="continent-southamerica">South America (All Decks):</label>
+                    <textarea type="text" id="continent-southamerica" class="form-control" rows="2" onchange="updateContinentBonus('bonusSouth America', 'continent-southamerica')"></textarea>
+                </div>
+            </div>
+            <div id="option-continent-moves" class="custom-control custom-switch px-5 py-2 m-2 border border-primary rounded-lg bg-light">
+                    <h4 class="m-1">Continent Moves</h4>
+                    <label class="m-2">When a player controls a continent they get additional moves to be used around that continent (minimum of 0 and maximum of 10)</label>
+                <div class="row">
+                    <label class="m-2 col">North America:</label>
+                    <input class="m-2 col" type="number" min=0 max=10 id="move-northamerica" onchange="updateMove('moveNorth America', 'move-northamerica')" onkeyup="checkMoveOver('moveNorth America', 'move-northamerica')">
+                    <div class="col"></div>
+                    <label class="m-2 col">Europe:</label>
+                    <input class="m-2 col" type="number" min=0 max=10 id="move-europe" onchange="updateMove('moveEurope', 'move-europe')" onkeyup="checkMoveOver('moveEurope', 'move-europe')">
+                    <div class="col"></div>
+                    <label class="m-2 col">Africa:</label>
+                    <input class="m-2 col" type="number" min=0 max=10 id="move-africa" onchange="updateMove('moveAfrica', 'move-africa')" onkeyup="checkMoveOver('moveAfrica', 'move-africa')">
+                    <div class="col"></div>
+                </div>
+                <div class="row">
+                    <label class="m-2 col">Australia:</label>
+                    <input class="m-2 col" type="number" min=0 max=10 id="move-australia" onchange="updateMove('moveAustralia', 'move-australia')" onkeyup="checkMoveOver('moveAustralia', 'move-australia')">
+                    <div class="col"></div>
+                    <label class="m-2 col">Asia:</label>
+                    <input class="m-2 col" type="number" min=0 max=10 id="move-asia" onchange="updateMove('moveAsia', 'move-asia')" onkeyup="checkMoveOver('moveAsia', 'move-asia')">
+                    <div class="col"></div>
+                    <label class="m-2 col">South America:</label>
+                    <input class="m-2 col" type="number" min=0 max=10 id="move-southamerica" onchange="updateMove('moveSouth America', 'move-southamerica')" onkeyup="checkMoveOver('moveSouth America', 'move-southamerica')">
+                    <div class="col"></div>
+                </div>
+            </div>
+        </div>
+        <div id="log-information" class="hide-item-class">
             <h3 id="log-information-title">Game Log</h3>
         </div>
-        <div id="intro-information">
+        <div id="intro-information" class="hide-item-class">
             <h3 id="intro-information-title">Known Map Information</h3>
         </div>
     </div>
-
-    <div id="battle-screen"  class="hide-item-class">
+    <div id="battle-screen" class="hide-item-class">
         <div id="battle-screen-toolbar" class="toolbar">
                 <h2 id="battle-title">Battle</h2>
                 <h3 id="battle-message">Initiation Game</h3>
@@ -61,8 +189,7 @@
         <div id="battle-information">
         </div>
     </div>
-
-    <div id="map-screen"  class="hide-item-class">
+    <div id="map-screen" class="hide-item-class">
         <div id="map-monster2"></div>
         <div id="map-screen-toolbar" class="toolbar">
             <div id="toolbar-information">
@@ -83,7 +210,7 @@
         </div>
     </div>
     <div id="continent-color-prompt" class="hide-item-class">
-        <div id="continent-prompt-opacity-field"></div>
+        <div id="continent-prompt-opacity-field" class="opacity-field"></div>
         <div id="continent-choice-box">
             <div id="color-choice-text">Please choose a color to add to </div>
             <button id="choice-w" class = "white-color" onclick="continentColorChoice('W')">White</button>
@@ -94,7 +221,7 @@
         </div>
     </div>
     <div id="defense-plane-prompt"  class="hide-item-class">
-        <div id="defense-plane-opacity-field"></div>
+        <div id="defense-plane-opacity-field" class="opacity-field"></div>
         <div id="defense-choice-box">
             <div id="defense-choice-text"></div>
             <div id="defense-preview">Hover over a Plane to Preview</div>
@@ -102,20 +229,27 @@
         </div>
     </div>
     <div id="planar-prompt" class="hide-item-class">
-        <div id="planar-prompt-opacity-field"></div>
+        <div id="planar-prompt-opacity-field" class="opacity-field"></div>
         <div id="planar-choice-box">
             <div id="planar-choice-text"></div>
             <div id="planar-choice-menu"></div>
         </div>
     </div>
     <div id="archenemy-prompt" class="hide-item-class">
-        <div id="archenemy-prompt-opacity-field"></div>
+        <div id="archenemy-prompt-opacity-field" class="opacity-field"></div>
         <div id="archenemy-choice-box" onclick="closeArchenemyPrompt()">
             <div id="archenemy-choice-text"></div>
             <div id="archenemy-choice-menu"></div>
         </div>
     </div>
-
+    <div id="deck-upload-prompt" class="hide-item-class">
+        <div id="deck-upload-prompt-opacity-field" class="opacity-field"></div>
+        <div id="deck-upload-choice-box">
+            <div id="deck-upload-choice-text">Copy Deck Names and Deck Colors and Press (Control + V)</div>
+            <button class="btn btn-danger" id="decklist-paste-cancel" onclick="deckPasteCancel()">Cancel</button>
+            <div id="deck-upload-choice-menu"></div>
+        </div>
+    </div>
     <script src="setupPlayers.js"></script>
     <script src="codeMasters.js"></script>
     <script src="gameVariables.js"></script>

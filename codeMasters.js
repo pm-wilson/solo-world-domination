@@ -1,4 +1,57 @@
 //Code Masters
+
+function colorNames(deckColors) {
+    var colorsInCaps = deckColors.toUpperCase(),
+    newColors = "";
+
+    //check for w
+    if (colorsInCaps.indexOf("W") !== -1) {
+        newColors += "White";
+    }
+    //check for u
+    if (colorsInCaps.indexOf("U") !== -1) {
+        if (colorsInCaps.indexOf("W") !== -1) {
+            newColors += ", ";
+        }
+        newColors += "Blue";
+    }
+    //check for b
+    if (colorsInCaps.indexOf("B") !== -1) {
+        if (colorsInCaps.indexOf("W") !== -1 || colorsInCaps.indexOf("U") !== -1) {
+            newColors += ", ";
+        }
+        newColors += "Black";
+    }
+    //check for r
+    if (colorsInCaps.indexOf("R") !== -1) {
+        if (colorsInCaps.indexOf("W") !== -1 || colorsInCaps.indexOf("U") !== -1 || colorsInCaps.indexOf("B") !== -1) {
+            newColors += ", ";
+        }
+        newColors += "Red";
+    }
+    //check for g
+    if (colorsInCaps.indexOf("G") !== -1) {
+        if (colorsInCaps.indexOf("W") !== -1 || colorsInCaps.indexOf("U") !== -1 || colorsInCaps.indexOf("B") !== -1 || colorsInCaps.indexOf("R") !== -1) {
+            newColors += ", ";
+        }
+        newColors += "Green";
+    }
+    //check for n
+    if (newColors === "") {
+        newColors += "None";
+    }
+    return newColors;
+}
+
+function updateMapToolbarColor() {
+    var currentTurn = gameVars.gameStatus.turn;
+
+    for (var i = 0; i < gameVars.gameStatus.turnOrder.length; i++) {
+        removeClass("map-screen-toolbar","player-color-" + gameVars.gameStatus.turnOrder[i]);
+    }
+    addClass("map-screen-toolbar","player-color-" + currentTurn);
+}
+
 function removeAllPlayerDecksFromCountryList(playerNumber) {
     for (var i = 0; i < gameVars.mapInfo.countryList.length; i++) {
         if (!!gameVars.mapInfo.countryList[i].deck && gameVars.mapInfo.countryList[i].deck.deckPlayer === playerNumber) {

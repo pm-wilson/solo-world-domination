@@ -282,66 +282,61 @@ function introScreenPenalty(currentCountry) {
 }
 
 function updateIntroScreen() {
-    if (gameVars.gameStatus.mode === "setup") {
-        showOptionScreen();
+    //show country list with player, deck, bonuses and penalties
+    var countryList = [];
+    
+    for (var c = 0; c < gameVars.mapInfo.countryList.length; c++) {
+        countryList.push({
+            countryName: gameVars.mapInfo.countryList[c].countryName, 
+            deckName: introScreenName(gameVars.mapInfo.countryList[c]),
+            deckGames: introScreenGames(gameVars.mapInfo.countryList[c]),
+            deckBonuses: introScreenBonus(gameVars.mapInfo.countryList[c]),
+            deckPenalties: introScreenPenalty(gameVars.mapInfo.countryList[c])
+        }); 
     }
-    else {
-        //show country list with player, deck, bonuses and penalties
-        var countryList = [];
-    
-        for (var c = 0; c < gameVars.mapInfo.countryList.length; c++) {
-            countryList.push({
-                countryName: gameVars.mapInfo.countryList[c].countryName, 
-                deckName: introScreenName(gameVars.mapInfo.countryList[c]),
-                deckGames: introScreenGames(gameVars.mapInfo.countryList[c]),
-                deckBonuses: introScreenBonus(gameVars.mapInfo.countryList[c]),
-                deckPenalties: introScreenPenalty(gameVars.mapInfo.countryList[c])
-            }); 
-        }
-        //create table with above info
-        var tableBody = document.getElementById("intro-information"), //reference for body
-        tbl = document.createElement("table"), //table element
-        tblBody = document.createElement("tbody"), //tbody element)
-        tblHeader = document.createElement("thead");
-    
-        var tblHeaderValues = ["Country", "Deck", "Games", "Bonuses", "Penalties"],
-        tblHeaderRow = document.createElement("tr");
-    
-        //remove previous list
-        removeElement("intro-information", "known-info");
-        tblHeader.appendChild(tblHeaderRow);
-        for (var h = 0; h < tblHeaderValues.length; h++) {
-            var headerValue = tblHeaderValues[h],
-            headerCell = document.createElement("th"),
-            headerText = document.createTextNode(headerValue);
-            headerCell.appendChild(headerText);
-            tblHeaderRow.appendChild(headerCell);
-        }
-        //creates all cells
-        for (var i = 0; i < countryList.length; i++) { 
-            //creates a table row
-            var row = document.createElement("tr"); 
-            //create a td element and text node, make the text node the contents of td and put td at the end of table row
-            for (var j = 0; j < tblHeaderValues.length; j++) { 
-                var currentCountry = countryList[i],
-                values = Object.values(currentCountry),
-                cell = document.createElement("td"),
-                cellText = document.createTextNode(values[j]);
-    
-                cell.appendChild(cellText);    
-                row.appendChild(cell);        
-            }
-            tblBody.appendChild(row);
-        }
-        tbl.id = "known-info";
-        tbl.appendChild(tblHeader);
-        tbl.appendChild(tblBody);
-        tableBody.appendChild(tbl);
-        //add class for bootstrap
-        document.getElementById("known-info").classList.add("table-striped");
-        //display log information
-        showLogInfo();
+    //create table with above info
+    var tableBody = document.getElementById("intro-information"), //reference for body
+    tbl = document.createElement("table"), //table element
+    tblBody = document.createElement("tbody"), //tbody element)
+    tblHeader = document.createElement("thead");
+
+    var tblHeaderValues = ["Country", "Deck", "Games", "Bonuses", "Penalties"],
+    tblHeaderRow = document.createElement("tr");
+
+    //remove previous list
+    removeElement("intro-information", "known-info");
+    tblHeader.appendChild(tblHeaderRow);
+    for (var h = 0; h < tblHeaderValues.length; h++) {
+        var headerValue = tblHeaderValues[h],
+        headerCell = document.createElement("th"),
+        headerText = document.createTextNode(headerValue);
+        headerCell.appendChild(headerText);
+        tblHeaderRow.appendChild(headerCell);
     }
+    //creates all cells
+    for (var i = 0; i < countryList.length; i++) { 
+        //creates a table row
+        var row = document.createElement("tr"); 
+        //create a td element and text node, make the text node the contents of td and put td at the end of table row
+        for (var j = 0; j < tblHeaderValues.length; j++) { 
+            var currentCountry = countryList[i],
+            values = Object.values(currentCountry),
+            cell = document.createElement("td"),
+            cellText = document.createTextNode(values[j]);
+
+            cell.appendChild(cellText);    
+            row.appendChild(cell);        
+        }
+        tblBody.appendChild(row);
+    }
+    tbl.id = "known-info";
+    tbl.appendChild(tblHeader);
+    tbl.appendChild(tblBody);
+    tableBody.appendChild(tbl);
+    //add class for bootstrap
+    document.getElementById("known-info").classList.add("table-striped");
+    //display log information
+    showLogInfo();
 }
 
 function cleanupPlayerDeckLists() {
@@ -477,13 +472,23 @@ function toIniGame() {
     }
 }
 
+function decklistWithPrettyColors(deckList) {
+    var newDecklist = [];
+
+    for (var i = 0; i < deckList.length; i++) {
+        newDecklist.push({deckName: deckList[i].deckName, deckColors: colorNames(deckList[i].deckColors)})
+    }
+    return newDecklist;
+}
+
 function refreshDeckListShown(decklistCount, deckList) {
-    var tableBody = document.getElementById("decklist-container"), //reference for body
+    var updatedDecklist = decklistWithPrettyColors(deckList),
+    tableBody = document.getElementById("decklist-container"), //reference for body
     tbl = document.createElement("table"), //table element
     tblBody = document.createElement("tbody"), //tbody element)
     tblHeader = document.createElement("thead");
 
-    var tblHeaderValues = ["Name", "Color"],
+    var tblHeaderValues = ["Deck", "Colors"],
     tblHeaderRow = document.createElement("tr");
     
     //remove previous list
@@ -496,6 +501,7 @@ function refreshDeckListShown(decklistCount, deckList) {
         headerText = document.createTextNode(headerValue);
        
         headerCell.appendChild(headerText);
+        headerCell.classList.add("p-3");
         tblHeaderRow.appendChild(headerCell);
     }
 
@@ -507,12 +513,14 @@ function refreshDeckListShown(decklistCount, deckList) {
 
         //create a td element and text node, make the text node the contents of td and put td at the end of table row
         for (var j = 0; j < tblHeaderValues.length; j++) { 
-            var currentDeck = deckList[i],
+            var currentDeck = updatedDecklist[i],
             values = Object.values(currentDeck),
             cell = document.createElement("td"),
             cellText = document.createTextNode(values[j]);
 
-            cell.appendChild(cellText);    
+            cell.appendChild(cellText);
+            cell.classList.add("py-2");
+            cell.classList.add("px-3");
             row.appendChild(cell);        
         }
         tblBody.appendChild(row);
@@ -523,6 +531,7 @@ function refreshDeckListShown(decklistCount, deckList) {
     tableBody.appendChild(tbl);
     //add class for bootstrap
     document.getElementById("setup-player-decklist-table").classList.add("table-striped");
+    document.getElementById("setup-player-decklist-table").classList.add("mb-5");
 }
 
 function shuffleAllDecklists() {
@@ -586,49 +595,353 @@ function setupPlayerName() {
     shuffleAllDecklists();
 }
 
-function showOptionScreen() {
-    console.log("show option screen");
-
-
-    //support bonus
-    //adminSettings.supportBonus.useSupportBonusInGame
-    //make support bonuses modifyable
-
-    //placement setup
-    //adminSettings.placementSetup.usePlacementSetup
-
-    //two headed giant
-    //adminSettings.useTwoHeadedGiant
-
-    //archenemy
-    //adminSettings.useArchenemy
-
-    //defense plane
-    //adminSettings.useDefensePlane
-
-    //additional deck drops
-    //adminSettings.useAdditionalDeckDrops
-
-    //vanguard
-    //adminSettings.useVanguard
-
-    //hero
-    //adminSettings.useHero
-
-    //conspiracy
-    //adminSettings.useConspiracy
-
-    //continent bonuses
-    //adminSettings.continentBonuses.useContinentBonuses
-    //make continent bonuses modifyable
-
-    //make bonus and penalty amounts adjustable
-
-    //continent moves adjustable
-}
-
 function initialStartup() {
     showIntro();
     //refresh player 1 info
     changeCurrentSetupPlayer();
+    //show current game options
+    activateCountrySupport();
+    activatePlacementSetup();
+    activateTwoHeadedGiant();
+    activateArchenemy();
+    activateDefensePlane();
+    activateAdditionalDecks();
+    activateVanguard();
+    activateHero();
+    activateConspiracy();
+    activateContinentBonuses();
+    activateContinentMoves();
 }
+
+//Game Options
+function activateCountrySupport() {
+    if (document.getElementById("checkbox-enable-support").checked) {
+        //update option
+        adminSettings.supportBonus.useSupportBonusInGame = true;
+        //update message
+        document.getElementById("option-support-message").innerHTML = "Bonuses applied for each allied country surrounding and not participating in a battle.";
+        //unhide realted options
+        removeClass("option-support-options", "hide-item-class");
+    }
+    else {
+        //update option
+        adminSettings.supportBonus.useSupportBonusInGame = false;
+        //update message
+        document.getElementById("option-support-message").innerHTML = "Country Support Disabled";
+        //hide related options
+        addClass("option-support-options", "hide-item-class");
+    }
+    //list current attacker life
+    document.getElementById("change-attacker-life").defaultValue = adminSettings.supportBonus.attackingLife;
+    //list current attacker cards
+    document.getElementById("change-attacker-cards").defaultValue = adminSettings.supportBonus.attackingHand;
+    //list current attacker power
+    document.getElementById("change-attacker-power").defaultValue = adminSettings.supportBonus.attackingPower;
+    //list current attacker toughness
+    document.getElementById("change-attacker-toughness").defaultValue = adminSettings.supportBonus.attackingToughness;
+    //list current defender life
+    document.getElementById("change-defender-life").defaultValue = adminSettings.supportBonus.defendingLife;
+    //list current defender cards
+    document.getElementById("change-defender-cards").defaultValue = adminSettings.supportBonus.defendingHand;
+    //list current defender power
+    document.getElementById("change-defender-power").defaultValue = adminSettings.supportBonus.defendingPower;
+    //list current defender toughness
+    document.getElementById("change-defender-toughness").defaultValue = adminSettings.supportBonus.defendingToughness;
+}
+
+function updateSupport(support, id) {
+    adminSettings.supportBonus[support] = Number(document.getElementById(id).value);
+}
+
+function activatePlacementSetup() {
+    if (document.getElementById("checkbox-enable-placement").checked) {
+        //update option
+        adminSettings.placementSetup.usePlacementSetup = true;
+        //update message
+        document.getElementById("option-board-message").innerHTML = "Players choose starting countries in turn order.";
+    }
+    else {
+        //update option
+        adminSettings.placementSetup.usePlacementSetup = false;
+        //update message
+        document.getElementById("option-board-message").innerHTML = "Starting countries are chosen randomly.";
+    }
+}
+
+function activateTwoHeadedGiant() {
+    if (document.getElementById("checkbox-two-headed-giant").checked) {
+        //update option
+        adminSettings.useTwoHeadedGiant = true;
+        //update message
+        document.getElementById("option-two-headed-giant-message").innerHTML = "Games will be Two-Headed Giant.";
+    }
+    else {
+        //update option
+        adminSettings.useTwoHeadedGiant = false;
+        //update message
+        document.getElementById("option-two-headed-giant-message").innerHTML = "Games will be single decks.";
+    }
+}
+
+function activateArchenemy() {
+    if (document.getElementById("checkbox-archenemy").checked) {
+        //update option
+        adminSettings.useArchenemy = true;
+        //update message
+        document.getElementById("option-archenemy-message").innerHTML = "A button on the battle screen shows an Archenemy card. Each turn the defender gets a 1 in 6 chance each game turn to play one.";
+    }
+    else {
+        //update option
+        adminSettings.useArchenemy = false;
+        //update message
+        document.getElementById("option-archenemy-message").innerHTML = "Archenemy Disabled";
+    }
+}
+
+function activateDefensePlane() {
+    if (document.getElementById("checkbox-defense-plane").checked) {
+        //update option
+        adminSettings.useDefensePlane = true;
+        //update message
+        document.getElementById("option-defense-plane-message").innerHTML = "Each defending deck chooses a defense plane to stay with the deck. This will be the starting plane if it is on the continent color, or be included in the continent planar deck if not.";
+    }
+    else {
+        //update option
+        adminSettings.useDefensePlane = false;
+        //update message
+        document.getElementById("option-defense-plane-message").innerHTML = "Defense Planes Disabled";
+    }
+}
+
+function activateAdditionalDecks() {
+    if (document.getElementById("checkbox-additional-decks").checked) {
+        //update option
+        adminSettings.useAdditionalDeckDrops = true;
+        //update message
+        document.getElementById("option-additional-decks-message").innerHTML = "New decks enter the game from the player deck list when supply cards are played on an unoccupied country. As long as another deck is available.";
+    }
+    else {
+        //update option
+        adminSettings.useAdditionalDeckDrops = false;
+        //update message
+        document.getElementById("option-additional-decks-message").innerHTML = "No new decks will be dropped in the game.";
+    }
+}
+
+function activateVanguard() {
+    if (document.getElementById("checkbox-vanguard").checked) {
+        //update option
+        adminSettings.useVanguard = true;
+        //update message
+        document.getElementById("option-vanguard-message").innerHTML = "A Vanguard card is awarded to each game winner. Each game the deck starts with a random Vanguard it has won.";
+    }
+    else {
+        //update option
+        adminSettings.useVanguard = false;
+        //update message
+        document.getElementById("option-vanguard-message").innerHTML = "Vanguards Disabled";
+    }
+}
+
+function activateHero() {
+    if (document.getElementById("checkbox-hero").checked) {
+        //update option
+        adminSettings.useHero = true;
+        //update message
+        document.getElementById("option-hero-message").innerHTML = "Each Hero is assigned to a random country and is shuffled if a turn goes by without the current player winning. A deck starts with a given Hero if they defend a country with one.";
+    }
+    else {
+        //update option
+        adminSettings.useHero = false;
+        //update message
+        document.getElementById("option-hero-message").innerHTML = "Hero Disabled";
+    }
+}
+
+function activateConspiracy() {
+    if (document.getElementById("checkbox-conspiracy").checked) {
+        //update option
+        adminSettings.useConspiracy = true;
+        //update message
+        document.getElementById("option-conspiracy-message").innerHTML = "Each Conspiracy is assigned to a random country and is shuffled if a turn goes by without the current player winning. A deck starts with a given Conspiracy if they attack from a country with one.";
+    }
+    else {
+        //update option
+        adminSettings.useConspiracy = false;
+        //update message
+        document.getElementById("option-conspiracy-message").innerHTML = "Conspiracy Disabled";
+    }
+}
+
+function activateContinentBonuses() {
+    if (document.getElementById("checkbox-continent-bonuses").checked) {
+        //update option
+        adminSettings.continentBonuses.useContinentBonuses = true;
+        //update message
+        document.getElementById("option-continent-bonuses-message").innerHTML = "Each deck that has a color that corresponds with the attacked continent gets an ability. If a player is the only one occupying a continent it applies to all their decks. A second color is chosen if they control all countries on the continent.";
+        //unhide realted options
+        removeClass("option-continent-bonuses-options", "hide-item-class");
+        //continent north america
+        document.getElementById("continent-northamerica").defaultValue = adminSettings.continentBonuses["bonusNorth America"];
+        //continent north america life
+        document.getElementById("continent-northamerica-life").defaultValue = adminSettings.continentBonuses["continentLifeBonus"];
+        //continent europe
+        document.getElementById("continent-europe").defaultValue = adminSettings.continentBonuses["bonusEurope"];
+        //continent europe hand size
+        document.getElementById("continent-europe-hand").defaultValue = adminSettings.continentBonuses["continentCardPerDeckBonus"];
+        //continent europe minimum cards
+        document.getElementById("continent-europe-minimum").defaultValue = adminSettings.continentBonuses["continentCardMinimum"];
+        //continent africa
+        document.getElementById("continent-africa").defaultValue = adminSettings.continentBonuses["bonusAfrica"];
+        //continent australia
+        document.getElementById("continent-australia").defaultValue = adminSettings.continentBonuses["bonusAustralia"];
+        //continent asia
+        document.getElementById("continent-asia").defaultValue = adminSettings.continentBonuses["bonusAsia"];
+        //continent south america all decks
+        document.getElementById("continent-southamerica").defaultValue = adminSettings.continentBonuses["bonusSouth America"];
+    }
+    else {
+        //update option
+        adminSettings.continentBonuses.useContinentBonuses = false;
+        //update message
+        document.getElementById("option-continent-bonuses-message").innerHTML = "Continent Bonuses Disabled";
+        //hide realted options
+        addClass("option-continent-bonuses-options", "hide-item-class");
+    }
+}
+
+function updateContinentBonus(bonusToChange, id) {
+    adminSettings.continentBonuses[bonusToChange] = document.getElementById(id).value;
+}
+
+function updateNorthAmericaLife() {
+    adminSettings.continentBonuses["continentLifeBonus"] = Number(document.getElementById("continent-northamerica-life").value);
+}
+
+function updateEuropeCards() {
+    adminSettings.continentBonuses["continentCardPerDeckBonus"] = Number(document.getElementById("continent-europe-hand").value);
+}
+
+function updateMinEuropeCards() {
+    adminSettings.continentBonuses["continentCardMinimum"] = Number(document.getElementById("continent-europe-minimum").value);
+}
+
+function activateContinentMoves() {
+    //move count north america
+    document.getElementById("move-northamerica").defaultValue = adminSettings.continentMoves["moveNorth America"];
+    //move count europe
+    document.getElementById("move-europe").defaultValue = adminSettings.continentMoves["moveEurope"];
+    //move count europe
+    document.getElementById("move-africa").defaultValue = adminSettings.continentMoves["moveAfrica"];
+    //move count europe
+    document.getElementById("move-australia").defaultValue = adminSettings.continentMoves["moveAustralia"];
+    //move count europe
+    document.getElementById("move-asia").defaultValue = adminSettings.continentMoves["moveAsia"];
+    //move count europe
+    document.getElementById("move-southamerica").defaultValue = adminSettings.continentMoves["moveSouth America"];
+}
+
+function updateMove(continentMove, id) {
+    if (Number(document.getElementById(id).value) > 10) {
+        adminSettings.continentMoves[continentMove] = 10;
+    }
+    else {
+        adminSettings.continentMoves[continentMove] = Number(document.getElementById(id).value);
+    }
+}
+
+function checkMoveOver(continentMove, id) {
+    if (Number(document.getElementById(id).value) > 10) {
+        document.getElementById(id).value = adminSettings.continentMoves[continentMove];
+    }
+}
+
+function uploadDecklist() {
+    //show prompt
+    unhideId("deck-upload-prompt");
+    //unlock paste listener
+    adminSettings.unlockDecklistPaste = true;
+}
+
+function deckPasteCancel() {
+    //hide prompt
+    hideId("deck-upload-prompt");
+    //lock paste listener
+    adminSettings.unlockDecklistPaste = false;
+}
+
+function checkDeckColors(colors) {
+    var colorsInCaps = colors.toUpperCase(),
+    newDeckColors = "";
+
+    //check for w
+    if (colorsInCaps.indexOf("W") !== -1) {
+        newDeckColors += "W";
+    }
+    //check for u
+    if (colorsInCaps.indexOf("U") !== -1) {
+        newDeckColors += "U";
+    }
+    //check for b
+    if (colorsInCaps.indexOf("B") !== -1) {
+        newDeckColors += "B";
+    }
+    //check for r
+    if (colorsInCaps.indexOf("R") !== -1) {
+        newDeckColors += "R";
+    }
+    //check for g
+    if (colorsInCaps.indexOf("G") !== -1) {
+        newDeckColors += "G";
+    }
+    //check for n
+    if (newDeckColors === "") {
+        newDeckColors += "N";
+    }
+    return newDeckColors;
+}
+
+function checkDeckName(deckName) {
+    //replace double quotes with single quotes
+    var newDeckName = deckName.replace(/"/g, "'");
+
+    return newDeckName;
+}
+
+function convertCSVtoDecklist(csv) {
+    var newDecklist = [],
+    csvTabToComma = csv.replace(/\t/g, ",")
+    decklistArray = csvTabToComma.split('\n').map(function(ln){
+        //https://stackoverflow.com/questions/47876718/splitting-text-file-by-newlines-and-tab-in-javascript
+        return ln.split(',');
+    });
+    for (var i = 0; i < decklistArray.length; i++) {
+        if (decklistArray[i].length === 2 && decklistArray[i][0] !== "" && decklistArray[i][0] !== "undefined") {
+            newDecklist.push({deckName: checkDeckName(decklistArray[i][0]), deckColors: checkDeckColors(decklistArray[i][1])});
+        }
+    }
+    return newDecklist;
+}
+
+document.addEventListener('paste', function (event) {
+    if (adminSettings.unlockDecklistPaste === true) {
+        var copiedDecklist = event.clipboardData.getData('Text'),
+        playerNumber = Number(document.getElementById("update-setup-player").value);
+    
+        //hide prompt
+        deckPasteCancel();
+        //clear player decklist
+        gameVars.playerInfo["player" + playerNumber].playerDecklist = [];
+        //update player decklist
+        gameVars.playerInfo["player" + playerNumber].playerDecklist = convertCSVtoDecklist(copiedDecklist);
+        //refresh potential decklist
+        changeCurrentSetupPlayer();
+    }
+});
+
+/*
+//warns about refresh
+window.onbeforeunload = function() {
+    return "";
+}
+*/
