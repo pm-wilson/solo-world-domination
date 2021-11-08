@@ -156,9 +156,9 @@ function handleStairsToInfinity() {
     addClass("cancel-prompt", "btn-danger");
 }
 
-function tunnelChoice(choice) {    
+function tunnelChoice(choice) {
     newPlanarDeck = [],
-    cardsForBottom = [];
+        cardsForBottom = [];
 
     //shuffle other 4 and phenomenoms and put on bottom of deck
     for (var i = 0; i < gameVars.battleScreenInfo.planarDeck.length; i++) {
@@ -311,7 +311,7 @@ function mergingPlaneswalk() {
     //display two current planes
     moveArrayObjectToBeginningOfArray(nextTwoPlanes[0], gameVars.battleScreenInfo.planarDeck);
     moveArrayObjectToBeginningOfArray(nextTwoPlanes[1], gameVars.battleScreenInfo.planarDeck);
-    
+
     //remove plane card spaces
     removeElement("battle-information", "battle-defense-plane2");
     removeElement("battle-information", "reveal-chaotic-aether");
@@ -331,19 +331,19 @@ function mergingPlaneswalk() {
     document.getElementById("reveal-spatial-merging").style.backgroundImage = getPlanarPicture(nextTwoPlanes[0]);
 }
 
-function handleSpatialMerging() {  
+function handleSpatialMerging() {
     var planeText = "Planeswalk into the next two planes Spatial Merging?";
 
     planarPrompt(planeText);
     addElement("planar-choice-menu", "div", "noContent", "planeswalk", "noClass", mergingPlaneswalk);
-    addElement("planar-choice-menu", "button", "Cancel", "cancel-prompt", "noClass", cancelPrompt);   
+    addElement("planar-choice-menu", "button", "Cancel", "cancel-prompt", "noClass", cancelPrompt);
 }
 
 function shufflePlanarDeck(plane) {
     var currentGroundZero = gameVars.battleScreenInfo.groundZero,
-    groundZeroContinent = findCountryContinent(currentGroundZero),
-    newPlanarDeck = [],
-    possiblePhenomenomDeck = [];
+        groundZeroContinent = findCountryContinent(currentGroundZero),
+        newPlanarDeck = [],
+        possiblePhenomenomDeck = [];
 
     //reset current planar card
     gameVars.battleScreenInfo.currentPlanarCard = 0;
@@ -370,7 +370,7 @@ function shufflePlanarDeck(plane) {
         //saves planar deck
         if (findPlaneContinent(plane.planeName) === findCountryContinent(currentGroundZero)) {//start in plane
             var planarDeckToUse = [];
-            
+
             //push defense plane
             planarDeckToUse.push(plane.planeName);
             //push rest of shuffled planar deck
@@ -410,7 +410,7 @@ function shufflePlanarDeck(plane) {
 
 function shuffleNoteText(plane) {
     var currentGroundZero = gameVars.battleScreenInfo.groundZero,
-    groundZeroContinent = findCountryContinent(currentGroundZero);
+        groundZeroContinent = findCountryContinent(currentGroundZero);
 
     if (findPlaneContinent(plane.planeName) === findCountryContinent(currentGroundZero)) {
         return "Start in " + plane.planeName + ", and shuffle the " + groundZeroContinent + " planes and add a phenomenon";
@@ -453,7 +453,7 @@ function getPlanarPicture(planeName) {
 
 function secondPlaneChaosRoll() {
     var secondPlaneName = gameVars.battleScreenInfo.secondPlane[0];
-    
+
     //add exceptions for special cards
     switch (secondPlaneName) {
         case "Pools of Becoming":
@@ -527,7 +527,7 @@ function playArchenemy() {
 
     if (archPrompt) {
         var archenemyCount = gameVars.gameStatus.archenemyCount,
-        currentArchRef = gameVars.gameStatus.archenemyDecklist[archenemyCount];
+            currentArchRef = gameVars.gameStatus.archenemyDecklist[archenemyCount];
 
         //show archenemy prompt
         removeClass("archenemy-prompt", "hide-item-class");
@@ -571,7 +571,7 @@ function battleHoverHandText(battleDeckReference) {
 
 function battleHoverContinentText(currentPlayer, battleDeckReference) {
     var hoverText = "Continent Bonus",
-    continentsBon = gameVars.battleScreenInfo.battleContinentBonuses[battleDeckReference];
+        continentsBon = gameVars.battleScreenInfo.battleContinentBonuses[battleDeckReference];
 
     for (var i = 0; i < continentsBon.length; i++) {
         var currentContinent = continentsBon[i];
@@ -582,7 +582,7 @@ function battleHoverContinentText(currentPlayer, battleDeckReference) {
         }
         if (currentContinent === "Europe") {
             var totalPlayerDeckCount = playerDeckCount(currentPlayer),
-            cardsToAdd = Math.floor(adminSettings.continentBonuses.continentCardPerDeckBonus * totalPlayerDeckCount);
+                cardsToAdd = Math.floor(adminSettings.continentBonuses.continentCardPerDeckBonus * totalPlayerDeckCount);
 
             if (cardsToAdd < adminSettings.continentBonuses.continentCardMinimum) {
                 cardsToAdd = adminSettings.continentBonuses.continentCardMinimum;
@@ -608,36 +608,36 @@ function battlePictureOffHover(mod) {
 
 function battlePictureHover(mod) {
     var battleDeckReference = mod.charAt(mod.length - 1),
-    pictureType = mod.slice(0, -1),
-    currentPlayer = gameVars.battleScreenInfo.battleDecks[battleDeckReference].deckPlayer;
+        pictureType = mod.slice(0, -1),
+        currentPlayer = gameVars.battleScreenInfo.battleDecks[battleDeckReference].deckPlayer;
 
     if (gameVars.gameStatus.mode === "attack") {
         removeClass("card-picture", "hide-item-class");
         if (pictureType === "vanguard" && pictureType !== "noVanguard") {
             var vanguardToShowName = gameVars.battleScreenInfo.battleVanguards[battleDeckReference],
-            vanguardRef = findVanguardRef(vanguardToShowName),
-            pictureToShow = vanguardDeck[vanguardRef].vanguardPicture;
-
-            document.getElementById("card-picture").innerHTML = "";
-            document.getElementById("card-picture").style.backgroundImage = pictureToShow;
-        } 
-        else if (pictureType === "hero" && pictureType !== "noHero") {
-            var heroToShowName = gameVars.battleScreenInfo.battleHero[battleDeckReference],
-            heroRef = findHeroRef(heroToShowName),
-            pictureToShow = heroDeck[heroRef].heroPicture;
-
-            document.getElementById("card-picture").innerHTML = "";
-            document.getElementById("card-picture").style.backgroundImage = pictureToShow;
-        } 
-        else if (pictureType === "conspiracy" && pictureType !== "noConspiracy") {
-            var conspiracyToShowName = gameVars.battleScreenInfo.battleConspiracy[battleDeckReference],
-            conspiracyRef = findConspiracyRef(conspiracyToShowName),
-            pictureToShow = conspiracyDeck[conspiracyRef].conspiracyPicture;
+                vanguardRef = findVanguardRef(vanguardToShowName),
+                pictureToShow = vanguardDeck[vanguardRef].vanguardPicture;
 
             document.getElementById("card-picture").innerHTML = "";
             document.getElementById("card-picture").style.backgroundImage = pictureToShow;
         }
-        else if (pictureType ==="continent-bonus" && pictureType !== "noContinent") {
+        else if (pictureType === "hero" && pictureType !== "noHero") {
+            var heroToShowName = gameVars.battleScreenInfo.battleHero[battleDeckReference],
+                heroRef = findHeroRef(heroToShowName),
+                pictureToShow = heroDeck[heroRef].heroPicture;
+
+            document.getElementById("card-picture").innerHTML = "";
+            document.getElementById("card-picture").style.backgroundImage = pictureToShow;
+        }
+        else if (pictureType === "conspiracy" && pictureType !== "noConspiracy") {
+            var conspiracyToShowName = gameVars.battleScreenInfo.battleConspiracy[battleDeckReference],
+                conspiracyRef = findConspiracyRef(conspiracyToShowName),
+                pictureToShow = conspiracyDeck[conspiracyRef].conspiracyPicture;
+
+            document.getElementById("card-picture").innerHTML = "";
+            document.getElementById("card-picture").style.backgroundImage = pictureToShow;
+        }
+        else if (pictureType === "continent-bonus" && pictureType !== "noContinent") {
             var continentText = battleHoverContinentText(currentPlayer, battleDeckReference);
 
             for (i = 1; i < 6; i++) {
@@ -693,7 +693,7 @@ function battlePictureHover(mod) {
 
 function availableVanguardCards() {
     var takenVanguardCards = [],
-    availableVanguardDeck = [];
+        availableVanguardDeck = [];
 
     //load takenvanguardcards
     for (var c = 0; c < gameVars.mapInfo.countryList.length; c++) {
@@ -709,7 +709,7 @@ function availableVanguardCards() {
                     takenVanguardCards.push(currentVanguardList[v]);
                 }
             }
-        }      
+        }
     }
     //add available vanguard
     for (var v = 0; v < vanguardDeck.length; v++) {
@@ -739,11 +739,11 @@ function getVanguard(deckPlayer, deckName) {
 
 function loadBattleVanguards(battleDeckRef) {
     var currentPlayer = gameVars.battleScreenInfo.battleDecks[battleDeckRef].deckPlayer,
-    currentDeckName = gameVars.battleScreenInfo.battleDecks[battleDeckRef].deckName;
+        currentDeckName = gameVars.battleScreenInfo.battleDecks[battleDeckRef].deckName;
 
     if (!!findFullDeckWithPlayerAndName(currentPlayer, currentDeckName).vanguardList) {
         var currentVanguardList = findFullDeckWithPlayerAndName(currentPlayer, currentDeckName).vanguardList
-        
+
         shuffleArray(currentVanguardList);
         gameVars.battleScreenInfo.battleVanguards.push(currentVanguardList[0]);
     }

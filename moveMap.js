@@ -14,7 +14,7 @@ function isCountrySurrounded(fullCountry) {
 
 function availableCountryMove(fullCountry) {
     var remainingMoves = movesRemaining(),
-    isSurrounded = isCountrySurrounded(fullCountry);
+        isSurrounded = isCountrySurrounded(fullCountry);
 
     if (isSurrounded) {
         return false;
@@ -38,8 +38,8 @@ function isABorderContinentMoveRemaining(fullCountry, remainingMoves) {
 
 function isMovable(country) {
     var fullCountry = findFullCountryWithCountry(country),
-    currentTurn = gameVars.gameStatus.turn,
-    remainingMoves = movesRemaining();
+        currentTurn = gameVars.gameStatus.turn,
+        remainingMoves = movesRemaining();
 
     //if reinforce available or if continent move for this or neighbor is available
     if (isItemInArray("moveAny", remainingMoves[2]) || isItemInArray(fullCountry.continent, remainingMoves[2]) || isABorderContinentMoveRemaining(fullCountry, remainingMoves)) {
@@ -71,10 +71,10 @@ function isMovable(country) {
 
 function moveDecksBetweenCounries(country1, country2) {
     var fullCountry1 = findFullCountryWithCountry(country1),
-    fullCountry2 = findFullCountryWithCountry(country2),
-    tempDeck = {},
-    continentMoves = movesRemaining()[2],
-    sameContinent = fullCountry1.continent === fullCountry2.continent;
+        fullCountry2 = findFullCountryWithCountry(country2),
+        tempDeck = {},
+        continentMoves = movesRemaining()[2],
+        sameContinent = fullCountry1.continent === fullCountry2.continent;
 
     //check off country moves
     if (isItemInArray(fullCountry1.continent, continentMoves)) {
@@ -151,15 +151,15 @@ function countMapMoves() {
 function movesRemaining() {
     //list text showing all country moves remaining for "Moves Remaining: "
     var text = "",
-    africa = gameVars.mapInfo.mapMoves["moveAfrica"],
-    southAmerica = gameVars.mapInfo.mapMoves["moveSouth America"],
-    northAmerica = gameVars.mapInfo.mapMoves["moveNorth America"],
-    asia = gameVars.mapInfo.mapMoves["moveAsia"],
-    europe = gameVars.mapInfo.mapMoves["moveEurope"],
-    australia = gameVars.mapInfo.mapMoves["moveAustralia"],
-    reinforce = gameVars.mapInfo.mapMoves["moveAny"],
-    count = africa + southAmerica + northAmerica + asia + europe + australia + reinforce,
-    movableContinents = [];
+        africa = gameVars.mapInfo.mapMoves["moveAfrica"],
+        southAmerica = gameVars.mapInfo.mapMoves["moveSouth America"],
+        northAmerica = gameVars.mapInfo.mapMoves["moveNorth America"],
+        asia = gameVars.mapInfo.mapMoves["moveAsia"],
+        europe = gameVars.mapInfo.mapMoves["moveEurope"],
+        australia = gameVars.mapInfo.mapMoves["moveAustralia"],
+        reinforce = gameVars.mapInfo.mapMoves["moveAny"],
+        count = africa + southAmerica + northAmerica + asia + europe + australia + reinforce,
+        movableContinents = [];
 
     if (reinforce > 0) {
         movableContinents.push("moveAny");
@@ -251,7 +251,7 @@ function movesRemaining() {
 
 
 
-function earthShakingEventCheck() { 
+function earthShakingEventCheck() {
     if (gameVars.mapInfo.possibleAttack === 0) {
         alert("No attacks within range for " + findPlayerName(gameVars.gameStatus.turn));
         earthShakingEvent();
@@ -275,9 +275,9 @@ function updateToolbarColors(player) {
         removeClass("battle-screen-toolbar", "player-color-" + i);
         removeClass("intro-screen-toolbar", "player-color-" + i);
     }
-    addClass("map-screen-toolbar", "player-color-" +player);
-    addClass("battle-screen-toolbar", "player-color-" +player);
-    addClass("intro-screen-toolbar", "player-color-" +player);
+    addClass("map-screen-toolbar", "player-color-" + player);
+    addClass("battle-screen-toolbar", "player-color-" + player);
+    addClass("intro-screen-toolbar", "player-color-" + player);
 }
 
 function setEndOfTurn() {
@@ -306,7 +306,7 @@ function clearContinentOwnedList() {
 
 function controlledContinentUpdate() {
     var continentWithCountryList = continentsWithCountries(),
-    colorPrompt = false;
+        colorPrompt = false;
 
     //clear previous controlled and owned list
     gameVars.mapInfo.continentsControlled = [];
@@ -315,7 +315,7 @@ function controlledContinentUpdate() {
     //for each continent
     for (var i = 0; i < continentWithCountryList.length; i++) {
         var currentContinent = continentWithCountryList[i][0],
-        currentContinentPlayerList = [];
+            currentContinentPlayerList = [];
 
         //check player numbers on each country
         for (var y = 1; y < continentWithCountryList[i].length; y++) {
@@ -354,19 +354,19 @@ function disableContinentColorButton(continent) {
     switch (continent) {
         case "North America":
             disableId("choice-w");
-        break;
+            break;
         case "Europe":
             disableId("choice-u");
-        break
+            break
         case "Africa":
             disableId("choice-b");
-        break;
+            break;
         case "Australia":
             disableId("choice-r");
-        break;
+            break;
         case "Asia":
             disableId("choice-g");
-        break;
+            break;
     }
 }
 
@@ -416,7 +416,7 @@ function continentColorPrompt() {
 
 function moveComplete() {
     var currentTurnPlayerName = findPlayerName(gameVars.gameStatus.turn),
-    moveConfirmation = confirm(currentTurnPlayerName + " is done moving?");
+        moveConfirmation = confirm(currentTurnPlayerName + " is done moving?");
 
     if (moveConfirmation === true) {
         //remove drop button
@@ -442,12 +442,13 @@ function moveComplete() {
         else {
             setEndOfTurn();
         }
+        saveToLocalStorage();
     }
 }
 
 function backupCountryList() {
     for (var i = 0; i < gameVars.mapInfo.countryList.length; i++) {
-        if (!!gameVars.mapInfo.countryList[i].deck){
+        if (!!gameVars.mapInfo.countryList[i].deck) {
             gameVars.mapInfo.cancelMoveList.push(gameVars.mapInfo.countryList[i].deck);
         }
         else {
@@ -461,7 +462,7 @@ function cancelMoves() {
     for (var i = 0; i < gameVars.mapInfo.cancelMoveList.length; i++) {
         if (!!gameVars.mapInfo.countryList[i].deck) {
             delete gameVars.mapInfo.countryList[i].deck;
-        } 
+        }
         if (gameVars.mapInfo.cancelMoveList[i] !== "noDeck") {
             gameVars.mapInfo.countryList[i].deck = gameVars.mapInfo.cancelMoveList[i];
         }
@@ -503,9 +504,9 @@ function makeSecondClickMove(country) {
 
 function makeMove(country) {
     var fullCountry = findFullCountryWithCountry(country),
-    countryBorders = fullCountry.borders,
-    currentTurn = gameVars.gameStatus.turn,
-    countryPlayer = findCountryPlayer(country);
+        countryBorders = fullCountry.borders,
+        currentTurn = gameVars.gameStatus.turn,
+        countryPlayer = findCountryPlayer(country);
 
     if (availableCountryMove(fullCountry) === true) {
         if (gameVars.mapInfo.mapSelect.length === 0 && currentTurn === countryPlayer) {
@@ -532,14 +533,14 @@ function makeMove(country) {
 
 function listOfContinentsPlayerControlsAndOwns(player) {
     var allContinents = uniqueListOfContinents(),
-    playerControls = [],
-    playerOwns = [];
+        playerControls = [],
+        playerOwns = [];
 
     for (var i = 0; i < allContinents.length; i++) {
         var currentContinent = allContinents[i],
-        currentContinentCountryCount = 0,
-        currentContinentPlayerCount = 0,
-        currentContinentOtherPlayerCount = 0;
+            currentContinentCountryCount = 0,
+            currentContinentPlayerCount = 0,
+            currentContinentOtherPlayerCount = 0;
 
         for (var n = 0; n < gameVars.mapInfo.countryList.length; n++) {
             var currentFullCountry = gameVars.mapInfo.countryList[n];
@@ -549,7 +550,7 @@ function listOfContinentsPlayerControlsAndOwns(player) {
 
                 if (!!currentFullCountry.deck) {
                     if (currentFullCountry.deck.deckPlayer === player) {
-                        currentContinentPlayerCount  += 1;
+                        currentContinentPlayerCount += 1;
                     }
                     else {
                         currentContinentOtherPlayerCount += 1;

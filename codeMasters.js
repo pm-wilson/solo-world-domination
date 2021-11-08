@@ -2,7 +2,7 @@
 
 function colorNames(deckColors) {
     var colorsInCaps = deckColors.toUpperCase(),
-    newColors = "";
+        newColors = "";
 
     //check for w
     if (colorsInCaps.indexOf("W") !== -1) {
@@ -47,9 +47,9 @@ function updateMapToolbarColor() {
     var currentTurn = gameVars.gameStatus.turn;
 
     for (var i = 0; i < gameVars.gameStatus.turnOrder.length; i++) {
-        removeClass("map-screen-toolbar","player-color-" + gameVars.gameStatus.turnOrder[i]);
+        removeClass("map-screen-toolbar", "player-color-" + gameVars.gameStatus.turnOrder[i]);
     }
-    addClass("map-screen-toolbar","player-color-" + currentTurn);
+    addClass("map-screen-toolbar", "player-color-" + currentTurn);
 }
 
 function removeAllPlayerDecksFromCountryList(playerNumber) {
@@ -68,7 +68,7 @@ function findSecondHead(currentPlayer, currentDeckName) {
     for (var i = 0; i < gameVars.playerInfo["player" + currentPlayer].secondHead.length; i++) {
         if (gameVars.playerInfo["player" + currentPlayer].secondHead[i][0] === currentDeckName) {
             var secondDeckName = gameVars.playerInfo["player" + currentPlayer].secondHead[i][1],
-            secondDeckColor = getDeckColors(currentPlayer, secondDeckName);
+                secondDeckColor = getDeckColors(currentPlayer, secondDeckName);
 
             return [secondDeckName, secondDeckColor];
         }
@@ -85,8 +85,8 @@ function addSecondHeadsToCountryList(countriesPerPlayer) {
     for (var i = 0; i < gameVars.mapInfo.countryList.length; i++) {
         if (!!gameVars.mapInfo.countryList[i].deck) {
             var countryDeckPlayer = gameVars.mapInfo.countryList[i].deck.deckPlayer,
-            countryDeckName = gameVars.mapInfo.countryList[i].deck.deckName,
-            currentDugoutToAdd = findDeckRef(countryDeckPlayer, countryDeckName) + countriesPerPlayer;
+                countryDeckName = gameVars.mapInfo.countryList[i].deck.deckName,
+                currentDugoutToAdd = findDeckRef(countryDeckPlayer, countryDeckName) + countriesPerPlayer;
 
             addHeadToDeck(countryDeckPlayer, countryDeckName, currentDugoutToAdd);
         }
@@ -132,8 +132,8 @@ function moveArrayObjectToBeginningOfArray(object, array) {
     var newArray = [];
 
     for (var i = 0; i < array.length; i++) {
-        if (object === array[i]) 
-        newArray.push(object);
+        if (object === array[i])
+            newArray.push(object);
     }
     for (var a = 0; a < array.length; a++) {
         if (array[a] !== object) {
@@ -170,7 +170,7 @@ function findDefensePlaneRefWithPlayerAndDeckName(player, deckName) {
                 }
             }
         }
-    }  
+    }
 }
 
 function findDefenseDecks(playerNumber, defenseName) {
@@ -178,7 +178,7 @@ function findDefenseDecks(playerNumber, defenseName) {
 
     for (var i = 0; i < gameVars.playerInfo["player" + playerNumber].playerDecklist.length; i++) {
         var currentDeck = gameVars.playerInfo["player" + playerNumber].playerDecklist[i];
-        
+
         if (!!currentDeck.defensePlane && currentDeck.deckEliminated === false && currentDeck.defensePlane === defenseName) {
             defenseDecks.push(currentDeck.deckName);
         }
@@ -251,7 +251,7 @@ function listControlledContinentsWithPlayerAndColor(player, deckColors) {
 
 function listOwnedContinentsWithPlayerAndColor(player, deckColors) {
     var continentBonus = [];
-    
+
     for (var i = 0; i < gameVars.mapInfo.continentsOwned.length; i++) {
         var currentContinentColor = gameVars.mapInfo.continentsOwned[i][2];
 
@@ -274,7 +274,7 @@ function getDeckColors(deckPlayer, deckName) {
 function cleanupContinentOwnedList() {
     for (var i = 0; i < gameVars.mapInfo.continentsOwned.length; i++) {
         var currentContinent = gameVars.mapInfo.continentsOwned[i][0],
-        currentPlayer = gameVars.mapInfo.continentsOwned[i][1];
+            currentPlayer = gameVars.mapInfo.continentsOwned[i][1];
 
         //remove if no longer owning
         if (numberOfCountriesOnContinent(currentContinent) !== playerDecksOnContinent(currentPlayer, currentContinent)) {
@@ -297,8 +297,8 @@ function countriesInContinent(continent) {
 function cleanupContinentControlledList() {
     for (var i = 0; i < gameVars.mapInfo.continentsControlled.length; i++) {
         var currentContinent = gameVars.mapInfo.continentsControlled[i][0],
-        currentPlayer = gameVars.mapInfo.continentsControlled[i][1],
-        countryList = countriesInContinent(currentContinent);
+            currentPlayer = gameVars.mapInfo.continentsControlled[i][1],
+            countryList = countriesInContinent(currentContinent);
 
         //remove if no longer controlled
         for (var c = 0; c < countryList.length; c++) {
@@ -335,7 +335,7 @@ function numberOfCountriesOnContinent(continent) {
 
 function continentsWithCountries() {
     var allContinents = continentList(),
-    continentsWithCountryList = [];
+        continentsWithCountryList = [];
 
     //for each continent
     for (var i = 0; i < allContinents.length; i++) {
@@ -468,8 +468,8 @@ function animateCountry(country) {
 
 function stringToDate(string) {
     var newDate = Date(string),
-    parts = newDate.split(' '),
-    findTimeZone = [];
+        parts = newDate.split(' '),
+        findTimeZone = [];
 
     for (var i = 6; i <= parts.length; i++) {
         findTimeZone.push(parts[i]);
@@ -480,7 +480,7 @@ function stringToDate(string) {
 function getNextTurn() {
     for (var i = 0; i < gameVars.gameStatus.turnOrder.length; i++) {
         var currentTurn = gameVars.gameStatus.turn,
-        lastTurn = gameVars.gameStatus.turnOrder[gameVars.gameStatus.turnOrder.length - 1];
+            lastTurn = gameVars.gameStatus.turnOrder[gameVars.gameStatus.turnOrder.length - 1];
 
         if (currentTurn === lastTurn) {
             return gameVars.gameStatus.turnOrder[0];
@@ -585,7 +585,7 @@ function shownDeckName(deckPlayer, deckName) {
 
     if (fullPlayerInfo.playerDecklist[findDeckRef(deckPlayer, deckName)].deckName === deckName) {
         var currentPlayerName = findPlayerName(deckPlayer),
-        currentDeckName = fullPlayerInfo.playerDecklist[findDeckRef(deckPlayer, deckName)].deckName;
+            currentDeckName = fullPlayerInfo.playerDecklist[findDeckRef(deckPlayer, deckName)].deckName;
 
         if (fullPlayerInfo.playerDecklist[findDeckRef(deckPlayer, deckName)].deckHidden === true) {
             return currentPlayerName + "'s deck";
@@ -694,7 +694,7 @@ function findDeckWithCountry(country) {
 
 function findDeckWithPlayerNumberAndName(playerNumber, deckName) {
     var currentPlayer = gameVars.playerInfo["player" + playerNumber];
-        
+
     for (var i = 0; i < currentPlayer.playerDecklist.length; i++) {
         if (currentPlayer.playerDecklist[i].deckName === deckName) {
             return currentPlayer.playerDecklist[i];
@@ -726,25 +726,25 @@ function addMapArea(addToId, idToInclude) {
     newElement.id = idToInclude;
     //add new element and contents to DOM
     var currentElement = document.getElementById(addToId);
-    currentElement.appendChild(newElement);   
+    currentElement.appendChild(newElement);
 }
 
 function addMapElement(addToId, elementContent, idToInclude, classToInclude, clickFunctionToInclude, hoverFunctionToInclude, offHoverFunctionToInclude) {
     var countryArea = document.createElementNS("http://www.w3.org/2000/svg", "path");
-    
+
     //country area
     countryArea.setAttributeNS(null, "d", countryShapes[idToInclude].path);
     //add id
     countryArea.id = idToInclude;
     //add functions
     if (!!clickFunctionToInclude && clickFunctionToInclude !== "noFunction") {
-        countryArea.onclick = function() { clickFunctionToInclude(countryArea.id); };
+        countryArea.onclick = function () { clickFunctionToInclude(countryArea.id); };
     }
     if (!!hoverFunctionToInclude && hoverFunctionToInclude !== "noHover") {
-        countryArea.onmouseover = function() { hoverFunctionToInclude(countryArea.id); };
+        countryArea.onmouseover = function () { hoverFunctionToInclude(countryArea.id); };
     }
     if (!!offHoverFunctionToInclude && offHoverFunctionToInclude !== "noOffHover") {
-        countryArea.onmouseout = function() { offHoverFunctionToInclude(countryArea.id); };
+        countryArea.onmouseout = function () { offHoverFunctionToInclude(countryArea.id); };
     }
     //add class
     countryArea.classList.add(classToInclude);
@@ -766,13 +766,13 @@ function addElement(addToId, elementType, elementContent, idToInclude, classToIn
         newElement.id = idToInclude;
 
         if (!!clickFunctionToInclude && clickFunctionToInclude !== "noFunction") {
-            newElement.onclick = function() { clickFunctionToInclude(idToInclude); };
+            newElement.onclick = function () { clickFunctionToInclude(idToInclude); };
         }
         if (!!hoverFunctionToInclude && hoverFunctionToInclude !== "noHover") {
-            newElement.onmouseover = function() { hoverFunctionToInclude(idToInclude); };
+            newElement.onmouseover = function () { hoverFunctionToInclude(idToInclude); };
         }
         if (!!offHoverFunctionToInclude && offHoverFunctionToInclude !== "noOffHover") {
-            newElement.onmouseout = function() { offHoverFunctionToInclude(idToInclude); };
+            newElement.onmouseout = function () { offHoverFunctionToInclude(idToInclude); };
         }
     }
     //add text
@@ -789,7 +789,7 @@ function addElement(addToId, elementType, elementContent, idToInclude, classToIn
     if (elementContent.indexOf("<") === 0) {
         //create innerHTML text
         document.getElementById(idToInclude).innerHTML = elementContent;
-    } 
+    }
 }
 
 function removeElement(parentId, elementId) {
@@ -813,9 +813,9 @@ function gameCount() {
 
 function updateLog(text) {
     var logText = [],
-    logLength = gameVars.gameLog.length,
-    lastLog = gameVars.gameLog[logLength - 1],
-    logBattleDecks = [];
+        logLength = gameVars.gameLog.length,
+        lastLog = gameVars.gameLog[logLength - 1],
+        logBattleDecks = [];
 
     logBattleDecks = gameVars.battleScreenInfo.battleDecks;
     logText.push(Date.parse(Date()));
@@ -833,9 +833,9 @@ function updateLog(text) {
 }
 
 function orderArray(array, sortBy) {
-    array.sort(function(a, b) {
+    array.sort(function (a, b) {
         if (a[sortBy].toUpperCase() < b[sortBy].toUpperCase()) { return -1; }
-        if (a[sortBy].toUpperCase() > b[sortBy].toUpperCase()) { return 1;}
+        if (a[sortBy].toUpperCase() > b[sortBy].toUpperCase()) { return 1; }
     })
 }
 
@@ -852,7 +852,7 @@ function shuffleArray(arrayToShuffle) {
 //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random
 function getRandomInt(max) {
     return Math.floor(Math.random() * Math.floor(max));
-  }
+}
 
 function addClass(idToModify, classToAdd) {
     document.getElementById(idToModify).classList.add(classToAdd);
@@ -882,23 +882,23 @@ function calcDuration(duration) {
 
     let days = Math.floor(remain / (1000 * 60 * 60 * 24));
     remain = remain % (1000 * 60 * 60 * 24);
-  
+
     let hours = Math.floor(remain / (1000 * 60 * 60));
     remain = remain % (1000 * 60 * 60);
-  
+
     let minutes = Math.floor(remain / (1000 * 60));
     remain = remain % (1000 * 60);
-  
+
     let seconds = Math.floor(remain / (1000));
     remain = remain % (1000);
-  
+
     let milliseconds = remain;
 
     return {
-        days, 
-        hours, 
-        minutes, 
-        seconds, 
+        days,
+        hours,
+        minutes,
+        seconds,
         milliseconds
     };
 }
@@ -911,13 +911,13 @@ function formatDuration(duration) {
 
     let hours = time.hours.toString();
     if (hours.length === 1) hours = '0' + hours;
-  
+
     let minutes = time.minutes.toString();
     if (minutes.length === 1) minutes = '0' + minutes;
-  
+
     let seconds = time.seconds.toString();
     if (seconds.length === 1) seconds = '0' + seconds;
-  
+
     return days + ":" + hours + ":" + minutes + ":" + seconds;
 }
 
@@ -961,7 +961,7 @@ function giveAllPlayersSupplyCards() {
     for (var i = 0; i < gameVars.gameStatus.turnOrder.length; i++) {
         for (var c = 0; c < cardsToGive; c++) {
             getSupplyCard(gameVars.gameStatus.turnOrder[i]);
-            findFullPlayerWithPlayerNumber(gameVars.gameStatus.turn).playerSupplyPoints.push({supplyType: "wild", supplyCountry: "none"});
+            findFullPlayerWithPlayerNumber(gameVars.gameStatus.turn).playerSupplyPoints.push({ supplyType: "wild", supplyCountry: "none" });
         }
     }
     return (cardsToGive + 1) + " Supply Cards Given";
@@ -970,3 +970,87 @@ function giveAllPlayersSupplyCards() {
 function runTestFunction() {
     //test function to run after setup complete
 }
+
+function saveToLocalStorage() {
+    const stringyAdminSettings = JSON.stringify(adminSettings);
+    const stringyGameVars = JSON.stringify(gameVars);
+
+    localStorage.setItem("admin", stringyAdminSettings);
+    localStorage.setItem("game", stringyGameVars);
+
+    console.log('game saved', Date.now());
+}
+
+function retrieveFromLocalStorage() {
+    const stringyAdminSettings = localStorage.getItem("admin");
+    const stringyGameVars = localStorage.getItem("game");
+
+    if (!stringyAdminSettings || !stringyGameVars) {
+        adminSettings = defaultAdminSettings;
+        gameVars = defaultGameVars;
+
+        console.log('game loaded default values', Date.now(), gameVars);
+    } else {
+        adminSettings = JSON.parse(stringyAdminSettings);
+        gameVars = JSON.parse(stringyGameVars);
+
+        //begins game
+        addClass("game-options", "hide-item-class");
+        removeClass("log-information", "hide-item-class");
+        removeClass("intro-information", "hide-item-class");
+        removeElement("intro-screen-toolbar", "begin-game-button");
+
+        //toolbar colors
+        updateMapToolbarColor();
+
+        showIntro();
+        document.getElementById("intro-title").innerText = "Game Information";
+
+        console.log('game loaded', Date.now());
+    }
+}
+
+function clearLocalStorage() {
+    localStorage.setItem("admin", "");
+    localStorage.setItem("game", "");
+}
+
+function showLivingDecks(player) {
+    const countryArray = gameVars.mapInfo.countryList;
+    const list = [];
+    const playerName = gameVars.playerInfo["player" + player].playerName;
+
+    for (var i = 0; i < countryArray.length; i++) {
+        const currentCountry = countryArray[i];
+
+        if (!!currentCountry.deck) {
+            var currentPlayer = currentCountry.deck.deckPlayer;
+            var currentDeck = currentCountry.deck.deckName;
+
+            if (player === currentPlayer) {
+                list.push(currentDeck);
+            }
+        }
+    }
+
+    console.log('Current Decklist for', playerName);
+
+    for (var l = 0; l < list.length; l++) {
+        console.log(list[l]);
+    }
+
+    return list;
+}
+
+function showPlayerTotalDecklist(player) {
+    const playerDecklist = gameVars.playerInfo["player" + player].playerDecklist;
+    const list = [];
+
+    for (var i = 0; i < playerDecklist.length; i++) {
+        list.push({ deckName: playerDecklist[i].deckName, deckColors: playerDecklist[i].deckColors })
+    }
+
+    return list;
+}
+
+document.onload = retrieveFromLocalStorage();

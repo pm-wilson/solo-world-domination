@@ -1,1083 +1,1083 @@
 ﻿/*Player Colors*/
 :root {
-    --player-1-color: rgb(207, 23, 69);
-    --player-1-inactive: rgb(128, 0, 0);
-    --player-2-color: rgb(67, 99, 216);
-    --player-2-inactive: rgb(0, 0, 179);
-    --player-3-color: rgb(255, 225, 25);
-    --player-3-inactive: rgb(128, 128, 0);
-    --player-4-color: rgb(245, 130, 49);
-    --player-4-inactive: rgb(154, 99, 36);
-    --player-5-color: rgb(60, 180, 75);
-    --player-5-inactive: rgb(45, 134, 57);
-    --threat-possible: yellow;
-    --selected: yellow;
-    --shadow: rgba(77, 77, 77, 0.25);
+  --player-1-color: rgb(207, 23, 69);
+  --player-1-inactive: rgb(128, 0, 0);
+  --player-2-color: rgb(67, 99, 216);
+  --player-2-inactive: rgb(0, 0, 179);
+  --player-3-color: rgb(255, 225, 25);
+  --player-3-inactive: rgb(128, 128, 0);
+  --player-4-color: rgb(245, 130, 49);
+  --player-4-inactive: rgb(154, 99, 36);
+  --player-5-color: rgb(60, 180, 75);
+  --player-5-inactive: rgb(45, 134, 57);
+  --threat-possible: yellow;
+  --selected: yellow;
+  --shadow: rgba(77, 77, 77, 0.25);
 }
-
 
 .defense-color-1 {
-    background-color: var(--player-1-inactive);
+  background-color: var(--player-1-inactive);
 }
 .defense-color-2 {
-    background-color: var(--player-2-inactive);
+  background-color: var(--player-2-inactive);
 }
 .defense-color-3 {
-    background-color: var(--player-3-inactive);
+  background-color: var(--player-3-inactive);
 }
 .defense-color-4 {
-    background-color: var(--player-4-inactive);
+  background-color: var(--player-4-inactive);
 }
 .defense-color-5 {
-    background-color: var(--player-5-inactive);
-    
+  background-color: var(--player-5-inactive);
 }
-
 
 .white-color {
-    background-color: var(--white);
+  background-color: var(--white);
 }
 .blue-color {
-    background-color: var(--blue);
+  background-color: var(--blue);
 }
 .black-color {
-    background-color: var(--gray-dark);
+  background-color: var(--gray-dark);
 }
 .red-color {
-    background-color: var(--red);
+  background-color: var(--red);
 }
 .green-color {
-    background-color: var(--green);
+  background-color: var(--green);
 }
 
 /*Country Base Style*/
 .is-supplyable {
-    stroke: yellow;
-    stroke-width: 2;
+  stroke: yellow;
+  stroke-width: 2;
 }
 .drop-threat {
-    stroke: orange;
-    stroke-width: 2;
+  stroke: orange;
+  stroke-width: 2;
 }
 /*Other Button and Text Colors*/
 /*Player 1*/
 .btn.player-color-1,
 .toolbar.player-color-1 {
-    background-color: var(--player-1-color);
+  background-color: var(--player-1-color);
 }
 .player-1-battle-info {
-    font-weight: bold;
-    border: 2px solid black;
-    border-radius: 15px;
-    background-color: rgba(255, 255, 255, 0.25);
-    width: 40%;
+  font-weight: bold;
+  border: 2px solid black;
+  border-radius: 15px;
+  background-color: rgba(255, 255, 255, 0.25);
+  width: 40%;
 }
 /*Player 2*/
 .btn.player-color-2,
 .toolbar.player-color-2 {
-    background-color: var(--player-2-color);
+  background-color: var(--player-2-color);
 }
 .player-2-battle-info {
-    font-weight: bold;
-    border: 2px solid black;
-    border-radius: 15px;
-    background-color: rgba(255, 255, 255, 0.25);
-    width: 40%;
+  font-weight: bold;
+  border: 2px solid black;
+  border-radius: 15px;
+  background-color: rgba(255, 255, 255, 0.25);
+  width: 40%;
 }
 /*Player 3*/
 .btn.player-color-3,
 .toolbar.player-color-3 {
-    background-color: var(--player-3-color);
+  background-color: var(--player-3-color);
 }
 .player-3-battle-info {
-    font-weight: bold;
-    border: 2px solid black;
-    border-radius: 15px;
-    background-color: rgba(255, 255, 255, 0.25);
-    width: 40%;
+  font-weight: bold;
+  border: 2px solid black;
+  border-radius: 15px;
+  background-color: rgba(255, 255, 255, 0.25);
+  width: 40%;
 }
 /*Player 4*/
 .btn.player-color-4,
 .toolbar.player-color-4 {
-    background-color: var(--player-4-color);
+  background-color: var(--player-4-color);
 }
 .player-4-battle-info {
-    font-weight: bold;
-    border: 2px solid black;
-    border-radius: 15px;
-    background-color: rgba(255, 255, 255, 0.25);
-    width: 40%;
+  font-weight: bold;
+  border: 2px solid black;
+  border-radius: 15px;
+  background-color: rgba(255, 255, 255, 0.25);
+  width: 40%;
 }
 /*Player 5*/
 .btn.player-color-5,
 .toolbar.player-color-5 {
-    background-color: var(--player-5-color);
+  background-color: var(--player-5-color);
 }
 .player-5-battle-info {
-    font-weight: bold;
-    border: 2px solid black;
-    border-radius: 15px;
-    background-color: rgba(255, 255, 255, 0.25);
-    width: 40%;
+  font-weight: bold;
+  border: 2px solid black;
+  border-radius: 15px;
+  background-color: rgba(255, 255, 255, 0.25);
+  width: 40%;
 }
 /*Country Button Colors*/
-.country-button {  
-    fill: var(--gray);
-    stroke: black;
-    stroke-width: 1;
+.country-button {
+  fill: var(--gray);
+  stroke: black;
+  stroke-width: 1;
 }
 .country-button.not-attackable,
 .country-button.not-movable,
 .country-button.not-supplyable {
-    fill: rgb(89, 89, 89); 
+  fill: rgb(89, 89, 89);
 }
 /*Player 1*/
 .country-button.player-color-1 {
-    fill: var(--player-1-color);
-} 
+  fill: var(--player-1-color);
+}
 .out-of-range.player-color-1,
 .not-movable.player-color-1,
 .already-attacked.player-color-1,
 .not-supplyable.player-color-1 {
-    fill: var(--player-1-inactive);
+  fill: var(--player-1-inactive);
 }
 /*Player 2*/
 .country-button.player-color-2 {
-    fill: var(--player-2-color);
+  fill: var(--player-2-color);
 }
 .out-of-range.player-color-2,
 .not-movable.player-color-2,
 .already-attacked.player-color-2,
 .not-supplyable.player-color-2 {
-    fill: var(--player-2-inactive);
+  fill: var(--player-2-inactive);
 }
 /*Player 3*/
 .country-button.player-color-3 {
-    fill: var(--player-3-color);
+  fill: var(--player-3-color);
 }
 .out-of-range.player-color-3,
 .not-movable.player-color-3,
 .already-attacked.player-color-3,
 .not-supplyable.player-color-3 {
-    fill: var(--player-3-inactive);
+  fill: var(--player-3-inactive);
 }
 /*Player 4*/
 .country-button.player-color-4 {
-    fill: var(--player-4-color);
+  fill: var(--player-4-color);
 }
 .out-of-range.player-color-4,
 .not-movable.player-color-4,
 .already-attacked.player-color-4,
 .not-supplyable.player-color-4 {
-    fill: var(--player-4-inactive);
+  fill: var(--player-4-inactive);
 }
 
 /*Player 5*/
 .country-button.player-color-5 {
-    fill: var(--player-5-color);
+  fill: var(--player-5-color);
 }
 .out-of-range.player-color-5,
 .not-movable.player-color-5,
 .already-attacked.player-color-5,
 .not-supplyable.player-color-5 {
-    fill: var(--player-5-inactive);
+  fill: var(--player-5-inactive);
 }
 /*Select Styles*/
-.map-attack.country-button, 
-.map-defend.country-button, 
+.map-attack.country-button,
+.map-defend.country-button,
 .map-join.country-button,
-.map-select.country-button{
-    fill: var(--selected);
+.map-select.country-button {
+  fill: var(--selected);
 }
 /*Button Styles*/
-#reset-winners, 
-#complete-setup-button, 
-#cancel-move, 
-#decline-attack, 
+#reset-winners,
+#complete-setup-button,
+#cancel-move,
+#decline-attack,
 #drop-select-cancel {
-    position: absolute;
-    top: 10px;
-    right: 10px;
+  position: absolute;
+  top: 10px;
+  right: 10px;
 }
 #confirm-winners {
-    position: absolute;
-    top: 10px;
-    right: 75px;
+  position: absolute;
+  top: 10px;
+  right: 75px;
 }
 #confirm-attack {
-    position: absolute;
-    top: 10px;
-    right: 147px;
+  position: absolute;
+  top: 10px;
+  right: 147px;
 }
 #supply-drop-button {
-    position: absolute;
-    top: 10px;
-    right: 264px;
+  position: absolute;
+  top: 10px;
+  right: 264px;
 }
 #complete-move {
-    position: absolute;
-    top: 10px;
-    right: 120px;
+  position: absolute;
+  top: 10px;
+  right: 120px;
 }
 #make-drop {
-    position: absolute;
-    top: 10px;
-    right: 178px;
+  position: absolute;
+  top: 10px;
+  right: 178px;
 }
 #wild-drop0 {
-    position: absolute;
-    top: 10px;
-    right: 330px;
-
+  position: absolute;
+  top: 10px;
+  right: 330px;
 }
 #wild-drop1 {
-    position: absolute;
-    top: 10px;
-    right: 451px;
+  position: absolute;
+  top: 10px;
+  right: 451px;
 }
 /*Screen Styles*/
 /*For Setup*/
 #player-information {
-    width: 100%;
-    height: auto;
-    position: relative;
-    top: 150px;
-    left: 0;
-    z-index: -1;
-    border-color: black;
-    border-style: solid;
-    border-width: 0px 2px 2px 2px;
-    text-align: center;
+  width: 100%;
+  height: auto;
+  position: relative;
+  top: 150px;
+  left: 0;
+  z-index: -1;
+  border-color: black;
+  border-style: solid;
+  border-width: 0px 2px 2px 2px;
+  text-align: center;
 }
 /*For Status Page*/
 #intro-information-title {
-    position: relative;
-    top: -40px;
-    text-align: center;
+  position: relative;
+  top: -40px;
+  text-align: center;
 }
 #intro-information {
-    position:relative;
-    width: 50%;
-    height: 1150px;
-    top: 150px;
-    border-color: black;
-    border-style: solid;
-    border-width: 0px 1px 2px 2px;
-    padding: 75px 10px;
-    background-color: rgba(245, 222, 179, 0.25);
+  position: relative;
+  width: 50%;
+  height: 1150px;
+  top: 150px;
+  border-color: black;
+  border-style: solid;
+  border-width: 0px 1px 2px 2px;
+  padding: 75px 10px;
+  background-color: rgba(245, 222, 179, 0.25);
 }
 #known-info {
-    width: 100%;
+  width: 100%;
 }
 #log-information-title {
-    position: relative;
-    top: -40px;
-    text-align: center;
+  position: relative;
+  top: -40px;
+  text-align: center;
 }
 #log-information {
-    position: relative;
-    float: right;
-    width: 50%;
-    height: 1150px;
-    top: 150px;
-    border-color: black;
-    border-style: solid;
-    border-width: 0px 2px 2px 1px;
-    padding: 75px 10px;
-    background-color: rgba(245, 222, 179, 0.25);
-    overflow: auto;
+  position: relative;
+  float: right;
+  width: 50%;
+  height: 1150px;
+  top: 150px;
+  border-color: black;
+  border-style: solid;
+  border-width: 0px 2px 2px 1px;
+  padding: 75px 10px;
+  background-color: rgba(245, 222, 179, 0.25);
+  overflow: auto;
 }
 #log-info {
-    width: 100%;
-    max-height:1021px;
+  width: 100%;
+  max-height: 1021px;
 }
 #game-options {
-    width: 100%;
-    transform: translate(0, 150px);
+  width: 100%;
+  transform: translate(0, 150px);
 }
 /*Prompt Screens*/
 #continent-color-prompt {
-    margin: auto;
+  margin: auto;
 }
 .opacity-field {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: gray;
-    opacity: 75%;
-    z-index: 2;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: gray;
+  opacity: 75%;
+  z-index: 2;
 }
 #continent-choice-box {
-    position: fixed;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    width :323px;
-    height: 200px;
-    padding: 20px;
-    text-align: center;
-    background-color: gray;
-    opacity: 100%;
-    border: 2px solid black;
-    border-radius: 20px;
-    z-index: 3;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 323px;
+  height: 200px;
+  padding: 20px;
+  text-align: center;
+  background-color: gray;
+  opacity: 100%;
+  border: 2px solid black;
+  border-radius: 20px;
+  z-index: 3;
 }
 #color-choice-text {
-    font-weight: bold;
-    padding-bottom: 30px;
+  font-weight: bold;
+  padding-bottom: 30px;
 }
 
 .btn.plane-color-w {
-    background-color: rgb(255, 255, 255);
+  background-color: rgb(255, 255, 255);
 }
 .btn.plane-color-u {
-    background-color: rgb(51, 102, 255);
+  background-color: rgb(51, 102, 255);
 }
 .btn.plane-color-b {
-    background-color: rgb(140, 140, 140);
+  background-color: rgb(140, 140, 140);
 }
 .btn.plane-color-r {
-    background-color: rgb(255, 0, 0);
+  background-color: rgb(255, 0, 0);
 }
 .btn.plane-color-g {
-    background-color: rgb(51, 204, 51);
+  background-color: rgb(51, 204, 51);
 }
 .btn.plane-color-s {
-    background-color: rgb(255, 204, 0);
+  background-color: rgb(255, 204, 0);
 }
 .btn.plane-color-w.taken {
-    background-color: rgb(64, 64, 64);
+  background-color: rgb(64, 64, 64);
 }
 .btn.plane-color-u.taken {
-    background-color: rgb(64, 64, 64);
+  background-color: rgb(64, 64, 64);
 }
 .btn.plane-color-b.taken {
-    background-color: rgb(64, 64, 64);
+  background-color: rgb(64, 64, 64);
 }
 .btn.plane-color-r.taken {
-    background-color: rgb(64, 64, 64);
+  background-color: rgb(64, 64, 64);
 }
 .btn.plane-color-g.taken {
-    background-color: rgb(64, 64, 64);
+  background-color: rgb(64, 64, 64);
 }
 .btn.plane-color-s.taken {
-    background-color: rgb(64, 64, 64);
+  background-color: rgb(64, 64, 64);
 }
 #defense-plane-prompt {
-    margin: auto;
+  margin: auto;
 }
 #defense-choice-box {
-    position: fixed;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    width : 75%;
-    padding: 20px;
-    text-align: center;
-    opacity: 100%;
-    border: 2px solid black;
-    border-radius: 20px;
-    z-index: 3;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 75%;
+  padding: 20px;
+  text-align: center;
+  opacity: 100%;
+  border: 2px solid black;
+  border-radius: 20px;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
 }
 #defense-preview {
-    margin: auto;
-    width: 622px;
-    height: 434px;
-    border: 2px solid black;
-    border-radius: 35px;
-    background-repeat: no-repeat;
-    background-size: cover;
+  margin: auto;
+  width: 435px;
+  height: 303px;
+  border: 2px solid black;
+  border-radius: 35px;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 #defense-choice-text {
-    font-size: 24px;
-    font-weight: bold;
-    padding-bottom: 30px;
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 30px;
+  background-color: rgba(255, 255, 255, 0.25);
+  display: flex;
+  justify-content: center;
 }
 #archenemy-button {
-    position: fixed;
-    transform: translate(0px, -250px);
+  position: fixed;
+  transform: translate(0px, -250px);
 }
 #archenemy-prompt {
-    margin: auto;
+  margin: auto;
 }
 #archenemy-choice-box {
-    position: fixed;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    width : 75%;
-    padding: 20px;
-    text-align: center;
-    background-color: gray;
-    border: 2px solid black;
-    border-radius: 20px;
-    z-index: 3;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 75%;
+  padding: 20px;
+  text-align: center;
+  background-color: gray;
+  border: 2px solid black;
+  border-radius: 20px;
+  z-index: 3;
 }
 #archenemy-choice-text {
-    font-size: 24px;
-    font-weight: bold;
-    padding-bottom: 30px;
+  font-size: 24px;
+  font-weight: bold;
+  padding-bottom: 30px;
 }
 #archenemy-choice-menu {
-    border-radius: 20px;
-    background-repeat: no-repeat;
-    background-size: cover;
-    width: 486px;
-    height: 714px;
-
+  border-radius: 20px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 486px;
+  height: 714px;
 }
 #planar-prompt {
-    margin: auto;
+  margin: auto;
 }
 #planar-choice-box {
-    position: fixed;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    width : 75%;
-    padding: 20px;
-    text-align: center;
-    background-color: gray;
-    border: 2px solid black;
-    border-radius: 20px;
-    z-index: 3;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 75%;
+  padding: 20px;
+  text-align: center;
+  background-color: gray;
+  border: 2px solid black;
+  border-radius: 20px;
+  z-index: 3;
 }
 #planar-choice-text {
-    font-size: 24px;
-    font-weight: bold;
-    padding-bottom: 30px;
+  font-size: 24px;
+  font-weight: bold;
+  padding-bottom: 30px;
 }
 #planar-choice-menu {
-    height: 500px;
-    width : 750px;
-    background-color: gray;
-    border: 2px solid red;
+  height: 500px;
+  width: 750px;
+  background-color: gray;
 }
 #planeswalk {
-    background-image: url('art/symbol-planeswalk.png');
-    background-repeat: no-repeat;
-    background-size: cover;
-    transform: translate(0px, 0px);
-    width: 192px;
-    height: 109px;
-
+  background-image: url("art/symbol-planeswalk.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  transform: translate(0px, 0px);
+  width: 192px;
+  height: 109px;
 }
 #stairs-chaos,
 #pools-chaos {
-    background-image: url('art/symbol-chaos.png');
-    background-repeat: no-repeat;
-    background-size: cover;
-    transform: translate(0px, 0px);
-    width: 140px;
-    height: 123px;
+  background-image: url("art/symbol-chaos.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  transform: translate(0px, 0px);
+  width: 140px;
+  height: 123px;
 }
 .reveal-one-card {
-    margin: auto;
-    width: 622px;
-    height: 434px;
-    border: 2px solid black;
-    border-radius: 35px;
-    background-repeat: no-repeat;
-    background-size: cover;
+  margin: auto;
+  width: 622px;
+  height: 434px;
+  border: 2px solid black;
+  border-radius: 35px;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 .reveal-five-cards {
-    width: 311px;
-    height: 217px;
-    border: 2px solid black;
-    border-radius: 35px;
-    background-repeat: no-repeat;
-    background-size: cover;
-
+  width: 311px;
+  height: 217px;
+  border: 2px solid black;
+  border-radius: 35px;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 #deck-upload-choice-box {
-    position: fixed;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    width : 85%;
-    padding: 20px;
-    text-align: center;
-    background-color: gray;
-    border: 2px solid black;
-    border-radius: 20px;
-    z-index: 3;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 85%;
+  padding: 20px;
+  text-align: center;
+  background-color: gray;
+  border: 2px solid black;
+  border-radius: 20px;
+  z-index: 3;
 }
 /*For Battle Screen*/
 #battle-screen {
-    background-image: url('art/battle-screen-1.jpg');
-    background-size: cover;
-    background-attachment: fixed;
-    min-height: 100%;
-    width: 100%;
-    height: auto;
-    position: fixed;
+  background-image: url("art/battle-screen-1.jpg");
+  background-size: cover;
+  background-attachment: fixed;
+  min-height: 100%;
+  width: 100%;
+  height: auto;
+  position: fixed;
 }
 #card-picture {
-    position: fixed;
-    z-index: 1;
-    background-repeat: no-repeat;
-    background-size: cover;
-    top: 150px;
-    margin: auto;
-    width: 282px;
-    height: 404px;
-    border-radius: 17px;
+  position: fixed;
+  z-index: 1;
+  background-repeat: no-repeat;
+  background-size: cover;
+  top: 150px;
+  margin: auto;
+  width: 282px;
+  height: 404px;
+  border-radius: 17px;
 }
 #battle-defense-plane {
-    transform: translate(0px, -200px);
-    margin: auto;
-    width: 622px;
-    height: 434px;
-    border: 2px solid black;
-    border-radius: 35px;
-    background-repeat: no-repeat;
-    background-size: cover;
+  transform: translate(0px, -200px);
+  margin: auto;
+  width: 622px;
+  height: 434px;
+  border: 2px solid black;
+  border-radius: 35px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: fixed;
+  bottom: -80px;
+  left: 25%;
+  transform: scale(0.5);
 }
 #map-defense-preview {
-    width: 225px;
-    height: 158px;
-    border-radius: 10px;
-    background-repeat: no-repeat;
-    background-size: cover;
+  width: 225px;
+  height: 158px;
+  border-radius: 10px;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 #reveal-chaotic-aether {
-    transform: translate(0px, -200px);
-    margin: auto;
-    width: 622px;
-    height: 434px;
-    border: 2px solid black;
-    border-radius: 35px;
-    background-repeat: no-repeat;
-    background-size: cover;
+  transform: translate(0px, -200px);
+  margin: auto;
+  width: 622px;
+  height: 434px;
+  border: 2px solid black;
+  border-radius: 35px;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 #reveal-spatial-merging {
-    transform: translate(0px, -200px);
-    margin: auto;
-    width: 622px;
-    height: 434px;
-    border: 2px solid black;
-    border-radius: 35px;
-    background-repeat: no-repeat;
-    background-size: cover;
+  transform: translate(0px, -200px);
+  margin: auto;
+  width: 622px;
+  height: 434px;
+  border: 2px solid black;
+  border-radius: 35px;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 #battle-information {
-    min-height: 100%;
-    width: 100%;
-    height: auto;
-    position: fixed;
-    top: 150px;
-    left: 0;
-    border-color: black;
-    border-style: solid;
-    border-width: 0px 2px 2px 2px;
-    text-align: center;
+  min-height: 100%;
+  width: 100%;
+  height: auto;
+  position: fixed;
+  top: 150px;
+  left: 0;
+  border-color: black;
+  border-style: solid;
+  border-width: 0px 2px 2px 2px;
+  text-align: center;
 }
 .battle-player {
-    padding: 10px 20px 10px 20px;
-    font-weight: bold;
+  padding: 10px 20px 10px 20px;
+  font-weight: bold;
 }
 #battle-player0 {
-    margin: 25px;
-    position: absolute;
-    left: 0px;
+  margin: 25px;
+  position: absolute;
+  left: 0px;
 }
 #battle-player1 {
-    margin: 25px;
-    position: absolute;
-    right: 0px;
+  margin: 25px;
+  position: absolute;
+  right: 0px;
 }
 #battle-player2 {
-    margin: 25px;
-    position: absolute;
-    left: 0px;
-    top: 325px;
+  margin: 25px;
+  position: absolute;
+  left: 0px;
+  top: 325px;
 }
 #battle-player3 {
-    margin: 25px;
-    position: absolute;
-    right: 0px;
-    top: 325px;
-    
+  margin: 25px;
+  position: absolute;
+  right: 0px;
+  top: 325px;
 }
 #battle-player4 {
-    margin: auto;
-    position: relative;
-    top: 187px;
+  margin: auto;
+  position: relative;
+  top: 187px;
 }
 /*Toolbar Styles*/
 #country-information {
-    font-size: smaller;
+  font-size: smaller;
 }
 .toolbar {
-    position: fixed;
-    border: 2px solid black;
-    width: 100%;
-    height: 150px;
-    padding: 10px 20px 10px 20px;
-    z-index: 1;
+  position: fixed;
+  border: 2px solid black;
+  width: 100%;
+  height: 150px;
+  padding: 10px 20px 10px 20px;
+  z-index: 1;
 }
 .country-info {
-    position: absolute;
-    transform: translate(28px, 722px);
-    width: 230px;
-    height: 372.148px;
+  position: absolute;
+  transform: translate(28px, 722px);
+  width: 230px;
+  height: 372.148px;
 }
 .country-info.player-color- {
-    text-align: center;
-    position: absolute;
-    transform: translate(28px, 722px);
-    width: 230px;
-    height: 372.148px;
-    border: 2px solid black;
-    background-color: rgb(230, 230, 230);
-    border-radius: 15px;
+  text-align: center;
+  position: absolute;
+  transform: translate(28px, 722px);
+  width: 230px;
+  height: 372.148px;
+  border: 2px solid black;
+  background-color: rgb(230, 230, 230);
+  border-radius: 15px;
 }
 .country-info.player-color-1 {
-    text-align: center;
-    position: absolute;
-    transform: translate(28px, 722px);
-    width: 230px;
-    height: 372.148px;
-    border: 2px solid black;
-    background-color: var(--player-1-color);
-    border-radius: 15px;
+  text-align: center;
+  position: absolute;
+  transform: translate(28px, 722px);
+  width: 230px;
+  height: 372.148px;
+  border: 2px solid black;
+  background-color: var(--player-1-color);
+  border-radius: 15px;
 }
 .country-info.player-color-2 {
-    text-align: center;
-    position: absolute;
-    transform: translate(28px, 722px);
-    width: 230px;
-    height: 372.148px;
-    border: 2px solid black;
-    background-color: var(--player-2-color);
-    border-radius: 15px;
+  text-align: center;
+  position: absolute;
+  transform: translate(28px, 722px);
+  width: 230px;
+  height: 372.148px;
+  border: 2px solid black;
+  background-color: var(--player-2-color);
+  border-radius: 15px;
 }
 .country-info.player-color-3 {
-    text-align: center;
-    position: absolute;
-    transform: translate(28px, 722px);
-    width: 230px;
-    height: 372.148px;
-    border: 2px solid black;
-    background-color: var(--player-3-color);
-    border-radius: 15px;
+  text-align: center;
+  position: absolute;
+  transform: translate(28px, 722px);
+  width: 230px;
+  height: 372.148px;
+  border: 2px solid black;
+  background-color: var(--player-3-color);
+  border-radius: 15px;
 }
 .country-info.player-color-4 {
-    text-align: center;
-    position: absolute;
-    transform: translate(28px, 722px);
-    width: 230px;
-    height: 372.148px;
-    border: 2px solid black;
-    background-color: var(--player-4-color);
-    border-radius: 15px;
+  text-align: center;
+  position: absolute;
+  transform: translate(28px, 722px);
+  width: 230px;
+  height: 372.148px;
+  border: 2px solid black;
+  background-color: var(--player-4-color);
+  border-radius: 15px;
 }
 .country-info.player-color-5 {
-    text-align: center;
-    position: absolute;
-    transform: translate(28px, 722px);
-    width: 230px;
-    height: 372.148px;
-    border: 2px solid black;
-    background-color: var(--player-5-color);
-    border-radius: 15px;
+  text-align: center;
+  position: absolute;
+  transform: translate(28px, 722px);
+  width: 230px;
+  height: 372.148px;
+  border: 2px solid black;
+  background-color: var(--player-5-color);
+  border-radius: 15px;
 }
 #toolbar-information {
-    width: 80%;
-    height: 123px;
+  width: 80%;
+  height: 123px;
 }
 .btn {
-    border: 1px solid black;
-    border-radius: 0.25rem;
-    margin: 2px;
+  border: 1px solid black;
+  border-radius: 0.25rem;
+  margin: 2px;
 }
 #battle-screen-toolbar {
-    background-color: rgba(139, 69, 19, 1);
+  background-color: rgba(139, 69, 19, 1);
 }
 #player-count-label {
-    position: fixed;
-    top: 60px;
-    left: 24px;
+  position: fixed;
+  top: 60px;
+  left: 24px;
 }
-#update-player-count{
-    position: fixed;
-    top: 59px;
-    left: 230px;  
+#update-player-count {
+  position: fixed;
+  top: 59px;
+  left: 230px;
 }
 #current-setup-player {
-    position: fixed;
-    top: 100px;
-    left: 24px;
+  position: fixed;
+  top: 100px;
+  left: 24px;
 }
-#update-setup-player{
-    position: fixed;
-    top: 100px;
-    left: 230px;
+#update-setup-player {
+  position: fixed;
+  top: 100px;
+  left: 230px;
 }
 #current-player-info {
-    text-align: center;
+  text-align: center;
 }
 .win-button {
-    width: 100%;
-    padding: 5px;
+  width: 100%;
+  padding: 5px;
 }
 .battle-button {
-    position: fixed;
-    right: 18px;
-    padding: 5px;
+  position: fixed;
+  right: 18px;
+  padding: 5px;
 }
 #world-map {
-    margin: auto;
-    width: 100%;
-    max-height: 100%;
+  margin: auto;
+  width: 100%;
+  max-height: 100%;
 }
-#map-background{
-    position: absolute;
-    top: 150px;
-    width: 100%;
-    height: 1000px;
-    background-image: url('art/water-tile.jpg');
-    opacity: 0.6;
-    background-size: 100px 100px;
-    animation-name: backgroundwaves;
-    animation-duration: 30s;
-    animation-iteration-count: infinite;
-    animation-timing-function: linear;
+#map-background {
+  position: absolute;
+  top: 150px;
+  width: 100%;
+  height: 1000px;
+  background-image: url("art/water-tile.jpg");
+  opacity: 0.6;
+  background-size: 100px 100px;
+  animation-name: backgroundwaves;
+  animation-duration: 30s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
 }
 @keyframes backgroundwaves {
-    0% {
-        background-position: 0 0;
-    }
-    100% {
-        background-position: 100px 0;
-    }
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 100px 0;
+  }
 }
 #map-monster {
-    background-image: url('art/map-monster.png');
-    background-repeat: no-repeat;
-    position: absolute;
-    top: 150px;
-    width: 400px;
-    height: 533px;
-    transform: matrix(0.25, 0, 0, 0.25, 378, 541);
+  background-image: url("art/map-monster.png");
+  background-repeat: no-repeat;
+  position: absolute;
+  top: 150px;
+  width: 400px;
+  height: 533px;
+  transform: matrix(0.25, 0, 0, 0.25, 378, 541);
 }
 #map-monster2 {
-    background-image: url('art/map-monster2.jpg');
-    background-repeat: no-repeat;
-    position: absolute;
-    top: 150px;
-    width: 236px;
-    height: 170px;
-    transform: matrix(0.5, 0.2, -0.2, 0.5, 1214, 438);
+  background-image: url("art/map-monster2.jpg");
+  background-repeat: no-repeat;
+  position: absolute;
+  top: 150px;
+  width: 236px;
+  height: 170px;
+  transform: matrix(0.5, 0.2, -0.2, 0.5, 1214, 438);
 }
 #map-monster3 {
-    background-image: url('art/map-monster3.png');
-    background-repeat: no-repeat;
-    position: absolute;
-    top: 150px;
-    width: 450px;
-    height: 364px;
-    transform: matrix(0.33, 0, 0, 0.33, -117, 249);
+  background-image: url("art/map-monster3.png");
+  background-repeat: no-repeat;
+  position: absolute;
+  top: 150px;
+  width: 450px;
+  height: 364px;
+  transform: matrix(0.33, 0, 0, 0.33, -117, 249);
 }
 #map-monster4 {
-    background-image: url('art/iceberg.png');
-    background-repeat: no-repeat;
-    position: absolute;
-    top: 150px;
-    width: 640px;
-    height: 348px;
-    transform: matrix(0.15, 0, 0, 0.15, 353, -87);
+  background-image: url("art/iceberg.png");
+  background-repeat: no-repeat;
+  position: absolute;
+  top: 150px;
+  width: 640px;
+  height: 348px;
+  transform: matrix(0.15, 0, 0, 0.15, 353, -87);
 }
 #compass-rose {
-    background-image: url('art/compass-rose.png');
-    background-repeat: no-repeat;
-    position: absolute;
-    top: 150px;
-    width: 229px;
-    height: 221px;
-    transform: matrix(0.75, 0, 0, 0.75, 958, 767);
+  background-image: url("art/compass-rose.png");
+  background-repeat: no-repeat;
+  position: absolute;
+  top: 150px;
+  width: 229px;
+  height: 221px;
+  transform: matrix(0.75, 0, 0, 0.75, 958, 767);
 }
 #map-countries {
-    position: absolute;
-    top: 150px;
-    width: 100%;
-    height: 1000px;
-    border-left: 2px solid black;
-    border-right: 2px solid black;
-    border-bottom: 2px solid black;
+  position: absolute;
+  top: 150px;
+  width: 100%;
+  height: 1000px;
+  border-left: 2px solid black;
+  border-right: 2px solid black;
+  border-bottom: 2px solid black;
 }
 .country-text {
-    text-align: center;
-    width: 150px;
-    height: 48px;
-    margin: auto;
-    font-weight: bold;
-    position: absolute;
-    pointer-events: none;
+  text-align: center;
+  width: 150px;
+  height: 48px;
+  margin: auto;
+  font-weight: bold;
+  position: absolute;
+  pointer-events: none;
 }
 /*Country Positions*/
 #afghanistan {
-    transform: matrix(0.44, 0, 0, 0.44, 872, 266);
+  transform: matrix(0.44, 0, 0, 0.44, 872, 266);
 }
 #afghanistan-text {
-    transform: translate(897px, 478px);
+  transform: translate(897px, 478px);
 }
 #alaska {
-    transform: matrix(0.35, 0, 0, 0.35, 45, 100);
+  transform: matrix(0.35, 0, 0, 0.35, 45, 100);
 }
 #alaska-text {
-    transform: translate(37px, 277px);
+  transform: translate(37px, 277px);
 }
 #alberta {
-    transform: matrix(0.38, 0, 0, 0.38, 148, 171);
+  transform: matrix(0.38, 0, 0, 0.38, 148, 171);
 }
 #alberta-text {
-    transform: translate(157px, 339px);
+  transform: translate(157px, 339px);
 }
 #argentina {
-    transform: matrix(0.35, 0, 0, 0.35, 317, 663);
+  transform: matrix(0.35, 0, 0, 0.35, 317, 663);
 }
 #argentina-text {
-    transform: translate(305px, 897px);
+  transform: translate(305px, 897px);
 }
 #brazil {
-    transform: matrix(0.62, 0, 0, 0.62, 303, 534);
+  transform: matrix(0.62, 0, 0, 0.62, 303, 534);
 }
 #brazil-text {
-    transform: translate(380px, 745px);
+  transform: translate(380px, 745px);
 }
 #central-america {
-    transform: matrix(0.43, 0, 0, 0.43, 171, 376);
+  transform: matrix(0.43, 0, 0, 0.43, 171, 376);
 }
 #central-america-text {
-    transform: translate(178px, 589px);
+  transform: translate(178px, 589px);
 }
 #china {
-    transform: matrix(0.62, 0, 0, 0.62, 1005, 299);
+  transform: matrix(0.62, 0, 0, 0.62, 1005, 299);
 }
 #china-text {
-    transform: translate(1061px, 552px);
+  transform: translate(1061px, 552px);
 }
 #congo {
-    transform: matrix(0.55, 0, 0, 0.55, 675, 601);
+  transform: matrix(0.55, 0, 0, 0.55, 675, 601);
 }
 #congo-text {
-    transform: translate(707px, 836px);
+  transform: translate(707px, 836px);
 }
 #east-africa {
-    transform: matrix(0.43, 0, 0, 0.43, 770, 577);
+  transform: matrix(0.43, 0, 0, 0.43, 770, 577);
 }
 #east-africa-text {
-    transform: translate(783px, 777px);
+  transform: translate(783px, 777px);
 }
 #eastern-australia {
-    transform: matrix(0.4, 0, 0, 0.4, 1265, 703);
+  transform: matrix(0.4, 0, 0, 0.4, 1265, 703);
 }
 #eastern-australia-text {
-    transform: translate(1296px, 914px);
+  transform: translate(1296px, 914px);
 }
 #eastern-usa {
-    transform: matrix(0.52, 0, 0, 0.52, 263, 276);
+  transform: matrix(0.52, 0, 0, 0.52, 263, 276);
 }
 #eastern-usa-text {
-    transform: translate(314px, 495px);
+  transform: translate(314px, 495px);
 }
 #egypt {
-    transform: matrix(0.42, 0, 0, 0.42, 703, 507);
+  transform: matrix(0.42, 0, 0, 0.42, 703, 507);
 }
 #egypt-text {
-    transform: translate(708px, 677px);
+  transform: translate(708px, 677px);
 }
 #great-britan {
-    transform: matrix(0.3, 0, 0, 0.3, 533, 217);
+  transform: matrix(0.3, 0, 0, 0.3, 533, 217);
 }
 #great-britan-text {
-    transform: translate(520px, 414px);
+  transform: translate(520px, 414px);
 }
 #greenland {
-    transform: matrix(0.55, 0, 0, 0.55, 384, 7);
+  transform: matrix(0.55, 0, 0, 0.55, 384, 7);
 }
 #greenland-text {
-    transform: translate(434px, 223px);
+  transform: translate(434px, 223px);
 }
 #iceland {
-    transform: matrix(0.25, 0, 0, 0.25, 569, 169);
+  transform: matrix(0.25, 0, 0, 0.25, 569, 169);
 }
 #iceland-text {
-    transform: translate(545px, 328px);
+  transform: translate(545px, 328px);
 }
 #india {
-    transform: matrix(0.42, 0, 0, 0.44, 964, 397);
+  transform: matrix(0.42, 0, 0, 0.44, 964, 397);
 }
 #india-text {
-    transform: translate(973px, 615px);
+  transform: translate(973px, 615px);
 }
 #indonesia {
-    transform: matrix(0.4, 0, 0, 0.4, 1096, 631);
+  transform: matrix(0.4, 0, 0, 0.4, 1096, 631);
 }
 #indonesia-text {
-    transform: translate(1108px, 820px);
+  transform: translate(1108px, 820px);
 }
 #irkutsk {
-    transform: matrix(0.45, 0, 0, 0.45, 1069, 168);
+  transform: matrix(0.45, 0, 0, 0.45, 1069, 168);
 }
 #irkutsk-text {
-    transform: translate(1092px, 365px);
+  transform: translate(1092px, 365px);
 }
 #japan {
-    transform: matrix(0.25, 0, 0, 0.25, 1249, 251);
+  transform: matrix(0.25, 0, 0, 0.25, 1249, 251);
 }
 #japan-text {
-    transform: translate(1243px, 457px);
+  transform: translate(1243px, 457px);
 }
 #kamchatka {
-    transform: matrix(0.54, 0, 0, 0.56, 1165, 60);
+  transform: matrix(0.54, 0, 0, 0.56, 1165, 60);
 }
 #kamchatka-text {
-    transform: translate(1197px, 317px);
+  transform: translate(1197px, 317px);
 }
 #madagascar {
-    transform: matrix(0.3, 0, 0, 0.3, 852, 752);
+  transform: matrix(0.3, 0, 0, 0.3, 852, 752);
 }
 #madagascar-text {
-    transform: translate(845px, 956px);
+  transform: translate(845px, 956px);
 }
 #middle-east {
-    transform: matrix(0.6, 0, 0, 0.6, 761, 413);
+  transform: matrix(0.6, 0, 0, 0.6, 761, 413);
 }
 #middle-east-text {
-    transform: translate(820px, 626px);
+  transform: translate(820px, 626px);
 }
 #mongolia {
-    transform: matrix(0.46, 0, 0, 0.46, 1086, 257);
+  transform: matrix(0.46, 0, 0, 0.46, 1086, 257);
 }
 #mongolia-text {
-    transform: translate(1100px, 466px);
+  transform: translate(1100px, 466px);
 }
 #new-guinea {
-    transform: matrix(0.32, 0, 0, 0.32, 1238, 616);
+  transform: matrix(0.32, 0, 0, 0.32, 1238, 616);
 }
 #new-guinea-text {
-    transform: translate(1233px, 779px);
+  transform: translate(1233px, 779px);
 }
 #north-africa {
-    transform: matrix(0.58, 0, 0, 0.56, 566, 473);
+  transform: matrix(0.58, 0, 0, 0.56, 566, 473);
 }
 #north-africa-text {
-    transform: translate(615px, 739px);
+  transform: translate(615px, 739px);
 }
 #northern-europe {
-    transform: matrix(0.38, 0, 0, 0.38, 644, 246); 
+  transform: matrix(0.38, 0, 0, 0.38, 644, 246);
 }
 #northern-europe-text {
-    transform: translate(652px, 456px);
+  transform: translate(652px, 456px);
 }
 #northwest-territory {
-    transform: matrix(0.63, 0, 0, 0.63, 139, 77);
+  transform: matrix(0.63, 0, 0, 0.63, 139, 77);
 }
 #northwest-territory-text {
-    transform: translate(202px, 281px);
+  transform: translate(202px, 281px);
 }
 #ontario {
-    transform: matrix(0.3, 0, 0, 0.31, 274, 184);  
+  transform: matrix(0.3, 0, 0, 0.31, 274, 184);
 }
 #ontario-text {
-    transform: translate(256px, 363px);
+  transform: translate(256px, 363px);
 }
 #peru {
-    transform: matrix(0.45, 0, 0, 0.45, 268, 560);
+  transform: matrix(0.45, 0, 0, 0.45, 268, 560);
 }
 #peru-text {
-    transform: translate(274px, 781px);
+  transform: translate(274px, 781px);
 }
 #quebec {
-    transform: matrix(0.45, 0, 0, 0.3, 348, 192);
+  transform: matrix(0.45, 0, 0, 0.3, 348, 192);
 }
 #quebec-text {
-    transform: translate(379px, 385px);
+  transform: translate(379px, 385px);
 }
 #scandanavia {
-    transform: matrix(0.36, 0, 0, 0.36, 672, 116);
+  transform: matrix(0.36, 0, 0, 0.36, 672, 116);
 }
 #scandanavia-text {
-    transform: translate(671px, 295px);
+  transform: translate(671px, 295px);
 }
 #siam {
-    transform: matrix(0.33, 0, 0, 0.33, 1091, 479);
+  transform: matrix(0.33, 0, 0, 0.33, 1091, 479);
 }
 #siam-text {
-    transform: translate(1084px, 672px);
+  transform: translate(1084px, 672px);
 }
 #siberia {
-    transform: matrix(0.58, 0, 0, 0.5, 935, 21);
+  transform: matrix(0.58, 0, 0, 0.5, 935, 21);
 }
 #siberia-text {
-    transform: translate(994px, 293px);
+  transform: translate(994px, 293px);
 }
 #south-africa {
-    transform: matrix(0.42, 0, 0, 0.42, 717, 729);
+  transform: matrix(0.42, 0, 0, 0.42, 717, 729);
 }
 #south-africa-text {
-    transform: translate(718px, 976px);
+  transform: translate(718px, 976px);
 }
 #southern-europe {
-    transform: matrix(0.38, 0, 0, 0.38, 656, 334);
+  transform: matrix(0.38, 0, 0, 0.38, 656, 334);
 }
 #southern-europe-text {
-    transform: translate(660px, 537px);
+  transform: translate(660px, 537px);
 }
 #ukraine {
-    transform: matrix(0.55, 0, 0, 0.55, 745, 107);
+  transform: matrix(0.55, 0, 0, 0.55, 745, 107);
 }
 #ukraine-text {
-    transform: translate(786px, 372px);
+  transform: translate(786px, 372px);
 }
 #ural {
-    transform: matrix(0.38, 0, 0, 0.38, 921, 75);
+  transform: matrix(0.38, 0, 0, 0.38, 921, 75);
 }
 #ural-text {
-    transform: translate(920px, 348px);
+  transform: translate(920px, 348px);
 }
 #veneseulea {
-    transform: matrix(0.48, 0, 0, 0.48, 280, 491);
+  transform: matrix(0.48, 0, 0, 0.48, 280, 491);
 }
 #veneseulea-text {
-    transform: translate(284px, 667px);
+  transform: translate(284px, 667px);
 }
 #western-australia {
-    transform: matrix(0.46, 0, 0, 0.46, 1166, 731);
+  transform: matrix(0.46, 0, 0, 0.46, 1166, 731);
 }
 #western-australia-text {
-    transform: translate(1184px, 974px);
+  transform: translate(1184px, 974px);
 }
 #western-europe {
-    transform: matrix(0.35, 0, 0, 0.35, 556, 339);
+  transform: matrix(0.35, 0, 0, 0.35, 556, 339);
 }
 #western-europe-text {
-    transform: translate(538px, 573px);
+  transform: translate(538px, 573px);
 }
 #western-usa {
-    transform: matrix(0.5, 0, 0, 0.42, 155, 265);
+  transform: matrix(0.5, 0, 0, 0.42, 155, 265);
 }
 #western-usa-text {
-    transform: translate(177px, 455px);
+  transform: translate(177px, 455px);
 }
 #yakutsk {
-    transform: matrix(0.4, 0, 0, 0.42, 1092, 38);
+  transform: matrix(0.4, 0, 0, 0.42, 1092, 38);
 }
 #yakutsk-text {
-    transform: translate(1104px, 245px);
+  transform: translate(1104px, 245px);
 }
 .animate-country {
-    animation-name: country-hover;
-    animation-duration: 2s;
-    animation-iteration-count: infinite;
-    animation-timing-function: linear;
+  animation-name: country-hover;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
 }
 
 /*High Priority*/
 .hide-item-class {
-    display: none;
+  display: none;
 }

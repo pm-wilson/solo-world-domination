@@ -1,3 +1,0 @@
-check starting color in toolbar
-
-shouldnt start with phenomenom

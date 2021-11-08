@@ -13,7 +13,7 @@ function showSupplyViewButton() {
 
 function returnSupplyDropCard(country) {
     var currentPlayer = gameVars.gameStatus.turn,
-    currentPlayerSupply = gameVars.playerInfo["player" + currentPlayer].playerSupplyPoints;
+        currentPlayerSupply = gameVars.playerInfo["player" + currentPlayer].playerSupplyPoints;
 
     //find a card with corresponding country
     for (var i = 0; i < currentPlayerSupply.length; i++) {
@@ -28,19 +28,19 @@ function returnSupplyDropCard(country) {
 
 function dropDeckIntoGame(player, country) {
     var fullPlayer = gameVars.playerInfo["player" + player],
-    dugoutRef = fullPlayer.playerDugout,
-    newDeckPlayer = player,
-    lastDeck = fullPlayer.playerDecklist.length;
+        dugoutRef = fullPlayer.playerDugout,
+        newDeckPlayer = player,
+        lastDeck = fullPlayer.playerDecklist.length;
 
     if (adminSettings.useTwoHeadedGiant) {
         lastDeck -= 1;
     }
     if (dugoutRef < lastDeck) {
         var deckToDrop = fullPlayer.playerDecklist[dugoutRef],
-        newDeckName = deckToDrop.deckName;
+            newDeckName = deckToDrop.deckName;
 
         //drop deck associated with dugout
-        findFullCountryWithCountry(country).deck = {deckPlayer: newDeckPlayer, deckName: newDeckName}; 
+        findFullCountryWithCountry(country).deck = { deckPlayer: newDeckPlayer, deckName: newDeckName };
         //increase player dugout by 1
         rollUpPlayerDugout(player);
         //add second head            
@@ -79,15 +79,15 @@ function makeSupplyDrop() {
     buildMapButtons();
 
     var supplyDropConfirmation = confirm("Supply Drop to These Countries?");
-    
+
     if (supplyDropConfirmation) {
         //do this for each country in queue
         for (var i = 0; i < gameVars.globalGameOptions.supplyInfo.supplyDropQueue.length; i++) {
             var country = gameVars.globalGameOptions.supplyInfo.supplyDropQueue[i],
-            currentPlayerName = findPlayerName(gameVars.gameStatus.turn),
-            logText = "Supply Drop by " + currentPlayerName,
-            fullCountry = findFullCountryWithCountry(country);
-            
+                currentPlayerName = findPlayerName(gameVars.gameStatus.turn),
+                logText = "Supply Drop by " + currentPlayerName,
+                fullCountry = findFullCountryWithCountry(country);
+
             //wild drop
             if (country === "none") {
                 logText += " Wild Card Dropped";
@@ -187,7 +187,7 @@ function makeSupplyDrop() {
     }
     else {
         var select1 = gameVars.globalGameOptions.supplyInfo.supplyDropQueue[0],
-        select2 = gameVars.globalGameOptions.supplyInfo.supplyDropQueue[1];
+            select2 = gameVars.globalGameOptions.supplyInfo.supplyDropQueue[1];
 
         //unselect country
         gameVars.globalGameOptions.supplyInfo.supplyDropQueue = [select1, select2];
@@ -204,7 +204,7 @@ function removeAllWildCardButtons() {
 
 function maxSupplyCheck() {
     var currentTurn = gameVars.gameStatus.turn,
-    currentPlayerSupplyCount = gameVars.playerInfo["player" + currentTurn].playerSupplyPoints.length;
+        currentPlayerSupplyCount = gameVars.playerInfo["player" + currentTurn].playerSupplyPoints.length;
 
     if (currentPlayerSupplyCount >= gameVars.globalGameOptions.supplyInfo.maxSupplyPerPerson) {
         if (gameVars.gameStatus.modeType === "") {
@@ -310,7 +310,7 @@ function chooseSupplyDrop(country) {
 
 function possibleDrops() {
     var possible = [],
-    currentPlayerNumber = gameVars.gameStatus.turn;
+        currentPlayerNumber = gameVars.gameStatus.turn;
 
     for (var i = 0; i < gameVars.playerInfo["player" + currentPlayerNumber].playerSupplyPoints.length; i++) {
         possible.push(gameVars.playerInfo["player" + currentPlayerNumber].playerSupplyPoints[i].supplyCountry)
@@ -365,7 +365,7 @@ function countrySupplyTypeForMap(country) {
 
 function findCountrySupplyType(country) {
     var supplyList = [];
-    
+
     //count list to draw from
     for (var d = 0; d < gameVars.globalGameOptions.supplyInfo.supplyDropCardsToDraw.length; d++) {
         supplyList.push(gameVars.globalGameOptions.supplyInfo.supplyDropCardsToDraw[d]);
@@ -390,8 +390,8 @@ function findCountrySupplyType(country) {
 
 function currentPlayerUnplayedSupplyHand() {
     var currentPlayer = gameVars.gameStatus.turn,
-    currentPlayerSupplyHand = gameVars.playerInfo["player" + currentPlayer].playerSupplyPoints,
-    unplayedHand = [];
+        currentPlayerSupplyHand = gameVars.playerInfo["player" + currentPlayer].playerSupplyPoints,
+        unplayedHand = [];
 
     for (var i = 0; i < currentPlayerSupplyHand.length; i++) {
         if (isItemInArray(currentPlayerSupplyHand[i].supplyCountry, gameVars.globalGameOptions.supplyInfo.supplyDropQueue) === false) {
@@ -403,7 +403,7 @@ function currentPlayerUnplayedSupplyHand() {
 
 function countSupplyTypeInCurrentHand(type) {
     var currentSupplyHand = currentPlayerUnplayedSupplyHand(),
-    numberOfTypes = 0;
+        numberOfTypes = 0;
 
     for (var i = 0; i < currentSupplyHand.length; i++) {
         if (currentSupplyHand[i].supplyType === type) {
@@ -423,9 +423,9 @@ function otherSupplyType(firstType, secondType) {
 
 function isOneOfEachPossible() {
     var currentHand = currentPlayerUnplayedSupplyHand(),
-    type1 = 0,
-    type2 = 0,
-    type3 = 0;
+        type1 = 0,
+        type2 = 0,
+        type3 = 0;
 
     for (var i = 0; i < currentHand.length; i++) {
         if (currentHand[i].supplyType === 1) {
@@ -482,7 +482,7 @@ function checkOneCardPlayed(currentSupplyType) {
 
 function checkTwoCardsPlayed(currentSupplyType) {
     var cardOneType = findCountrySupplyType(gameVars.globalGameOptions.supplyInfo.supplyDropQueue[0]),
-    cardTwoType = findCountrySupplyType(gameVars.globalGameOptions.supplyInfo.supplyDropQueue[1]);
+        cardTwoType = findCountrySupplyType(gameVars.globalGameOptions.supplyInfo.supplyDropQueue[1]);
 
     //if both cards in queue the same type 
     if (cardOneType === cardTwoType) {
@@ -522,8 +522,8 @@ function checkUndroppable(currentCountry) {//true is undroppable
 
 function isSupplyable(currentCountry) {
     var currentPlayer = gameVars.gameStatus.turn,
-    currentPlayerSupplyHand = gameVars.playerInfo["player" + currentPlayer].playerSupplyPoints,
-    currentSupplyHandPlayableCountries = [];
+        currentPlayerSupplyHand = gameVars.playerInfo["player" + currentPlayer].playerSupplyPoints,
+        currentSupplyHandPlayableCountries = [];
 
     if (currentCountry === "none") {
         return true;
@@ -621,7 +621,7 @@ function selectSupplyDrop() {
     }
 }
 
-function countWildSupply(currentSupplyHand){
+function countWildSupply(currentSupplyHand) {
     wildCount = 0;
 
     for (var i = 0; i < currentSupplyHand.length; i++) {
@@ -645,8 +645,8 @@ function countSupplyTypes(currentSupplyHand) {
 
 function supplyDropAvailable(currentSupplyHand) {
     var countWild = countWildSupply(currentSupplyHand),
-    countTypes = countSupplyTypes(currentSupplyHand),
-    supplyNeeded = gameVars.globalGameOptions.supplyInfo.droppedPerSession;
+        countTypes = countSupplyTypes(currentSupplyHand),
+        supplyNeeded = gameVars.globalGameOptions.supplyInfo.droppedPerSession;
 
     //check for 3 types
     if (currentSupplyHand.length >= supplyNeeded && countTypes >= 3) {
@@ -665,9 +665,9 @@ function supplyDropAvailable(currentSupplyHand) {
 
 function supplyDropCheck() {
     var currentPlayer = gameVars.gameStatus.turn,
-    currentSupplyHand = gameVars.playerInfo["player" + currentPlayer].playerSupplyPoints,
-    currentPlayerName = findPlayerName(currentPlayer),
-    supplyDropReady = supplyDropAvailable(currentSupplyHand);
+        currentSupplyHand = gameVars.playerInfo["player" + currentPlayer].playerSupplyPoints,
+        currentPlayerName = findPlayerName(currentPlayer),
+        supplyDropReady = supplyDropAvailable(currentSupplyHand);
 
     if (currentSupplyHand.length >= gameVars.globalGameOptions.supplyInfo.maxSupplyPerPerson) {
         //force drop

@@ -87,8 +87,8 @@ function isPlayerNotOnDeckList(player, deckList) {
 
 function markToSurroundingPossibleBattle(country, classToAdd) {
     var fullCountry = findFullCountryWithCountry(country),
-    playersToExclude = gameVars.mapInfo.mapSelect;
-    
+        playersToExclude = gameVars.mapInfo.mapSelect;
+
     if (!!fullCountry.deck) {
         for (var i = 0; i < fullCountry.borders.length; i++) {
             var currentBorderCountry = fullCountry.borders[i];
@@ -184,7 +184,7 @@ function selectDefender(country, countryPlayer, countryDeckName) {
     //set ground zero
     gameVars.battleScreenInfo.groundZero = country;
     //push to mapSelect
-    gameVars.mapInfo.mapSelect.push({deckPlayer: countryPlayer, deckName: countryDeckName});
+    gameVars.mapInfo.mapSelect.push({ deckPlayer: countryPlayer, deckName: countryDeckName });
     //add bordering countries with deck and not same player as on map select as possible battle and highlight as possible joiner
     gameVars.mapInfo.possibleBattle = [];
     markToSurroundingPossibleBattle(country, "join-threat");
@@ -216,7 +216,7 @@ function selectJoiner(country, countryPlayer, countryDeckName) {
     //highlight as joiner
     addClass(country, "map-join");
     //push to mapSelect
-    gameVars.mapInfo.mapSelect.push({deckPlayer: countryPlayer, deckName: countryDeckName});
+    gameVars.mapInfo.mapSelect.push({ deckPlayer: countryPlayer, deckName: countryDeckName });
     //add bordering countries with deck and not same player as on map select as possible battle and highlight as possible joiner
     gameVars.mapInfo.possibleBattle = [];
     markToSurroundingPossibleBattle(gameVars.battleScreenInfo.groundZero, "join-threat");
@@ -230,20 +230,20 @@ function selectJoiner(country, countryPlayer, countryDeckName) {
 
 function attackCountryClicked(country) {
     var currentTurnPlayer = gameVars.gameStatus.turn,
-    currentTurnPlayerName = gameVars.playerInfo["player" + currentTurnPlayer].playerName,
-    currentClick = gameVars.mapInfo.mapSelect.length,
-    countryDeck = findDeckWithCountry(country),
-    alreadyAttacked = isItemInArray(country, gameVars.mapInfo.alreadyAttacked);
+        currentTurnPlayerName = gameVars.playerInfo["player" + currentTurnPlayer].playerName,
+        currentClick = gameVars.mapInfo.mapSelect.length,
+        countryDeck = findDeckWithCountry(country),
+        alreadyAttacked = isItemInArray(country, gameVars.mapInfo.alreadyAttacked);
 
     if (!!countryDeck) {
         var countryPlayer = countryDeck.deckPlayer,
-        countryDeckName = shownDeckName(countryPlayer, countryDeck.deckName);
+            countryDeckName = shownDeckName(countryPlayer, countryDeck.deckName);
 
         if (currentTurnPlayer === countryPlayer && alreadyAttacked === false) {
             selectAttacker(country, countryDeck, currentTurnPlayerName, countryDeckName);
             removeNonAttackFromJoiners();
         }
-        else if (isItemInArray(country, gameVars.mapInfo.possibleBattle)){
+        else if (isItemInArray(country, gameVars.mapInfo.possibleBattle)) {
             for (var i = 0; i < gameVars.mapInfo.possibleBattle.length; i++) {
                 if (gameVars.mapInfo.possibleBattle[i] === country) {
                     if (currentClick > 1) {
@@ -253,7 +253,7 @@ function attackCountryClicked(country) {
                         selectDefender(country, countryPlayer, countryDeck.deckName);
                     }
                 }
-            }   
+            }
         }
     }
 }
@@ -276,18 +276,18 @@ function mapCountryHover(country) {
     //player name
     if (!!findFullCountryWithCountry(country).deck) {
         var countryPlayer = findFullCountryWithCountry(country).deck.deckPlayer,
-        playerName = gameVars.playerInfo["player" + countryPlayer].playerName,
-        deckId = findDeckRef(countryPlayer, findFullCountryWithCountry(country).deck.deckName),
-        isHidden = gameVars.playerInfo["player" + countryPlayer].playerDecklist[deckId].deckHidden,
-        deckName = findFullCountryWithCountry(country).deck.deckName,
-        deckColors = gameVars.playerInfo["player" + countryPlayer].playerDecklist[deckId].deckColors,
-        deckBonuses = gameVars.playerInfo["player" + countryPlayer].playerDecklist[deckId].deckBonuses,
-        deckPenalties = gameVars.playerInfo["player" + countryPlayer].playerDecklist[deckId].deckPenalties,
-        countryHero = findFullCountryWithCountry(country).hero,
-        countryConspiracy = findFullCountryWithCountry(country).conspiracy,
-        deckVanguards = gameVars.playerInfo["player" + countryPlayer].playerDecklist[deckId].vanguardList,
-        vanguardsToShow = "",
-        defensePlane = findFullDeckWithPlayerAndName(countryPlayer, deckName).defensePlane;
+            playerName = gameVars.playerInfo["player" + countryPlayer].playerName,
+            deckId = findDeckRef(countryPlayer, findFullCountryWithCountry(country).deck.deckName),
+            isHidden = gameVars.playerInfo["player" + countryPlayer].playerDecklist[deckId].deckHidden,
+            deckName = findFullCountryWithCountry(country).deck.deckName,
+            deckColors = gameVars.playerInfo["player" + countryPlayer].playerDecklist[deckId].deckColors,
+            deckBonuses = gameVars.playerInfo["player" + countryPlayer].playerDecklist[deckId].deckBonuses,
+            deckPenalties = gameVars.playerInfo["player" + countryPlayer].playerDecklist[deckId].deckPenalties,
+            countryHero = findFullCountryWithCountry(country).hero,
+            countryConspiracy = findFullCountryWithCountry(country).conspiracy,
+            deckVanguards = gameVars.playerInfo["player" + countryPlayer].playerDecklist[deckId].vanguardList,
+            vanguardsToShow = "",
+            defensePlane = findFullDeckWithPlayerAndName(countryPlayer, deckName).defensePlane;
 
         document.getElementById("country-information").innerHTML += "<br>" + playerName + "<br>";
         //player deck if not hidden
@@ -355,38 +355,38 @@ function mapCountryClick(country) {
     switch (gameMode) {
         case "attack":
             attackCountryClicked(country);
-        break;
+            break;
         case "move":
             makeMove(country);
-        break;
+            break;
         case "setup":
             placementClick(country);
-        break;        
+            break;
         case "drop":
-                chooseSupplyDrop(country);
-        break;
+            chooseSupplyDrop(country);
+            break;
         default: console.log("Mode not found in mapCountryClick");
     }
 }
 
 function countryMapName(currentCountry) {
     var currentCountryName = currentCountry.countryName,
-    hasDeck = !!currentCountry.deck;
+        hasDeck = !!currentCountry.deck;
 
     if (hasDeck) {
         var currentPlayerNumber = currentCountry.deck.deckPlayer,
-        currentDeckName = currentCountry.deck.deckName,
-        currentPlayerName = findPlayerName(currentPlayerNumber),
-        isHidden = findDeckWithPlayerNumberAndName(currentPlayerNumber, currentDeckName).deckHidden;  
+            currentDeckName = currentCountry.deck.deckName,
+            currentPlayerName = findPlayerName(currentPlayerNumber),
+            isHidden = findDeckWithPlayerNumberAndName(currentPlayerNumber, currentDeckName).deckHidden;
 
         if (isHidden) {
             return "<span>" + currentCountryName + "<br>" + currentPlayerName + addDropInfoToMapName(currentCountry.country) + "</span>";
         }
         else {
             if (adminSettings.useTwoHeadedGiant === true) {
-                var secondHeadDeckName = findSecondHead(currentPlayerNumber, currentDeckName);
+                var secondHeadDeckName = findSecondHead(currentPlayerNumber, currentDeckName) || "";
 
-                return "<span>" + currentCountryName + "<br>" + currentDeckName  + "<br> and " + secondHeadDeckName[0] + addDropInfoToMapName(currentCountry.country) + "</span>";
+                return "<span>" + currentCountryName + "<br>" + currentDeckName + "<br> and " + secondHeadDeckName[0] + addDropInfoToMapName(currentCountry.country) + "</span>";
             }
             else {
                 return "<span>" + currentCountryName + "<br>" + currentDeckName + addDropInfoToMapName(currentCountry.country) + "</span>";
@@ -403,10 +403,10 @@ function isCountryAttackable(country) {
 
     if (!!currentFullCountry.deck) {
         var currentPlayerTurn = gameVars.gameStatus.turn,
-        currentCountryPlayer = currentFullCountry.deck.deckPlayer,
-        currentCountryBorders = [],
-        currentCountryBorderPlayers = [],
-        surroundingCountryWithDifferentPlayer = false;
+            currentCountryPlayer = currentFullCountry.deck.deckPlayer,
+            currentCountryBorders = [],
+            currentCountryBorderPlayers = [],
+            surroundingCountryWithDifferentPlayer = false;
 
         //remove countries that attacked from border list
         for (var b = 0; b < currentFullCountry.borders.length; b++) {
@@ -435,7 +435,7 @@ function isCountryAttackable(country) {
             if (surroundingCountryWithDifferentPlayer === false) {
                 return false;
             }
-        }        
+        }
         //if deck on country is not current player turn
         else {
             //if a surrounding country doesnt have a deck is current player turn
@@ -451,7 +451,7 @@ function isCountryAttackable(country) {
     return false;
 }
 
-function buildMapButtons() {    
+function buildMapButtons() {
     //reset possible attack count
     gameVars.mapInfo.possibleAttack = 0;
     gameVars.mapInfo.playableSupply = [];
@@ -465,8 +465,8 @@ function buildMapButtons() {
     //add countries
     for (var i = 0; i < gameVars.mapInfo.countryList.length; i++) {
         var currentFullCountry = gameVars.mapInfo.countryList[i],
-        currentCountry = currentFullCountry.country,
-        alreadyAttacked = isItemInArray(currentCountry, gameVars.mapInfo.alreadyAttacked);
+            currentCountry = currentFullCountry.country,
+            alreadyAttacked = isItemInArray(currentCountry, gameVars.mapInfo.alreadyAttacked);
 
         //build each country path
         addMapElement("map-countries", countryMapName(currentFullCountry), currentCountry, "country-button", mapCountryClick, mapCountryHover, mapCountryOffHover);
@@ -488,7 +488,7 @@ function buildMapButtons() {
             //check for attackable
             removeClass(currentCountry, "not-attackable");
             if (isCountryAttackable(currentCountry) === false) {
-                addClass(currentCountry, "not-attackable");  
+                addClass(currentCountry, "not-attackable");
             }
         }
         else if (gameVars.gameStatus.mode === "move") {
@@ -522,7 +522,7 @@ function saveOptionsBeginGame() {
 
 function beginAttack() {
     var currentTurnPlayerNumber = gameVars.gameStatus.turn,
-    currentTurnPlayerName = findPlayerName(currentTurnPlayerNumber);
+        currentTurnPlayerName = findPlayerName(currentTurnPlayerNumber);
 
     if (gameVars.gameStatus.mode === "attack") {
         showMap();
@@ -542,6 +542,16 @@ function beginAttack() {
             supplyDropCheck();
         }
     }
+
+    if (gameVars.gameStatus.mode === "move") {
+        showMap();
+        //build map buttons
+        buildMapButtons();
+        //create attack buttons
+        rebuildAttackButtons();
+        disableId("confirm-attack");
+        setToMove();
+    }
 }
 
 function topOfTurn() {
@@ -557,6 +567,8 @@ function topOfTurn() {
     showSupplyViewButton();
     //update player color on toolbar
     updateMapToolbarColor();
+    //save to local storage
+    saveToLocalStorage();
 }
 
 function playerCountOnContinent(continent) {
@@ -564,7 +576,7 @@ function playerCountOnContinent(continent) {
 
     for (var i = 0; i < gameVars.mapInfo.countryList.length; i++) {
         var currentContinent = gameVars.mapInfo.countryList[i].continent,
-        isDeck = !!gameVars.mapInfo.countryList[i].deck;
+            isDeck = !!gameVars.mapInfo.countryList[i].deck;
 
         if (currentContinent === continent && isDeck) {
             playersOnContinent.push(gameVars.mapInfo.countryList[i].deck.deckPlayer);
@@ -602,10 +614,10 @@ function removeAllDecksFromCountries() {
 
 function setupMapInformation() {
     var countryCount = gameVars.mapInfo.countryList.length,
-    playerCount = gameVars.globalGameOptions.totalPlayers,
-    countriesPerPlayer = Math.floor(countryCount/playerCount),
-    deckListToAdd = [],
-    countryListToAddTo = gameVars.mapInfo.countryList.concat();
+        playerCount = gameVars.globalGameOptions.totalPlayers,
+        countriesPerPlayer = Math.floor(countryCount / playerCount),
+        deckListToAdd = [],
+        countryListToAddTo = gameVars.mapInfo.countryList.concat();
 
     for (var p = 1; p <= playerCount; p++) {
         //reset dugout

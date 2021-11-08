@@ -10,8 +10,8 @@ function shuffleArchenemy() {
 
 function shuffleHeroAndConspiracy() {
     var countryNames = [],
-    heroList = [],
-    conspiracyList = [];
+        heroList = [],
+        conspiracyList = [];
 
     //clear hero and conspiracy played list
     gameVars.mapInfo.heroConspiracyPlayed = [];
@@ -65,14 +65,14 @@ function shuffleHeroAndConspiracy() {
 function placementClick(country) {
     var currentPlacementPlayer = gameVars.gameStatus.turnOrder[adminSettings.placementSetup.placementPlayer];
     dugoutDeck = gameVars.playerInfo["player" + currentPlacementPlayer].playerDugout + 1,
-    dugoutDeckName = gameVars.playerInfo["player" + currentPlacementPlayer].playerDecklist[dugoutDeck].deckName,
-    totalPlayers = gameVars.gameStatus.turnOrder.length,
-    totalCountries = gameVars.mapInfo.countryList.length,
-    countriesPerPlayer = Math.floor(totalCountries / totalPlayers);
+        dugoutDeckName = gameVars.playerInfo["player" + currentPlacementPlayer].playerDecklist[dugoutDeck].deckName,
+        totalPlayers = gameVars.gameStatus.turnOrder.length,
+        totalCountries = gameVars.mapInfo.countryList.length,
+        countriesPerPlayer = Math.floor(totalCountries / totalPlayers);
 
     if (!findFullCountryWithCountry(country).deck) {
         //add deck name and deck player to country
-        findFullCountryWithCountry(country).deck = {deckPlayer: currentPlacementPlayer, deckName: dugoutDeckName};
+        findFullCountryWithCountry(country).deck = { deckPlayer: currentPlacementPlayer, deckName: dugoutDeckName };
         //add 1 to dugout
         rollUpPlayerDugout(currentPlacementPlayer);
         if (adminSettings.useTwoHeadedGiant === true) {
@@ -118,7 +118,7 @@ function placementClick(country) {
 
 function setupCheck() {
     var totalNumberPlayers = Number(document.getElementById("update-player-count").value),
-    currentPlayerNumber = Number(document.getElementById("update-setup-player").value);
+        currentPlayerNumber = Number(document.getElementById("update-setup-player").value);
 
     if (totalNumberPlayers > 5) {
         document.getElementById("update-player-count").value = 5;
@@ -126,10 +126,10 @@ function setupCheck() {
     if (totalNumberPlayers < 2) {
         document.getElementById("update-player-count").value = 2;
     }
-    if(currentPlayerNumber > totalNumberPlayers) {
+    if (currentPlayerNumber > totalNumberPlayers) {
         document.getElementById("update-setup-player").value = Number(document.getElementById("update-player-count").value);
     }
-    if(currentPlayerNumber < 1) {
+    if (currentPlayerNumber < 1) {
         document.getElementById("update-setup-player").value = 1;
     }
 }
@@ -141,7 +141,7 @@ function findIntroLogText(currentLogEntry) {
         }
         else {
             var attackLogName = findPlayerName(currentLogEntry[3]),
-            attackLogDeckName = currentLogEntry[4][0].deckName;
+                attackLogDeckName = currentLogEntry[4][0].deckName;
 
             if (adminSettings.useTwoHeadedGiant) {
                 var secondHead = findSecondHead(currentLogEntry[4][0].deckPlayer, currentLogEntry[4][0].deckName);
@@ -157,7 +157,7 @@ function findIntroLogText(currentLogEntry) {
 
         if (currentLogEntry[1].search("Initiation") !== -1) {
             var completedLogName = findPlayerName(currentLogEntry[2][0][0]),
-            completedLogEntry = currentLogEntry[2][0][1];
+                completedLogEntry = currentLogEntry[2][0][1];
 
             return completedLogName + " playing " + completedLogEntry + " wins the Initiation Game!";
         }
@@ -183,39 +183,39 @@ function showLogInfo() {
 
         //create table with above info
         var tableBody = document.getElementById("log-information"), //reference for body
-        tbl = document.createElement("table"), //table element
-        tblBody = document.createElement("tbody"), //tbody element)
-        tblHeader = document.createElement("thead");
+            tbl = document.createElement("table"), //table element
+            tblBody = document.createElement("tbody"), //tbody element)
+            tblHeader = document.createElement("thead");
 
         var tblHeaderValues = ["Date", "Log"],
-        tblHeaderRow = document.createElement("tr");
+            tblHeaderRow = document.createElement("tr");
 
         //remove previous list
         removeElement("log-information", "log-info");
         tblHeader.appendChild(tblHeaderRow);
         for (var h = 0; h < tblHeaderValues.length; h++) {
             var headerValue = tblHeaderValues[h],
-            headerCell = document.createElement("th"),
-            headerText = document.createTextNode(headerValue);
+                headerCell = document.createElement("th"),
+                headerText = document.createTextNode(headerValue);
             headerCell.appendChild(headerText);
             tblHeaderRow.appendChild(headerCell);
         }
 
         //creates all cells
-        for (var i = 0; i < logTextToShow.length; i++) { 
-            
+        for (var i = 0; i < logTextToShow.length; i++) {
+
             //creates a table row
-            var row = document.createElement("tr"); 
+            var row = document.createElement("tr");
 
             //create a td element and text node, make the text node the contents of td and put td at the end of table row
-            for (var j = 0; j < tblHeaderValues.length; j++) { 
+            for (var j = 0; j < tblHeaderValues.length; j++) {
                 var currentCountry = logTextToShow[i],
-                values = Object.values(currentCountry),
-                cell = document.createElement("td"),
-                cellText = document.createTextNode(values[j]);
+                    values = Object.values(currentCountry),
+                    cell = document.createElement("td"),
+                    cellText = document.createTextNode(values[j]);
 
-                cell.appendChild(cellText);    
-                row.appendChild(cell);        
+                cell.appendChild(cellText);
+                row.appendChild(cell);
             }
             tblBody.appendChild(row);
         }
@@ -231,9 +231,9 @@ function showLogInfo() {
 function introScreenName(currentCountry) {
     if (!!currentCountry.deck) {
         var currentDeck = findFullDeckWithPlayerAndName(currentCountry.deck.deckPlayer, currentCountry.deck.deckName),
-        playerName = findPlayerName(findCountryPlayer(currentCountry.country));
+            playerName = findPlayerName(findCountryPlayer(currentCountry.country));
         countryNameText = playerName + " playing " + currentCountry.deck.deckName + introScreenColor(currentCountry);
-        
+
         if (gameVars.gameStatus.mode === "attack" && adminSettings.useTwoHeadedGiant) {
             secondHead = findSecondHead(currentCountry.deck.deckPlayer, currentCountry.deck.deckName);
 
@@ -256,7 +256,7 @@ function introScreenColor(currentCountry) {
 function introScreenGames(currentCountry) {
     if (!!currentCountry.deck) {
         var currentDeck = findFullDeckWithPlayerAndName(currentCountry.deck.deckPlayer, currentCountry.deck.deckName);
-        
+
         if (currentDeck.deckGamesPlayed === 0) return "";
         return currentDeck.deckGamesPlayed;
     }
@@ -265,7 +265,7 @@ function introScreenGames(currentCountry) {
 function introScreenBonus(currentCountry) {
     if (!!currentCountry.deck) {
         var currentDeck = findFullDeckWithPlayerAndName(currentCountry.deck.deckPlayer, currentCountry.deck.deckName);
-        
+
         if (currentDeck.deckBonuses === 0) return "";
         return currentDeck.deckBonuses;
     }
@@ -274,7 +274,7 @@ function introScreenBonus(currentCountry) {
 function introScreenPenalty(currentCountry) {
     if (!!currentCountry.deck) {
         var currentDeck = findFullDeckWithPlayerAndName(currentCountry.deck.deckPlayer, currentCountry.deck.deckName);
-        
+
         if (currentDeck.deckPenalties === 0) return "";
         return currentDeck.deckPenalties;
     }
@@ -284,48 +284,48 @@ function introScreenPenalty(currentCountry) {
 function updateIntroScreen() {
     //show country list with player, deck, bonuses and penalties
     var countryList = [];
-    
+
     for (var c = 0; c < gameVars.mapInfo.countryList.length; c++) {
         countryList.push({
-            countryName: gameVars.mapInfo.countryList[c].countryName, 
+            countryName: gameVars.mapInfo.countryList[c].countryName,
             deckName: introScreenName(gameVars.mapInfo.countryList[c]),
             deckGames: introScreenGames(gameVars.mapInfo.countryList[c]),
             deckBonuses: introScreenBonus(gameVars.mapInfo.countryList[c]),
             deckPenalties: introScreenPenalty(gameVars.mapInfo.countryList[c])
-        }); 
+        });
     }
     //create table with above info
     var tableBody = document.getElementById("intro-information"), //reference for body
-    tbl = document.createElement("table"), //table element
-    tblBody = document.createElement("tbody"), //tbody element)
-    tblHeader = document.createElement("thead");
+        tbl = document.createElement("table"), //table element
+        tblBody = document.createElement("tbody"), //tbody element)
+        tblHeader = document.createElement("thead");
 
     var tblHeaderValues = ["Country", "Deck", "Games", "Bonuses", "Penalties"],
-    tblHeaderRow = document.createElement("tr");
+        tblHeaderRow = document.createElement("tr");
 
     //remove previous list
     removeElement("intro-information", "known-info");
     tblHeader.appendChild(tblHeaderRow);
     for (var h = 0; h < tblHeaderValues.length; h++) {
         var headerValue = tblHeaderValues[h],
-        headerCell = document.createElement("th"),
-        headerText = document.createTextNode(headerValue);
+            headerCell = document.createElement("th"),
+            headerText = document.createTextNode(headerValue);
         headerCell.appendChild(headerText);
         tblHeaderRow.appendChild(headerCell);
     }
     //creates all cells
-    for (var i = 0; i < countryList.length; i++) { 
+    for (var i = 0; i < countryList.length; i++) {
         //creates a table row
-        var row = document.createElement("tr"); 
+        var row = document.createElement("tr");
         //create a td element and text node, make the text node the contents of td and put td at the end of table row
-        for (var j = 0; j < tblHeaderValues.length; j++) { 
+        for (var j = 0; j < tblHeaderValues.length; j++) {
             var currentCountry = countryList[i],
-            values = Object.values(currentCountry),
-            cell = document.createElement("td"),
-            cellText = document.createTextNode(values[j]);
+                values = Object.values(currentCountry),
+                cell = document.createElement("td"),
+                cellText = document.createTextNode(values[j]);
 
-            cell.appendChild(cellText);    
-            row.appendChild(cell);        
+            cell.appendChild(cellText);
+            row.appendChild(cell);
         }
         tblBody.appendChild(row);
     }
@@ -352,10 +352,10 @@ function cleanupPlayerDeckLists() {
             currentPlayerDecklist[d].deckVanguards = [];
             currentPlayerDecklist[d].deckAttacksMade = 0;
             currentPlayerDecklist[d].deckTimesDefended = 0;
-            currentPlayerDecklist[d].deckTimesJoined = 0;          
+            currentPlayerDecklist[d].deckTimesJoined = 0;
             currentPlayerDecklist[d].deckGamesPlayed = 0;
             currentPlayerDecklist[d].deckWins = 0;
-            currentPlayerDecklist[d].deckUniqueId = {deckPlayer: currentPlayer, deckName: currentPlayerDecklist[d].deckName};
+            currentPlayerDecklist[d].deckUniqueId = { deckPlayer: currentPlayer, deckName: currentPlayerDecklist[d].deckName };
         }
     }
     //setup hero, conspiracy, archenemy
@@ -365,11 +365,11 @@ function cleanupPlayerDeckLists() {
 
 function buildSupplyPointList() {
     var supplyPointTypes = gameVars.globalGameOptions.supplyInfo.numberOfSupplyPointTypes,
-    randomSupplyPoints = gameVars.globalGameOptions.supplyInfo.numberOfRandomSupplyPoints,
-    randomCountryList = [],
-    supplyPointList = [],
-    currentSupplyType = 0;
-    
+        randomSupplyPoints = gameVars.globalGameOptions.supplyInfo.numberOfRandomSupplyPoints,
+        randomCountryList = [],
+        supplyPointList = [],
+        currentSupplyType = 0;
+
     //create random country list
     for (var c = 0; c < gameVars.mapInfo.countryList.length; c++) {
         randomCountryList.push(gameVars.mapInfo.countryList[c].country);
@@ -379,7 +379,7 @@ function buildSupplyPointList() {
     //country supply points
     for (var i = 0; i < randomCountryList.length; i++) {
         currentSupplyType += 1;
-        supplyPointList.push({"supplyType": currentSupplyType, "supplyCountry": randomCountryList[i]});
+        supplyPointList.push({ "supplyType": currentSupplyType, "supplyCountry": randomCountryList[i] });
 
         if (currentSupplyType === supplyPointTypes) {
             currentSupplyType = 0;
@@ -387,7 +387,7 @@ function buildSupplyPointList() {
     }
     //random supply points
     for (var r = 0; r < randomSupplyPoints; r++) {
-        supplyPointList.push({"supplyType": "wild", "supplyCountry": "none"});
+        supplyPointList.push({ "supplyType": "wild", "supplyCountry": "none" });
     }
     gameVars.globalGameOptions.supplyInfo.supplyDropCardsToDraw = supplyPointList;
     shuffleArray(gameVars.globalGameOptions.supplyInfo.supplyDropCardsToDraw);
@@ -403,13 +403,13 @@ function topOfPlacementSetup() {
 
 function setupComplete() {
     var logText = ["Initiation Game Complete"],
-    battleDecks = [],
-    placementSetup = adminSettings.placementSetup.usePlacementSetup
+        battleDecks = [],
+        placementSetup = adminSettings.placementSetup.usePlacementSetup
 
     //log end of game, add winner decks in order
     for (var i = 0; i < gameVars.battleScreenInfo.battleWinner.length; i++) {
         var currentBattlePlayer = gameVars.battleScreenInfo.battleWinner[i],
-        currentBattleDeck = findBattleDeckNameWithPlayer(currentBattlePlayer);
+            currentBattleDeck = findBattleDeckNameWithPlayer(currentBattlePlayer);
 
         battleDecks.push([currentBattlePlayer, currentBattleDeck]);
     }
@@ -454,10 +454,10 @@ function toIniGame() {
         //load initiation decks as battle decks
         for (var i = 1; i <= gameVars.globalGameOptions.totalPlayers; i++) {
             var currentPlayer = i,
-            currentIniDeck = gameVars.playerInfo["player" + i].playerDecklist[0];
+                currentIniDeck = gameVars.playerInfo["player" + i].playerDecklist[0];
 
             gameVars.playerInfo["player" + i].playerDecklist[0].deckHidden = false;
-            gameVars.battleScreenInfo.battleDecks.push({deckPlayer: currentPlayer, deckName: currentIniDeck.deckName});
+            gameVars.battleScreenInfo.battleDecks.push({ deckPlayer: currentPlayer, deckName: currentIniDeck.deckName });
         }
         //update battle players count
         gameVars.battleScreenInfo.battlePlayersCount = gameVars.battleScreenInfo.battleDecks.length;
@@ -476,52 +476,52 @@ function decklistWithPrettyColors(deckList) {
     var newDecklist = [];
 
     for (var i = 0; i < deckList.length; i++) {
-        newDecklist.push({deckName: deckList[i].deckName, deckColors: colorNames(deckList[i].deckColors)})
+        newDecklist.push({ deckName: deckList[i].deckName, deckColors: colorNames(deckList[i].deckColors) })
     }
     return newDecklist;
 }
 
 function refreshDeckListShown(decklistCount, deckList) {
     var updatedDecklist = decklistWithPrettyColors(deckList),
-    tableBody = document.getElementById("decklist-container"), //reference for body
-    tbl = document.createElement("table"), //table element
-    tblBody = document.createElement("tbody"), //tbody element)
-    tblHeader = document.createElement("thead");
+        tableBody = document.getElementById("decklist-container"), //reference for body
+        tbl = document.createElement("table"), //table element
+        tblBody = document.createElement("tbody"), //tbody element)
+        tblHeader = document.createElement("thead");
 
     var tblHeaderValues = ["Deck", "Colors"],
-    tblHeaderRow = document.createElement("tr");
-    
+        tblHeaderRow = document.createElement("tr");
+
     //remove previous list
     removeElement("decklist-container", "setup-player-decklist-table");
 
     tblHeader.appendChild(tblHeaderRow);
     for (var h = 0; h < tblHeaderValues.length; h++) {
         var headerValue = tblHeaderValues[h],
-        headerCell = document.createElement("th"),
-        headerText = document.createTextNode(headerValue);
-       
+            headerCell = document.createElement("th"),
+            headerText = document.createTextNode(headerValue);
+
         headerCell.appendChild(headerText);
         headerCell.classList.add("p-3");
         tblHeaderRow.appendChild(headerCell);
     }
 
     //creates all cells
-    for (var i = 0; i < decklistCount; i++) { 
-        
+    for (var i = 0; i < decklistCount; i++) {
+
         //creates a table row
-        var row = document.createElement("tr"); 
+        var row = document.createElement("tr");
 
         //create a td element and text node, make the text node the contents of td and put td at the end of table row
-        for (var j = 0; j < tblHeaderValues.length; j++) { 
+        for (var j = 0; j < tblHeaderValues.length; j++) {
             var currentDeck = updatedDecklist[i],
-            values = Object.values(currentDeck),
-            cell = document.createElement("td"),
-            cellText = document.createTextNode(values[j]);
+                values = Object.values(currentDeck),
+                cell = document.createElement("td"),
+                cellText = document.createTextNode(values[j]);
 
             cell.appendChild(cellText);
             cell.classList.add("py-2");
             cell.classList.add("px-3");
-            row.appendChild(cell);        
+            row.appendChild(cell);
         }
         tblBody.appendChild(row);
     }
@@ -546,9 +546,9 @@ function countPlayerDecklist(playerNumber) {
 
 function changeCurrentSetupPlayer() {
     var currentPlayerNumber = Number(document.getElementById("update-setup-player").value),
-    currentPlayerName = gameVars.playerInfo["player" + currentPlayerNumber].playerName,
-    decklistToShow = gameVars.playerInfo["player" + currentPlayerNumber].playerDecklist.concat(),
-    decklistCount = countPlayerDecklist(currentPlayerNumber);
+        currentPlayerName = gameVars.playerInfo["player" + currentPlayerNumber].playerName,
+        decklistToShow = gameVars.playerInfo["player" + currentPlayerNumber].playerDecklist.concat(),
+        decklistCount = countPlayerDecklist(currentPlayerNumber);
 
     //show current player name
     updateDOMElement("display-name", currentPlayerName);
@@ -584,8 +584,8 @@ function changeNumberOfPlayers() {
 
 function setupPlayerName() {
     var currentPlayerNumber = Number(document.getElementById("update-setup-player").value),
-    currentPlayerName = gameVars.playerInfo["player" + currentPlayerNumber].playerName,
-    changePlayerNameTo = prompt("Change Name to:", currentPlayerName);
+        currentPlayerName = gameVars.playerInfo["player" + currentPlayerNumber].playerName,
+        changePlayerNameTo = prompt("Change Name to:", currentPlayerName);
 
     if (!!changePlayerNameTo) {
         gameVars.playerInfo["player" + currentPlayerNumber].playerName = changePlayerNameTo;
@@ -596,21 +596,23 @@ function setupPlayerName() {
 }
 
 function initialStartup() {
-    showIntro();
-    //refresh player 1 info
-    changeCurrentSetupPlayer();
-    //show current game options
-    activateCountrySupport();
-    activatePlacementSetup();
-    activateTwoHeadedGiant();
-    activateArchenemy();
-    activateDefensePlane();
-    activateAdditionalDecks();
-    activateVanguard();
-    activateHero();
-    activateConspiracy();
-    activateContinentBonuses();
-    activateContinentMoves();
+    if (gameVars.gameStatus.mode === 'setup') {
+        showIntro();
+        //refresh player 1 info
+        changeCurrentSetupPlayer();
+        //show current game options
+        activateCountrySupport();
+        activatePlacementSetup();
+        activateTwoHeadedGiant();
+        activateArchenemy();
+        activateDefensePlane();
+        activateAdditionalDecks();
+        activateVanguard();
+        activateHero();
+        activateConspiracy();
+        activateContinentBonuses();
+        activateContinentMoves();
+    }
 }
 
 //Game Options
@@ -872,7 +874,7 @@ function deckPasteCancel() {
 
 function checkDeckColors(colors) {
     var colorsInCaps = colors.toUpperCase(),
-    newDeckColors = "";
+        newDeckColors = "";
 
     //check for w
     if (colorsInCaps.indexOf("W") !== -1) {
@@ -910,14 +912,14 @@ function checkDeckName(deckName) {
 
 function convertCSVtoDecklist(csv) {
     var newDecklist = [],
-    csvTabToComma = csv.replace(/\t/g, ",")
-    decklistArray = csvTabToComma.split('\n').map(function(ln){
+        csvTabToComma = csv.replace(/\t/g, ",")
+    decklistArray = csvTabToComma.split('\n').map(function (ln) {
         //https://stackoverflow.com/questions/47876718/splitting-text-file-by-newlines-and-tab-in-javascript
         return ln.split(',');
     });
     for (var i = 0; i < decklistArray.length; i++) {
         if (decklistArray[i].length === 2 && decklistArray[i][0] !== "" && decklistArray[i][0] !== "undefined") {
-            newDecklist.push({deckName: checkDeckName(decklistArray[i][0]), deckColors: checkDeckColors(decklistArray[i][1])});
+            newDecklist.push({ deckName: checkDeckName(decklistArray[i][0]), deckColors: checkDeckColors(decklistArray[i][1]) });
         }
     }
     return newDecklist;
@@ -926,8 +928,8 @@ function convertCSVtoDecklist(csv) {
 document.addEventListener('paste', function (event) {
     if (adminSettings.unlockDecklistPaste === true) {
         var copiedDecklist = event.clipboardData.getData('Text'),
-        playerNumber = Number(document.getElementById("update-setup-player").value);
-    
+            playerNumber = Number(document.getElementById("update-setup-player").value);
+
         //hide prompt
         deckPasteCancel();
         //clear player decklist
@@ -938,10 +940,3 @@ document.addEventListener('paste', function (event) {
         changeCurrentSetupPlayer();
     }
 });
-
-/*
-//warns about refresh
-window.onbeforeunload = function() {
-    return "";
-}
-*/

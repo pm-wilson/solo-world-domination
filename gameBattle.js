@@ -15,44 +15,44 @@ function rebuildAttackButtons() {
 }
 
 function afterBattleCleanup() {
-        //clear deck info and buttons
-        clearBattleScreenInformation();
-        //clear battle variables
-        gameVars.battleScreenInfo.battlePlayersCount = [];
-        gameVars.battleScreenInfo.battleDecks = [];
-        gameVars.battleScreenInfo.battleWinner = [];
-        gameVars.battleScreenInfo.groundZero = "";
-        gameVars.battleScreenInfo.battleBonuses = [];
-        gameVars.battleScreenInfo.battlePenalties = [];
-        gameVars.battleScreenInfo.battleVanguards = [];
-        gameVars.battleScreenInfo.battleHero = [];
-        gameVars.battleScreenInfo.battleConspiracy = [];
-        gameVars.battleScreenInfo.battleContinentBonuses = [];
-        gameVars.battleScreenInfo.battleLifeMods = [];
-        gameVars.battleScreenInfo.battleHandMods = [];
-        gameVars.battleScreenInfo.battlePowerAndToughnessMods = [];
-        gameVars.battleScreenInfo.planePromptText = "";
-        gameVars.battleScreenInfo.planarDeck = [];
-        gameVars.battleScreenInfo.currentPlanarCard = 0;
-        gameVars.globalGameOptions.supplyInfo.showSupplyDrops = false;
-        removeElement("country-information", "map-defense-preview");
-        removeElement("battle-information", "battle-defense-plane");
-        //update supply view button
-        showSupplyViewButton();
+    //clear deck info and buttons
+    clearBattleScreenInformation();
+    //clear battle variables
+    gameVars.battleScreenInfo.battlePlayersCount = [];
+    gameVars.battleScreenInfo.battleDecks = [];
+    gameVars.battleScreenInfo.battleWinner = [];
+    gameVars.battleScreenInfo.groundZero = "";
+    gameVars.battleScreenInfo.battleBonuses = [];
+    gameVars.battleScreenInfo.battlePenalties = [];
+    gameVars.battleScreenInfo.battleVanguards = [];
+    gameVars.battleScreenInfo.battleHero = [];
+    gameVars.battleScreenInfo.battleConspiracy = [];
+    gameVars.battleScreenInfo.battleContinentBonuses = [];
+    gameVars.battleScreenInfo.battleLifeMods = [];
+    gameVars.battleScreenInfo.battleHandMods = [];
+    gameVars.battleScreenInfo.battlePowerAndToughnessMods = [];
+    gameVars.battleScreenInfo.planePromptText = "";
+    gameVars.battleScreenInfo.planarDeck = [];
+    gameVars.battleScreenInfo.currentPlanarCard = 0;
+    gameVars.globalGameOptions.supplyInfo.showSupplyDrops = false;
+    removeElement("country-information", "map-defense-preview");
+    removeElement("battle-information", "battle-defense-plane");
+    //update supply view button
+    showSupplyViewButton();
 }
 
 function setPlayerInfoLocation() {
     var battlePlayerCount = gameVars.battleScreenInfo.battlePlayersCount;
 
     if (battlePlayerCount === 3) {
-        document.getElementById("battle-player2").style.margin= "auto";
-        document.getElementById("battle-player2").style.position= "relative";
-        document.getElementById("battle-player2").style.top= "187px";
+        document.getElementById("battle-player2").style.margin = "auto";
+        document.getElementById("battle-player2").style.position = "relative";
+        document.getElementById("battle-player2").style.top = "187px";
     }
     else if (battlePlayerCount > 3) {
-        document.getElementById("battle-player2").style.margin= "25px";
-        document.getElementById("battle-player2").style.position= "absolute";
-        document.getElementById("battle-player2").style.top= "325px";
+        document.getElementById("battle-player2").style.margin = "25px";
+        document.getElementById("battle-player2").style.position = "absolute";
+        document.getElementById("battle-player2").style.top = "325px";
     }
 }
 
@@ -66,9 +66,9 @@ function endOfGame(winningPlayer) {
 
 function countBattleLife(bonuses, penalties, countrySupport, battleDeckRef) {
     var lifeTotal = 20,
-    lifeTotalMods = [],
-    lifeBonuses = 0,
-    lifePenalties = 0;
+        lifeTotalMods = [],
+        lifeBonuses = 0,
+        lifePenalties = 0;
 
     //unmodified
     if (gameVars.gameStatus.mode === "attack" && adminSettings.useTwoHeadedGiant === true) {
@@ -143,9 +143,9 @@ function countBattleLife(bonuses, penalties, countrySupport, battleDeckRef) {
 
 function countBattleHand(bonuses, penalties, countrySupport, battleDeckRef) {
     var handTotal = 7,
-    handTotalMods = [],
-    handBonuses = 0,
-    handPenalties = 0;
+        handTotalMods = [],
+        handBonuses = 0,
+        handPenalties = 0;
 
     //unmodified
     handTotalMods.push("Unmodified Hand: 7");
@@ -200,8 +200,8 @@ function countBattleHand(bonuses, penalties, countrySupport, battleDeckRef) {
     //continent bonus
     if (gameVars.gameStatus.mode === "attack" && adminSettings.continentBonuses.useContinentBonuses === true && isItemInArray("Europe", [gameVars.battleScreenInfo.battleContinentBonuses[battleDeckRef]]) && gameVars.battleScreenInfo.battleContinentBonuses[battleDeckRef] !== "noContinent") {
         var currentPlayer = gameVars.battleScreenInfo.battleDecks[battleDeckRef],
-        currentPlayerDeckCount = playerDeckCount(currentPlayer),
-        cardsToAdd = Math.floor(adminSettings.continentBonuses.continentCardPerDeckBonus * currentPlayerDeckCount);
+            currentPlayerDeckCount = playerDeckCount(currentPlayer),
+            cardsToAdd = Math.floor(adminSettings.continentBonuses.continentCardPerDeckBonus * currentPlayerDeckCount);
 
         if (cardsToAdd < adminSettings.continentBonuses.continentCardMinimum) {
             handTotal += adminSettings.continentBonuses.continentCardMinimum;
@@ -219,10 +219,10 @@ function countBattleHand(bonuses, penalties, countrySupport, battleDeckRef) {
 
 function countBattlePower(bonuses, penalties, countrySupport, battleDeckRef) {
     var creaturePower = 0,
-    creatureMods = [],
-    creatureBonuses = 0,
-    creaturePenalties = 0;
-    
+        creatureMods = [],
+        creatureBonuses = 0,
+        creaturePenalties = 0;
+
     //bonuses
     for (var b = 0; b < bonuses.length; b++) {
         if (bonuses[b] === 2) {
@@ -258,10 +258,10 @@ function countBattlePower(bonuses, penalties, countrySupport, battleDeckRef) {
 
 function countBattleToughness(bonuses, penalties, countrySupport, battleDeckRef) {
     var creatureToughness = 0,
-    creatureMods = [],
-    creatureBonuses = 0,
-    creaturePenalties = 0;
-    
+        creatureMods = [],
+        creatureBonuses = 0,
+        creaturePenalties = 0;
+
     for (var b = 0; b < bonuses.length; b++) {
         if (bonuses[b] === 2) {
             creatureToughness += adminSettings.gameBonuses[2].creatureMods[1];
@@ -292,8 +292,8 @@ function countBattleToughness(bonuses, penalties, countrySupport, battleDeckRef)
 
 function findCreatureMod(power, toughness) {
     var powerString = String(power),
-    toughnessString = String(toughness),
-    creatureModText = "";
+        toughnessString = String(toughness),
+        creatureModText = "";
 
     if (power >= 0) {
         creatureModText += "+" + powerString + "/";
@@ -322,9 +322,9 @@ function findCreatureMod(power, toughness) {
 
 function countBattlePowerAndToughness(bonuses, penalties, countrySupport, battleDeckRef) {
     var powerCalc = countBattlePower(bonuses, penalties, countrySupport, battleDeckRef),
-    toughnessCalc = countBattleToughness(bonuses, penalties, countrySupport, battleDeckRef),
-    creatureMod = findCreatureMod(powerCalc[0], toughnessCalc[0]),
-    hoverMods = [];
+        toughnessCalc = countBattleToughness(bonuses, penalties, countrySupport, battleDeckRef),
+        creatureMod = findCreatureMod(powerCalc[0], toughnessCalc[0]),
+        hoverMods = [];
 
     //bonus hover message
     if (powerCalc[1] === 1) {
@@ -361,8 +361,8 @@ function countBattlePowerAndToughness(bonuses, penalties, countrySupport, battle
 function countBonusTutorLand(bonuses) {
     //tutor land
     var bonusTutorLand = 0,
-    tutorLandAmount = adminSettings.gameBonuses[3].tutorLand;
-    
+        tutorLandAmount = adminSettings.gameBonuses[3].tutorLand;
+
     if (gameVars.gameStatus.mode === "attack") {
         for (var i = 0; i < bonuses.length; i++) {
             if (bonuses[i] === 3) {
@@ -384,7 +384,7 @@ function countBonusTutorLand(bonuses) {
 function countBonusCheaperSpells(bonuses) {
     //spells cheaper
     var bonusCheaperSpells = 0,
-    cheaperSpellsAmount = adminSettings.gameBonuses[4].spellsCheaper;
+        cheaperSpellsAmount = adminSettings.gameBonuses[4].spellsCheaper;
 
     if (gameVars.gameStatus.mode === "attack") {
         for (var i = 0; i < bonuses.length; i++) {
@@ -402,7 +402,7 @@ function countBonusCheaperSpells(bonuses) {
 function countBonusPermanentInPlay(bonuses) {
     //spells cheaper
     var bonusPermanentInPlay = 0,
-    permanentInPlayAmount = adminSettings.gameBonuses[5].permanentIntoPlay;
+        permanentInPlayAmount = adminSettings.gameBonuses[5].permanentIntoPlay;
 
     if (gameVars.gameStatus.mode === "attack") {
         for (var i = 0; i < bonuses.length; i++) {
@@ -425,7 +425,7 @@ function countBonusPermanentInPlay(bonuses) {
 function countPenaltyLandsTapped(penalties) {
     //lands tapped
     var penaltyLandsTapped = 0,
-    landsTappedAmount = adminSettings.gamePenalties[3].landsTapped;
+        landsTappedAmount = adminSettings.gamePenalties[3].landsTapped;
 
     if (gameVars.gameStatus.mode === "attack") {
         for (var i = 0; i < penalties.length; i++) {
@@ -443,7 +443,7 @@ function countPenaltyLandsTapped(penalties) {
 function countPenaltyCounterSpell(penalties) {
     //counter spell
     var penaltyCounterSpell = 0,
-    counterSpellAmount = adminSettings.gamePenalties[4].counterSpell;
+        counterSpellAmount = adminSettings.gamePenalties[4].counterSpell;
 
     if (gameVars.gameStatus.mode === "attack") {
         for (var i = 0; i < penalties.length; i++) {
@@ -466,7 +466,7 @@ function countPenaltyCounterSpell(penalties) {
 function countPenaltyExile(penalties) {
     //lands tapped
     var penaltyExile = 0,
-    exileAmount = adminSettings.gamePenalties[5].exile;
+        exileAmount = adminSettings.gamePenalties[5].exile;
 
     if (gameVars.gameStatus.mode === "attack") {
         for (var i = 0; i < penalties.length; i++) {
@@ -493,16 +493,16 @@ function battleVanguard(battleDeckRef) {
 function continentBonuses(battleDeckRef) {
     if (adminSettings.continentBonuses.useContinentBonuses && gameVars.gameStatus.mode === "attack") {
         var currentPlayer = gameVars.battleScreenInfo.battleDecks[battleDeckRef].deckPlayer,
-        currentDeckName = gameVars.battleScreenInfo.battleDecks[battleDeckRef].deckName,
-        currentDeckColors = getDeckColors(currentPlayer, currentDeckName),
-        continentBonuses = [],
-        groundZero = gameVars.battleScreenInfo.groundZero,
-        groundZeroColor = adminSettings.continentBonuses[findContinentWithCountry(groundZero)],
-        controlledContinents = listControlledContinentsWithPlayerAndColor(currentPlayer, currentDeckColors),
-        ownedContinents = listOwnedContinentsWithPlayerAndColor(currentPlayer, currentDeckColors),
-        bonusText = "",
-        battleContBonus = [];
-    
+            currentDeckName = gameVars.battleScreenInfo.battleDecks[battleDeckRef].deckName,
+            currentDeckColors = getDeckColors(currentPlayer, currentDeckName),
+            continentBonuses = [],
+            groundZero = gameVars.battleScreenInfo.groundZero,
+            groundZeroColor = adminSettings.continentBonuses[findContinentWithCountry(groundZero)],
+            controlledContinents = listControlledContinentsWithPlayerAndColor(currentPlayer, currentDeckColors),
+            ownedContinents = listOwnedContinentsWithPlayerAndColor(currentPlayer, currentDeckColors),
+            bonusText = "",
+            battleContBonus = [];
+
         //add ground zero if color matches
         if (colorOnList(groundZeroColor, currentDeckColors)) {
             continentBonuses.push(findContinentWithCountry(groundZero));
@@ -546,9 +546,9 @@ function battleHero(battleDeckRef) {
     if (gameVars.gameStatus.mode !== "setup") {
         if (battleDeckRef === 1) {
             var currentPlayer = gameVars.battleScreenInfo.battleDecks[battleDeckRef].deckPlayer,
-            currentDeckName = gameVars.battleScreenInfo.battleDecks[battleDeckRef].deckName,
-            currentHero = findFullCountryWithDeckPlayerAndDeckName(currentPlayer, currentDeckName).hero;
-    
+                currentDeckName = gameVars.battleScreenInfo.battleDecks[battleDeckRef].deckName,
+                currentHero = findFullCountryWithDeckPlayerAndDeckName(currentPlayer, currentDeckName).hero;
+
             if (currentHero !== "") {
                 gameVars.battleScreenInfo.battleHero.push(currentHero);
                 gameVars.mapInfo.heroConspiracyPlayed.push(currentHero);
@@ -565,9 +565,9 @@ function battleConspiracy(battleDeckRef) {
     if (gameVars.gameStatus.mode !== "setup") {
         if (battleDeckRef !== 1) {
             var currentPlayer = gameVars.battleScreenInfo.battleDecks[battleDeckRef].deckPlayer,
-            currentDeckName = gameVars.battleScreenInfo.battleDecks[battleDeckRef].deckName,
-            currentConspiracy = findFullCountryWithDeckPlayerAndDeckName(currentPlayer, currentDeckName).conspiracy;
-    
+                currentDeckName = gameVars.battleScreenInfo.battleDecks[battleDeckRef].deckName,
+                currentConspiracy = findFullCountryWithDeckPlayerAndDeckName(currentPlayer, currentDeckName).conspiracy;
+
             if (currentConspiracy !== "") {
                 gameVars.battleScreenInfo.battleConspiracy.push(currentConspiracy);
                 gameVars.mapInfo.heroConspiracyPlayed.push(currentConspiracy);
@@ -582,7 +582,7 @@ function battleConspiracy(battleDeckRef) {
 function updateAttackDefendJoined() {
     for (var i = 0; i < gameVars.battleScreenInfo.battleDecks.length; i++) {
         var currentDeck = gameVars.battleScreenInfo.battleDecks[i],
-        currentFullDeck = findFullDeckWithPlayerAndName(currentDeck.deckPlayer, currentDeck.deckName);
+            currentFullDeck = findFullDeckWithPlayerAndName(currentDeck.deckPlayer, currentDeck.deckName);
 
         if (i === 0) {
             currentFullDeck.deckAttacksMade += 1;
@@ -600,7 +600,7 @@ function unhideAllBattleDecks() {
     for (var i = 0; i < gameVars.battleScreenInfo.battleDecks.length; i++) {
         var currentDeck = gameVars.battleScreenInfo.battleDecks[i],
 
-        currentFullDeck = findFullDeckWithPlayerAndName(currentDeck.deckPlayer, currentDeck.deckName);
+            currentFullDeck = findFullDeckWithPlayerAndName(currentDeck.deckPlayer, currentDeck.deckName);
         currentFullDeck.deckHidden = false;
     }
 }
@@ -615,9 +615,9 @@ function proceedWithAttack() {
 
     if (attackChoiceConfirmed) {
         var attackingPlayer = gameVars.mapInfo.mapSelect[0].deckPlayer,
-        attackingDeckName = gameVars.mapInfo.mapSelect[0].deckName,
-        countGames = numberSuffix(gameCount()),
-        groundZero = findFullCountryWithCountry(gameVars.battleScreenInfo.groundZero).countryName;
+            attackingDeckName = gameVars.mapInfo.mapSelect[0].deckName,
+            countGames = numberSuffix(gameCount()),
+            groundZero = findFullCountryWithCountry(gameVars.battleScreenInfo.groundZero).countryName;
 
         //update battle deck information
         gameVars.battleScreenInfo.battleDecks = gameVars.mapInfo.mapSelect;
@@ -631,7 +631,7 @@ function proceedWithAttack() {
             displayBattleInfo(j);
         }
         //add archenemy button
-        if (adminSettings.useArchenemy === true) {   
+        if (adminSettings.useArchenemy === true) {
             removeElement("battle-information", "archenemy-button");
             addElement("battle-information", "button", "Archenemy", "archenemy-button", "btn", playArchenemy);
             addClass("archenemy-button", "player-color-" + gameVars.mapInfo.mapSelect[1].deckPlayer);
@@ -666,12 +666,12 @@ function proceedWithAttack() {
 
 function attackChosen() {
     var currentPlayerSupplyHand = currentPlayerUnplayedSupplyHand(),
-    groundZero = findFullCountryWithCountry(gameVars.battleScreenInfo.groundZero);
+        groundZero = findFullCountryWithCountry(gameVars.battleScreenInfo.groundZero);
 
     //prompt for attack drop if current player has wild card and supply card of ground zero
     if (countWildSupply(currentPlayerSupplyHand) >= 1 && isItemInArray(groundZero.country, possibleDrops()) && currentPlayerUnplayedSupplyHand().length >= 3) {
         var goToAttackDrop = confirm("Would You Like to Make an Attack Supply Drop On " + groundZero.countryName + "?"),
-        currentPlayer = findPlayerName(gameVars.gameStatus.turn);
+            currentPlayer = findPlayerName(gameVars.gameStatus.turn);
 
         if (goToAttackDrop) {
             //remove reset map button
@@ -701,10 +701,10 @@ function attackChosen() {
 
 function defensePlanePrompt() {
     var defendingDeck = gameVars.battleScreenInfo.battleDecks[1],
-    groundZero = findFullCountryWithCountry(gameVars.battleScreenInfo.groundZero).countryName,
-    countGames = numberSuffix(gameCount()),
-    playerName = findPlayerName(defendingDeck.deckPlayer),
-    defensePromptText = playerName + " choose Defense Plane for " + defendingDeck.deckName + " defending " + groundZero;
+        groundZero = findFullCountryWithCountry(gameVars.battleScreenInfo.groundZero).countryName,
+        countGames = numberSuffix(gameCount()),
+        playerName = findPlayerName(defendingDeck.deckPlayer),
+        defensePromptText = playerName + " choose Defense Plane for " + defendingDeck.deckName + " defending " + groundZero;
 
     if (!!findFullDeckWithPlayerAndName(defendingDeck.deckPlayer, defendingDeck.deckName).defensePlane) {
         //go to battle screen 
@@ -729,21 +729,21 @@ function defensePlanePrompt() {
 function buildDefensePlaneButtons(defensePlayer) {
     //update defense prompt color
     for (var i = 1; i < 6; i++) {
-        removeClass("defense-choice-box", "defense-color-" + i);  
+        removeClass("defense-choice-box", "defense-color-" + i);
     }
     addClass("defense-choice-box", "defense-color-" + defensePlayer);
     //build defense plane buttons without phenomenoms
     for (var i = 0; i < planarDeck.length; i++) {
         var currentPlaneName = planarDeck[i].planeName,
-        planeColor = findContinentColor(planarDeck[i].planeContinent).toLowerCase();
-        
+            planeColor = findContinentColor(planarDeck[i].planeContinent).toLowerCase();
+
         removeElement("defense-plane-buttons", "plane-ref-" + i);
         addElement("defense-plane-buttons", "button", currentPlaneName, "plane-ref-" + i, "btn", planePromptChoice, planeOnHover);
         //update button color
         addClass("plane-ref-" + i, "plane-color-" + planeColor);
 
         //check plane for already taken
-        if (countPlaneNameUsedByPlayer(currentPlaneName, defensePlayer) ===  playerHighestPlaneCount(defensePlayer)) {
+        if (countPlaneNameUsedByPlayer(currentPlaneName, defensePlayer) === playerHighestPlaneCount(defensePlayer)) {
             //mark as taken
             addClass("plane-ref-" + i, "taken");
             //disable
@@ -767,15 +767,15 @@ function countPlaneNameUsedByPlayer(planeName, player) {
 
 function playerHighestPlaneCount(player) {
     var planeCount = 0,
-    planeCountTally = [];
+        planeCountTally = [];
 
     for (var p = 0; p < planarDeck.length; p++) {
         var currentPlane = planarDeck[p].planeName,
-        currentPlaneCount = 0;
+            currentPlaneCount = 0;
 
         for (var d = 0; d < gameVars.playerInfo["player" + player].playerDecklist.length; d++) {
             var currentDeck = gameVars.playerInfo["player" + player].playerDecklist[d];
-            
+
             if (!!currentDeck.defensePlane && currentDeck.defensePlane === currentPlane) {
                 currentPlaneCount += 1;
             }
@@ -796,7 +796,7 @@ function playerHighestPlaneCount(player) {
 
 function planeOnHover(planeRef) {
     var actualPlaneRef = planeRef.slice(10),
-    takenDeckNames = findDefenseDecks(gameVars.battleScreenInfo.battleDecks[1].deckPlayer, planarDeck[actualPlaneRef].planeName);
+        takenDeckNames = findDefenseDecks(gameVars.battleScreenInfo.battleDecks[1].deckPlayer, planarDeck[actualPlaneRef].planeName);
     //show picture
     document.getElementById("defense-preview").style.backgroundImage = planarDeck[actualPlaneRef].planePicture;
     //display current deck if taken
@@ -824,17 +824,17 @@ function planeOnHover(planeRef) {
 
 function addDefensePlaneToDeck(planeRef) {
     const deckPlayer = gameVars.battleScreenInfo.battleDecks[1].deckPlayer,
-    deckName = gameVars.battleScreenInfo.battleDecks[1].deckName,
-    deckToAddTo = findDeckWithPlayerNumberAndName(deckPlayer, deckName),
-    defenseToAdd = planarDeck[planeRef].planeName;
+        deckName = gameVars.battleScreenInfo.battleDecks[1].deckName,
+        deckToAddTo = findDeckWithPlayerNumberAndName(deckPlayer, deckName),
+        defenseToAdd = planarDeck[planeRef].planeName;
 
     deckToAddTo["defensePlane"] = defenseToAdd;
 }
 
 function planePromptChoice(planeRef) {
     var groundZero = findFullCountryWithCountry(gameVars.battleScreenInfo.groundZero).countryName,
-    actualPlaneRef = planeRef.slice(10),
-    countGames = numberSuffix(gameCount());
+        actualPlaneRef = planeRef.slice(10),
+        countGames = numberSuffix(gameCount());
 
     //hide defense prompt
     hideId("defense-plane-prompt");
@@ -865,14 +865,14 @@ function findBattleDeckNameWithPlayer(currentBattlePlayer) {
     for (var i = 0; i < gameVars.battleScreenInfo.battleDecks.length; i++) {
         if (gameVars.battleScreenInfo.battleDecks[i].deckPlayer === currentBattlePlayer) {
             var battleDeckName = gameVars.battleScreenInfo.battleDecks[i].deckName;
-            
+
             return battleDeckName;
         }
     }
 }
 
 function battleWinnerNote(placement) {
-    if(gameVars.gameStatus.mode === "setup") {
+    if (gameVars.gameStatus.mode === "setup") {
         return numberSuffix(placement + 1);
     }
     else {
@@ -893,12 +893,13 @@ function battleConfirmationText(namesOfWinners) {
 
 function battleWinnerConfirmed() {
     var orderOfWinners = gameVars.battleScreenInfo.battleWinner,
-    namesOfWinners = findArrayOfPlayerNames(orderOfWinners),
-    confirmationResults = battleConfirmationText(namesOfWinners),
-    confirmationText = "The turn order will be:\n" + confirmationResults + "\nClick Ok to Accept";
+        namesOfWinners = findArrayOfPlayerNames(orderOfWinners),
+        confirmationResults = battleConfirmationText(namesOfWinners),
+        confirmationText = "The turn order will be:\n" + confirmationResults + "\nClick Ok to Accept";
 
     if (confirm(confirmationText)) {
         setupComplete();
+        document.getElementById("intro-title").innerText = "Game Information";
     }
 }
 
@@ -907,8 +908,8 @@ function resetWinners() {
     removeElement("battle-screen-toolbar", "reset-winners");
     for (var i = 0; i < gameVars.battleScreenInfo.battleWinner.length; i++) {
         var playerIdToRename = gameVars.battleScreenInfo.battleWinner[i],
-        playerNameToRename = gameVars.playerInfo["player" + playerIdToRename].playerName,
-        buttonToRename = document.getElementById("battle-winner-"+ playerIdToRename);
+            playerNameToRename = gameVars.playerInfo["player" + playerIdToRename].playerName,
+            buttonToRename = document.getElementById("battle-winner-" + playerIdToRename);
 
         buttonToRename.innerHTML = playerNameToRename;
     }
@@ -959,15 +960,15 @@ function findWinningPlayerDesignation(winningPlayer) {
 
 function eliminateDeck(deckPlayer, deckName) {
     var deckToEliminate = findFullDeckWithPlayerAndName(deckPlayer, deckName),
-    eliminatedDeckCountry = findFullCountryWithDeckPlayerAndDeckName(deckPlayer, deckName),
-    winningPlayerNumber = gameVars.battleScreenInfo.battleWinner.deckPlayer,
-    winningPlayerDeckName = gameVars.battleScreenInfo.battleWinner.deckName,
-    winningDeckCountry = findFullCountryWithDeckPlayerAndDeckName(winningPlayerNumber, winningPlayerDeckName);
-    
+        eliminatedDeckCountry = findFullCountryWithDeckPlayerAndDeckName(deckPlayer, deckName),
+        winningPlayerNumber = gameVars.battleScreenInfo.battleWinner.deckPlayer,
+        winningPlayerDeckName = gameVars.battleScreenInfo.battleWinner.deckName,
+        winningDeckCountry = findFullCountryWithDeckPlayerAndDeckName(winningPlayerNumber, winningPlayerDeckName);
+
     //mark as eliminated
     deckToEliminate.deckEliminated = true;
     //add winner to losers country
-    eliminatedDeckCountry.deck = {deckPlayer: winningPlayerNumber, deckName: winningPlayerDeckName};
+    eliminatedDeckCountry.deck = { deckPlayer: winningPlayerNumber, deckName: winningPlayerDeckName };
     //remove winner from its country
     delete winningDeckCountry.deck;
     //winner gets a supply drop card
@@ -984,7 +985,7 @@ function getSupplyCard(player) {
 
     //if no supply cards are outstanding, create a wild card
     if (nextSupplyCard === undefined) {
-        nextSupplyCard = {supplyType: "wild", supplyCountry: "none"};
+        nextSupplyCard = { supplyType: "wild", supplyCountry: "none" };
     }
     //give player card
     findFullPlayerWithPlayerNumber(player).playerSupplyPoints.push(nextSupplyCard);
@@ -997,7 +998,7 @@ function getSupplyCard(player) {
 function markDeckAsWinner(deckPlayer, deckName) {
     var fullDeck = findFullDeckWithPlayerAndName(deckPlayer, deckName);
 
-    gameVars.battleScreenInfo.battleWinner = {deckPlayer: deckPlayer, deckName: deckName};
+    gameVars.battleScreenInfo.battleWinner = { deckPlayer: deckPlayer, deckName: deckName };
     fullDeck.deckWins += 1;
     fullDeck.deckGamesPlayed += 1;
 }
@@ -1007,7 +1008,7 @@ function markDeckAsLoser(deckPlayer, deckName, defenderPlayer) {
 
     if (defenderPlayer === deckPlayer) {
         eliminateDeck(deckPlayer, deckName);
-        gameVars.battleScreenInfo.eliminatedDeck = {deckPlayer: deckPlayer, deckName: deckName};
+        gameVars.battleScreenInfo.eliminatedDeck = { deckPlayer: deckPlayer, deckName: deckName };
     }
     else {
         fullDeck.deckPenalties += 1;
@@ -1025,7 +1026,7 @@ function eliminatedPlayerCheck(winningDeck, defendingDeck) {
     //check for player eliminated and end of game
     if (winningDeck.deckPlayer !== defendingDeck.deckPlayer) {
         var defendingDeckCount = 0,
-        playersInGame = [];
+            playersInGame = [];
 
         for (var i = 0; i < gameVars.mapInfo.countryList.length; i++) {
             if (!!gameVars.mapInfo.countryList[i].deck) {
@@ -1070,22 +1071,22 @@ function supplyCardsFromTo(playerFrom, playerTo) {
 
 function battleWinner(winningPlayerButton) {
     var winningPlayerId = Number(winningPlayerButton.slice(14)),
-    winningPlayerName = gameVars.playerInfo["player" + winningPlayerId].playerName,
-    totalBattlePlayers = gameVars.battleScreenInfo.battlePlayersCount;
+        winningPlayerName = gameVars.playerInfo["player" + winningPlayerId].playerName,
+        totalBattlePlayers = gameVars.battleScreenInfo.battlePlayersCount;
 
     if (gameVars.gameStatus.mode === "attack") {
         var winnerConfirmed = confirm(winningPlayerName + " wins!");
-        
+
         //clear card picture
         removeElement("battle-information", "card-picture");
         if (winnerConfirmed) {
             var battleDefender = gameVars.battleScreenInfo.battleDecks[1],
-            battleJoiners = [],
-            winningDeck = {deckPlayer: winningPlayerId, deckName: findBattleDeckNameWithPlayer(winningPlayerId)},
-            losingDecks = findLosingDecks(winningPlayerId),
-            winnerDesignation = findWinningPlayerDesignation(winningPlayerId),
-            logTempNote = [],
-            logNote = [];
+                battleJoiners = [],
+                winningDeck = { deckPlayer: winningPlayerId, deckName: findBattleDeckNameWithPlayer(winningPlayerId) },
+                losingDecks = findLosingDecks(winningPlayerId),
+                winnerDesignation = findWinningPlayerDesignation(winningPlayerId),
+                logTempNote = [],
+                logNote = [];
 
             //update joiner list
             if (gameVars.battleScreenInfo.battleDecks.length > 2) {
@@ -1135,7 +1136,7 @@ function battleWinner(winningPlayerButton) {
             showMap();
             //build map
             buildMapButtons();
-            if (winningPlayerId !== gameVars.gameStatus.turn) {  
+            if (winningPlayerId !== gameVars.gameStatus.turn) {
                 earthShakingEventCheck();
             }
             //check for player eliminated and end of game
@@ -1143,13 +1144,15 @@ function battleWinner(winningPlayerButton) {
             //cleanup continent owned and controlled list
             cleanupContinentOwnedList();
             cleanupContinentControlledList();
+            //save to local storage
+            saveToLocalStorage();
         }
     }
     //if mode is setup
     else {
-        var  winningPlayerCount = gameVars.battleScreenInfo.battleWinner.length,
-        winningPlace = winningPlayerCount + 1,
-        winningButtonText = winningPlayerName + " is " + showWinningButtonText(winningPlace, totalBattlePlayers);
+        var winningPlayerCount = gameVars.battleScreenInfo.battleWinner.length,
+            winningPlace = winningPlayerCount + 1,
+            winningButtonText = winningPlayerName + " is " + showWinningButtonText(winningPlace, totalBattlePlayers);
 
         disableId(winningPlayerButton);
         gameVars.battleScreenInfo.battleWinner.push(winningPlayerId);
@@ -1182,8 +1185,8 @@ function findDeckPenalties(deckPlayer, deckName) {
     }
     else {
         var deckRef = findDeckRef(deckPlayer, deckName),
-        penaltyCount = gameVars.playerInfo["player" + deckPlayer].playerDecklist[deckRef].deckPenalties,
-        penaltyList = [];
+            penaltyCount = gameVars.playerInfo["player" + deckPlayer].playerDecklist[deckRef].deckPenalties,
+            penaltyList = [];
 
         for (var i = 0; i < penaltyCount; i++) {
             var currentPenaltyRoll = getRandomInt(adminSettings.gamePenalties.length);
@@ -1199,10 +1202,10 @@ function findDeckPenalties(deckPlayer, deckName) {
 function findCountrySupport(deckPlayer) {
     if (gameVars.gameStatus.mode !== "setup") {
         var groundZer0 = gameVars.battleScreenInfo.groundZero,
-        fullCountryGroundZero = findFullCountryWithCountry(groundZer0),
-        borderingCountriesWithSamePlayer = 0,
-        isDefender = true;
-    
+            fullCountryGroundZero = findFullCountryWithCountry(groundZer0),
+            borderingCountriesWithSamePlayer = 0,
+            isDefender = true;
+
         for (var i = 0; i < fullCountryGroundZero.borders.length; i++) {
             if (findCountryPlayer(fullCountryGroundZero.borders[i]) === deckPlayer) {
                 borderingCountriesWithSamePlayer += 1;
@@ -1223,12 +1226,12 @@ function findDeckBonuses(deckPlayer, deckName) {
     }
     else {
         var deckRef = findDeckRef(deckPlayer, deckName),
-        bonusCount = gameVars.playerInfo["player" + deckPlayer].playerDecklist[deckRef].deckBonuses,
-        bonusList = [];
-    
+            bonusCount = gameVars.playerInfo["player" + deckPlayer].playerDecklist[deckRef].deckBonuses,
+            bonusList = [];
+
         for (var i = 0; i < bonusCount; i++) {
             var currentBonusRoll = getRandomInt(adminSettings.gameBonuses.length);
-    
+
             bonusList.push(currentBonusRoll);
         }
         //push bonus total to battle screen info
@@ -1239,31 +1242,31 @@ function findDeckBonuses(deckPlayer, deckName) {
 
 function displayBattleInfo(battleDeckRef) {
     var currentPlayer = gameVars.battleScreenInfo.battleDecks[battleDeckRef].deckPlayer,
-    currentPlayerName = findPlayerName(currentPlayer),
-    currentDeckName = gameVars.battleScreenInfo.battleDecks[battleDeckRef].deckName,
-    currentDeckRef = findDeckRef(currentPlayer, currentDeckName),
-    currentDeckColor = findDeckWithPlayerAndRef(currentPlayer, currentDeckRef).deckColors,
-    battleText = [
-        currentPlayerName + " playing " + currentDeckName + " (" + currentDeckColor + ")"
-    ],
-    countrySupport = findCountrySupport(currentPlayer),
-    penalties = findDeckPenalties(currentPlayer, currentDeckName),
-    bonuses = findDeckBonuses(currentPlayer, currentDeckName),
-    gameMods = [
-        battleVanguard(battleDeckRef),
-        continentBonuses(battleDeckRef),
-        battleHero(battleDeckRef),
-        battleConspiracy(battleDeckRef),
-        countBattleLife(bonuses, penalties, countrySupport, battleDeckRef),
-        countBattleHand(bonuses, penalties, countrySupport, battleDeckRef),
-        countBattlePowerAndToughness(bonuses, penalties, countrySupport, battleDeckRef),
-        countBonusTutorLand(bonuses),
-        countBonusCheaperSpells(bonuses),
-        countBonusPermanentInPlay(bonuses),
-        countPenaltyLandsTapped(penalties),
-        countPenaltyCounterSpell(penalties),
-        countPenaltyExile(penalties)
-    ];
+        currentPlayerName = findPlayerName(currentPlayer),
+        currentDeckName = gameVars.battleScreenInfo.battleDecks[battleDeckRef].deckName,
+        currentDeckRef = findDeckRef(currentPlayer, currentDeckName),
+        currentDeckColor = findDeckWithPlayerAndRef(currentPlayer, currentDeckRef).deckColors,
+        battleText = [
+            currentPlayerName + " playing " + currentDeckName + " (" + currentDeckColor + ")"
+        ],
+        countrySupport = findCountrySupport(currentPlayer),
+        penalties = findDeckPenalties(currentPlayer, currentDeckName),
+        bonuses = findDeckBonuses(currentPlayer, currentDeckName),
+        gameMods = [
+            battleVanguard(battleDeckRef),
+            continentBonuses(battleDeckRef),
+            battleHero(battleDeckRef),
+            battleConspiracy(battleDeckRef),
+            countBattleLife(bonuses, penalties, countrySupport, battleDeckRef),
+            countBattleHand(bonuses, penalties, countrySupport, battleDeckRef),
+            countBattlePowerAndToughness(bonuses, penalties, countrySupport, battleDeckRef),
+            countBonusTutorLand(bonuses),
+            countBonusCheaperSpells(bonuses),
+            countBonusPermanentInPlay(bonuses),
+            countPenaltyLandsTapped(penalties),
+            countPenaltyCounterSpell(penalties),
+            countPenaltyExile(penalties)
+        ];
     //add player and deck name (color)
     addElement("battle-information", "h3", battleText, "battle-player" + battleDeckRef, "battle-player");
     //add player number class to deck info space
