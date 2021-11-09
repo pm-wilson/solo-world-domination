@@ -534,7 +534,7 @@
   background-repeat: no-repeat;
   background-size: cover;
   position: fixed;
-  bottom: 168px;
+  bottom: -12px;
   left: 32%;
   transform: scale(0.75);
 }
