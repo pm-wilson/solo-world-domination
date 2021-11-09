@@ -1053,4 +1053,30 @@ function showPlayerTotalDecklist(player) {
     return list;
 }
 
+function updateDeckColors(nameOfPlayer, deckName, deckColors) {
+    const playerArray = Object.keys(gameVars.playerInfo)
+
+    for (let i = 0; i < playerArray.length; i++) {
+        if (gameVars.playerInfo[playerArray[i]].playerName === nameOfPlayer) {
+            const currentDecklist = gameVars.playerInfo[playerArray[i]].playerDecklist;
+
+            for (let d = 0; d < currentDecklist.length; d++) {
+                const currentDeck = currentDecklist[d];
+
+                if (currentDeck.deckName === deckName) {
+                    currentDeck.deckColors = deckColors;
+
+                    clearBattleScreenInformation();
+                    for (var j = 0; j < gameVars.battleScreenInfo.battlePlayersCount; j++) {
+                        displayBattleInfo(j);
+                    }
+
+                    return 'updated ' + deckName + 'with these colors: ' + deckColors;
+                }
+            }
+        }
+    }
+    return deckName + ' not found in ' + nameOfPlayer + "'s deck list";
+}
+
 document.onload = retrieveFromLocalStorage();

@@ -67,7 +67,7 @@
   border: 2px solid black;
   border-radius: 15px;
   background-color: rgba(255, 255, 255, 0.25);
-  width: 40%;
+  width: 45vw;
 }
 /*Player 2*/
 .btn.player-color-2,
@@ -79,7 +79,7 @@
   border: 2px solid black;
   border-radius: 15px;
   background-color: rgba(255, 255, 255, 0.25);
-  width: 40%;
+  width: 45vw;
 }
 /*Player 3*/
 .btn.player-color-3,
@@ -91,7 +91,7 @@
   border: 2px solid black;
   border-radius: 15px;
   background-color: rgba(255, 255, 255, 0.25);
-  width: 40%;
+  width: 45vw;
 }
 /*Player 4*/
 .btn.player-color-4,
@@ -103,7 +103,7 @@
   border: 2px solid black;
   border-radius: 15px;
   background-color: rgba(255, 255, 255, 0.25);
-  width: 40%;
+  width: 45vw;
 }
 /*Player 5*/
 .btn.player-color-5,
@@ -115,7 +115,7 @@
   border: 2px solid black;
   border-radius: 15px;
   background-color: rgba(255, 255, 255, 0.25);
-  width: 40%;
+  width: 45vw;
 }
 /*Country Button Colors*/
 .country-button {
@@ -398,8 +398,13 @@
 }
 #archenemy-button {
   position: fixed;
-  transform: translate(0px, -250px);
+  top: 18%;
+  left: 47%;
+  width: 100px;
+  height: 200px;
+  align-self: flex-end;
 }
+
 #archenemy-prompt {
   margin: auto;
 }
@@ -512,18 +517,15 @@
   position: fixed;
 }
 #card-picture {
-  position: fixed;
   z-index: 1;
   background-repeat: no-repeat;
   background-size: cover;
-  top: 150px;
   margin: auto;
   width: 282px;
   height: 404px;
   border-radius: 17px;
 }
 #battle-defense-plane {
-  transform: translate(0px, -200px);
   margin: auto;
   width: 622px;
   height: 434px;
@@ -532,9 +534,9 @@
   background-repeat: no-repeat;
   background-size: cover;
   position: fixed;
-  bottom: -80px;
-  left: 25%;
-  transform: scale(0.5);
+  bottom: 168px;
+  left: 32%;
+  transform: scale(0.75);
 }
 #map-defense-preview {
   width: 225px;
@@ -563,17 +565,19 @@
   background-repeat: no-repeat;
   background-size: cover;
 }
+
 #battle-information {
   min-height: 100%;
   width: 100%;
   height: auto;
-  position: fixed;
-  top: 150px;
-  left: 0;
+  margin: 150px auto 0;
   border-color: black;
   border-style: solid;
-  border-width: 0px 2px 2px 2px;
+  border-width: 0px 2px 0px 2px;
   text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
 }
 .battle-player {
   padding: 10px 20px 10px 20px;
@@ -581,31 +585,21 @@
 }
 #battle-player0 {
   margin: 25px;
-  position: absolute;
-  left: 0px;
 }
 #battle-player1 {
   margin: 25px;
-  position: absolute;
-  right: 0px;
+  justify-self: flex-end;
 }
 #battle-player2 {
   margin: 25px;
-  position: absolute;
-  left: 0px;
-  top: 325px;
 }
 #battle-player3 {
   margin: 25px;
-  position: absolute;
-  right: 0px;
-  top: 325px;
 }
 #battle-player4 {
   margin: auto;
-  position: relative;
-  top: 187px;
 }
+
 /*Toolbar Styles*/
 #country-information {
   font-size: smaller;
