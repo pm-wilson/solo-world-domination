@@ -1268,7 +1268,7 @@ function displayBattleInfo(battleDeckRef) {
             countPenaltyExile(penalties)
         ];
     //add player and deck name (color)
-    addElement("battle-information", "h3", battleText, "battle-player" + battleDeckRef, "battle-player");
+    addElement("battle-information", "h3", battleText, "battle-player" + battleDeckRef, "battle-player", changeColorClicked);
     //add player number class to deck info space
     addClass("battle-player" + battleDeckRef, "player-" + currentPlayer + "-battle-info");
     //add second head
@@ -1297,3 +1297,45 @@ function displayBattleInfo(battleDeckRef) {
     //add win-button class to button
     addClass("battle-winner-" + currentPlayer, "win-button");
 }
+
+function changeColorClicked(e) {
+    //e = battle-player0
+
+    const battlePlayerNumber = e.slice(-1);
+
+    const battleDeck = gameVars.battleScreenInfo.battleDecks[battlePlayerNumber];
+    const battleDeckName = battleDeck.deckName;
+
+    const battleDeckPlayer = battleDeck.deckPlayer;
+
+    const battlePlayer = gameVars.playerInfo["player" + battleDeckPlayer].playerName;
+
+    const deckColors = prompt("What are " + battleDeckName + "'s colors?");
+
+    if (deckColors) {
+        const deckColorsReported = deckColors.split('');
+        const deckColorsFound = [];
+
+        if (!!isItemInArray("w", deckColorsReported) || !!isItemInArray("W", deckColorsReported)) {
+            deckColorsFound.push("W");
+        }
+        if (!!isItemInArray("u", deckColorsReported) || !!isItemInArray("U", deckColorsReported)) {
+            deckColorsFound.push("U");
+        }
+        if (!!isItemInArray("b", deckColorsReported) || !!isItemInArray("B", deckColorsReported)) {
+            deckColorsFound.push("B");
+        }
+        if (!!isItemInArray("r", deckColorsReported) || !!isItemInArray("R", deckColorsReported)) {
+            deckColorsFound.push("R");
+        }
+        if (!!isItemInArray("g", deckColorsReported) || !!isItemInArray("G", deckColorsReported)) {
+            deckColorsFound.push("G");
+        }
+        if (deckColorsFound.length === 0) {
+            deckColorsFound.push("N");
+        }
+        updateDeckColors(battlePlayer, battleDeckName, deckColorsFound.join())
+        console.log(battleDeckName + "'s colors updated to " + deckColorsFound.join());
+    }
+}
+
