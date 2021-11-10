@@ -1300,7 +1300,7 @@ function displayBattleInfo(battleDeckRef) {
 
 function changeColorClicked(e) {
     //e = battle-player0
-
+    console.log(e.target.value)
     const battlePlayerNumber = e.slice(-1);
 
     const battleDeck = gameVars.battleScreenInfo.battleDecks[battlePlayerNumber];
