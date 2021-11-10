@@ -640,6 +640,8 @@ function proceedWithAttack() {
         addElement("battle-information", "div", "noContent", "card-picture");
         //set info locations
         setPlayerInfoLocation();
+        //load colorChangeButton
+        displayColorChangeButton();
         //update log
         updateLog([countGames + " Game Begins", groundZero]);
         //add attacking country to already attacked list
@@ -1268,7 +1270,7 @@ function displayBattleInfo(battleDeckRef) {
             countPenaltyExile(penalties)
         ];
     //add player and deck name (color)
-    addElement("battle-information", "h3", battleText, "battle-player" + battleDeckRef, "battle-player", changeColorClicked);
+    addElement("battle-information", "h3", battleText, "battle-player" + battleDeckRef, "battle-player");
     //add player number class to deck info space
     addClass("battle-player" + battleDeckRef, "player-" + currentPlayer + "-battle-info");
     //add second head
@@ -1298,44 +1300,40 @@ function displayBattleInfo(battleDeckRef) {
     addClass("battle-winner-" + currentPlayer, "win-button");
 }
 
-function changeColorClicked(e) {
-    //e = battle-player0
-    console.log(e.target.value)
-    const battlePlayerNumber = e.slice(-1);
+function displayColorChangeButton() {
+    addElement("battle-screen-toolbar", "button", "Change Deck Colors", "change-color-button", "btn", changeColorClicked)
+}
 
-    const battleDeck = gameVars.battleScreenInfo.battleDecks[battlePlayerNumber];
-    const battleDeckName = battleDeck.deckName;
+function changeColorClicked() {
+    const playerName = prompt("What player needs to change colors?");
 
-    const battleDeckPlayer = battleDeck.deckPlayer;
+    if (!!playerName) {
+        const colors = prompt("What are " + playerName + "'s colors?");
 
-    const battlePlayer = gameVars.playerInfo["player" + battleDeckPlayer].playerName;
+        if (!!colors) {
+            const deckColorsReported = colors.split('');
+            const deckColorsFound = [];
 
-    const deckColors = prompt("What are " + battleDeckName + "'s colors?");
-
-    if (deckColors) {
-        const deckColorsReported = deckColors.split('');
-        const deckColorsFound = [];
-
-        if (!!isItemInArray("w", deckColorsReported) || !!isItemInArray("W", deckColorsReported)) {
-            deckColorsFound.push("W");
+            if (!!isItemInArray("w", deckColorsReported) || !!isItemInArray("W", deckColorsReported)) {
+                deckColorsFound.push("W");
+            }
+            if (!!isItemInArray("u", deckColorsReported) || !!isItemInArray("U", deckColorsReported)) {
+                deckColorsFound.push("U");
+            }
+            if (!!isItemInArray("b", deckColorsReported) || !!isItemInArray("B", deckColorsReported)) {
+                deckColorsFound.push("B");
+            }
+            if (!!isItemInArray("r", deckColorsReported) || !!isItemInArray("R", deckColorsReported)) {
+                deckColorsFound.push("R");
+            }
+            if (!!isItemInArray("g", deckColorsReported) || !!isItemInArray("G", deckColorsReported)) {
+                deckColorsFound.push("G");
+            }
+            if (deckColorsFound.length === 0) {
+                deckColorsFound.push("N");
+            }
+            updateDeckColors(playerName, deckColorsFound.join());
         }
-        if (!!isItemInArray("u", deckColorsReported) || !!isItemInArray("U", deckColorsReported)) {
-            deckColorsFound.push("U");
-        }
-        if (!!isItemInArray("b", deckColorsReported) || !!isItemInArray("B", deckColorsReported)) {
-            deckColorsFound.push("B");
-        }
-        if (!!isItemInArray("r", deckColorsReported) || !!isItemInArray("R", deckColorsReported)) {
-            deckColorsFound.push("R");
-        }
-        if (!!isItemInArray("g", deckColorsReported) || !!isItemInArray("G", deckColorsReported)) {
-            deckColorsFound.push("G");
-        }
-        if (deckColorsFound.length === 0) {
-            deckColorsFound.push("N");
-        }
-        updateDeckColors(battlePlayer, battleDeckName, deckColorsFound.join())
-        console.log(battleDeckName + "'s colors updated to " + deckColorsFound.join());
     }
 }
 

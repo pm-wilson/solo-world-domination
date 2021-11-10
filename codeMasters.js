@@ -1053,7 +1053,33 @@ function showPlayerTotalDecklist(player) {
     return list;
 }
 
-function updateDeckColors(nameOfPlayer, deckName, deckColors) {
+function findPlayerNumberByName(nameOfPlayer) {
+    const playerArrayKeys = Object.keys(gameVars.playerInfo);
+
+    for (let i = 0; i < playerArrayKeys.length; i++) {
+        if (gameVars.playerInfo["player" + i].playerName === nameOfPlayer) {
+            return i;
+        }
+    }
+    return null;
+}
+
+function findBattleDeckNameWithPlayerName(nameOfPlayer) {
+
+    const decksInBattle = gameVars.battleScreenInfo.battleDecks;
+
+    for (let i = 0; i < decksInBattle.length; i++) {
+        const currentDeck = decksInBattle[i];
+        const currentPlayer = findPlayerName(currentDeck.deckPlayer);
+
+        if (currentPlayer === nameOfPlayer) {
+            return currentDeck.deckName;
+        }
+    }
+    return null;
+}
+
+function updateDeckColors(nameOfPlayer, deckColors) {
     const playerArray = Object.keys(gameVars.playerInfo)
 
     for (let i = 0; i < playerArray.length; i++) {
@@ -1062,6 +1088,7 @@ function updateDeckColors(nameOfPlayer, deckName, deckColors) {
 
             for (let d = 0; d < currentDecklist.length; d++) {
                 const currentDeck = currentDecklist[d];
+                const deckName = findBattleDeckNameWithPlayerName(nameOfPlayer);
 
                 if (currentDeck.deckName === deckName) {
                     currentDeck.deckColors = deckColors;
