@@ -111,7 +111,6 @@ function countBattleLife(bonuses, penalties, countrySupport, battleDeckRef) {
     //vanguard
     if (gameVars.gameStatus.mode === "attack" && gameVars.battleScreenInfo.battleVanguards[battleDeckRef] !== "noVanguard") {
         var vanguardRef = findVanguardRef(gameVars.battleScreenInfo.battleVanguards[battleDeckRef]);
-
         lifeTotal += vanguardDeck[vanguardRef].vanguardLife;
         if (vanguardDeck[vanguardRef].vanguardLife < 0) {
             lifeTotalMods.push("Vanguard Life: " + vanguardDeck[vanguardRef].vanguardLife);
@@ -132,7 +131,10 @@ function countBattleLife(bonuses, penalties, countrySupport, battleDeckRef) {
         }
     }
     //continent bonus
-    if (gameVars.gameStatus.mode === "attack" && adminSettings.continentBonuses.useContinentBonuses === true && isItemInArray("North America", [gameVars.battleScreenInfo.battleContinentBonuses[battleDeckRef]]) && gameVars.battleScreenInfo.battleContinentBonuses[battleDeckRef] !== "noContinent") {
+    if (gameVars.gameStatus.mode === "attack" &&
+        adminSettings.continentBonuses.useContinentBonuses === true &&
+        isItemInArray("North America", [gameVars.battleScreenInfo.battleContinentBonuses[battleDeckRef][0]]) &&
+        gameVars.battleScreenInfo.battleContinentBonuses[battleDeckRef] !== "noContinent") {
         lifeTotal += adminSettings.continentBonuses.continentLifeBonus;
         lifeTotalMods.push("Continent Bonus: +" + adminSettings.continentBonuses.continentLifeBonus);
     }

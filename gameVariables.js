@@ -62,9 +62,9 @@ var adminSettings = {
         "continentCardPerDeckBonus": 0.34,
         "continentCardMinimum": 3,
         "continentLifeBonus": 40,
-        "bonusAfrica": "At the beggining of your upkeep put a 2/2 black zombie with defender in play. You may sacrifice 5 zombies to put a creature from your graveyard into play.",
+        "bonusAfrica": "At the beginning of your upkeep put a 2/2 black zombie with defender in play. You may sacrifice 5 zombies to put a creature from your graveyard into play.",
         "bonusSouth America": "Artifacts cost 1 less to cast. If your deck has all five colors you get double planar rolls and an extra Archenemy roll.",
-        "bonusNorth America": "Your starting life increases by",
+        "bonusNorth America": "Your starting life increases by ",
         "bonusAsia": "All lands you control tap for an additional mana of the same color.",
         "bonusEurope": "Your starting and max hand size increase by",
         "bonusAustralia": "All red spells have flashback"
@@ -1457,9 +1457,9 @@ var defaultAdminSettings = {
         "continentCardPerDeckBonus": 0.34,
         "continentCardMinimum": 3,
         "continentLifeBonus": 40,
-        "bonusAfrica": "At the beggining of your upkeep put a 2/2 black zombie with defender in play. You may sacrifice 5 zombies to put a creature from your graveyard into play.",
+        "bonusAfrica": "At the beginning of your upkeep put a 2/2 black zombie with defender in play. You may sacrifice 5 zombies to put a creature from your graveyard into play.",
         "bonusSouth America": "Artifacts cost 1 less to cast. If your deck has all five colors you get double planar rolls and an extra Archenemy roll.",
-        "bonusNorth America": "Your starting life increases by",
+        "bonusNorth America": "Your starting life increases by ",
         "bonusAsia": "All lands you control tap for an additional mana of the same color.",
         "bonusEurope": "Your starting and max hand size increase by",
         "bonusAustralia": "All red spells have flashback"
